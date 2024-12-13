@@ -1,17 +1,64 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faPython,
-  faJs,
-  faReact,
-  faNode,
-  faHtml5,
-  faCss3Alt,
-  faJava,
-} from '@fortawesome/free-brands-svg-icons';
-import { faDatabase } from '@fortawesome/free-solid-svg-icons';
+import React, { useEffect, useState } from 'react';
 
 const About = () => {
+  const experienceTimeline = [
+    {
+      role: 'Machine Learning Intern',
+      company: 'FPT Software, Vietnam',
+      duration: 'June 2024 - August 2024',
+      description:
+        'Developed an AI-powered wedding album image management system using Azure AI Vision, improving model accuracy by 15%. Implemented a deep learning image clustering system for a 5000-image dataset.',
+    },
+    {
+      role: 'Lead Software Engineer',
+      company: 'Mass General Brigham Hospital',
+      duration: 'March 2024 - May 2024',
+      description:
+        'Led a team of 11 in developing a hospital management system using Agile methodology. Delivered a Logistic Regression-based scheduling system with 90% accuracy.',
+    },
+    {
+      role: 'Artificial Intelligence Intern',
+      company: 'Vietnam National University',
+      duration: 'July 2023 - August 2023',
+      description:
+        'Built a clinical decision support system to detect pneumonia and pulmonary edema using deep convolutional neural networks with an F1 score of 0.832.',
+    },
+    {
+      role: 'Data Science Intern',
+      company: 'FPT Software, Vietnam',
+      duration: 'July 2023 - August 2023',
+      description:
+        'Created a ground truth database for human pose detection with 10,000 labeled images, achieving 88% model accuracy in real-time applications.',
+    },
+  ];
+
+  const [visibleSections, setVisibleSections] = useState<string[]>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleSections((prev) => [
+              ...new Set([...prev, entry.target.id]),
+            ]);
+          } else {
+            setVisibleSections((prev) =>
+              prev.filter((id) => id !== entry.target.id)
+            );
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    document.querySelectorAll('.timeline-item').forEach((item) => {
+      observer.observe(item);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="relative" id="about">
       <div className="bg-gray-100 py-12">
@@ -44,67 +91,31 @@ const About = () => {
                   clustering, and cancer detection systems.
                 </p>
               </div>
-              <div className="border border-red-200 rounded-lg md:p-7 py-7 flex flex-col gap-8 items-center shadow-lg shadow-red-300">
+              <div className="border border-red-200 rounded-lg md:p-7 py-7 shadow-lg shadow-red-300 overflow-y-auto max-h-[400px] hide-scrollbar scroll-smooth">
                 <h3 className="text-2xl font-semibold text-red-600">
-                  Skills & Expertise
+                  Experience Timeline
                 </h3>
-                <div className="flex items-center justify-center flex-wrap gap-3">
-                  <div className="border border-red-300 flex items-center gap-2 w-max px-3 py-2 rounded-lg shadow-md shadow-red-300">
-                    <FontAwesomeIcon
-                      icon={faPython}
-                      className="text-blue-500 w-8 h-8"
-                    />
-                    <span className="font-semibold">Python</span>
-                  </div>
-                  <div className="border border-red-300 flex items-center gap-2 w-max px-3 py-2 rounded-lg shadow-md shadow-red-300">
-                    <FontAwesomeIcon
-                      icon={faJs}
-                      className="text-yellow-500 w-8 h-8"
-                    />
-                    <span className="font-semibold">JavaScript</span>
-                  </div>
-                  <div className="border border-red-300 flex items-center gap-2 w-max px-3 py-2 rounded-lg shadow-md shadow-red-300">
-                    <FontAwesomeIcon
-                      icon={faHtml5}
-                      className="text-orange-500 w-8 h-8"
-                    />
-                    <span className="font-semibold">HTML</span>
-                  </div>
-                  <div className="border border-red-300 flex items-center gap-2 w-max px-3 py-2 rounded-lg shadow-md shadow-red-300">
-                    <FontAwesomeIcon
-                      icon={faCss3Alt}
-                      className="text-blue-600 w-8 h-8"
-                    />
-                    <span className="font-semibold">CSS</span>
-                  </div>
-                  <div className="border border-red-300 flex items-center gap-2 w-max px-3 py-2 rounded-lg shadow-md shadow-red-300">
-                    <FontAwesomeIcon
-                      icon={faReact}
-                      className="text-cyan-500 w-8 h-8"
-                    />
-                    <span className="font-semibold">React.js</span>
-                  </div>
-                  <div className="border border-red-300 flex items-center gap-2 w-max px-3 py-2 rounded-lg shadow-md shadow-red-300">
-                    <FontAwesomeIcon
-                      icon={faNode}
-                      className="text-green-500 w-8 h-8"
-                    />
-                    <span className="font-semibold">Node.js</span>
-                  </div>
-                  <div className="border border-red-300 flex items-center gap-2 w-max px-3 py-2 rounded-lg shadow-md shadow-red-300">
-                    <FontAwesomeIcon
-                      icon={faDatabase}
-                      className="text-red-500 w-8 h-8"
-                    />
-                    <span className="font-semibold">SQL</span>
-                  </div>
-                  <div className="border border-red-300 flex items-center gap-2 w-max px-3 py-2 rounded-lg shadow-md shadow-red-300">
-                    <FontAwesomeIcon
-                      icon={faJava}
-                      className="text-red-700 w-8 h-8"
-                    />
-                    <span className="font-semibold">Java</span>
-                  </div>
+                <div className="mt-6 space-y-8">
+                  {experienceTimeline.map((exp, index) => (
+                    <div
+                      key={index}
+                      id={`timeline-${index}`}
+                      className={`timeline-item relative pl-4 border-l border-gray-300 opacity-0 transition-opacity duration-700 ${
+                        visibleSections.includes(`timeline-${index}`)
+                          ? 'opacity-100'
+                          : ''
+                      }`}
+                    >
+                      <div className="absolute -left-2.5 w-5 h-5 bg-red-500 rounded-full"></div>
+                      <h4 className="text-lg font-bold text-gray-800">
+                        {exp.role}
+                      </h4>
+                      <p className="text-sm text-gray-600">
+                        {exp.company} | {exp.duration}
+                      </p>
+                      <p className="text-gray-700 mt-2">{exp.description}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
