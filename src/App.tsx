@@ -1,7 +1,19 @@
+import About from './components/About';
+import Hero from './components/Hero';
+import Navbar from './components/Navbar';
+import Particle from './components/Particle';
+import Projects from './components/Projects';
+import Contact from './components/Contact';
+
 export default function App() {
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <Particle />
+      <Navbar />
+      <Hero />
+      <About />
+      <Projects />
+      <Contact />
     </>
   );
 }
