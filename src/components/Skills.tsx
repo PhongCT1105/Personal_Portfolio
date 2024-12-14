@@ -21,6 +21,7 @@ import { HiUserGroup } from 'react-icons/hi2';
 import { FaPeopleGroup } from 'react-icons/fa6';
 import { FaProjectDiagram } from 'react-icons/fa';
 import { VscAzureDevops } from 'react-icons/vsc';
+import robotGif from '../assets/robot.gif'; // Import the local GIF
 
 const certifications = [
   { name: 'Azure AI Engineer', image: 'src/assets/azure_ai_engineer.png' },
@@ -140,24 +141,43 @@ const Skills = () => {
       className="relative py-16 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
     >
       <div className="max-w-7xl mx-auto px-6">
-        {/* Section Title */}
-        <h2 className="text-4xl font-extrabold text-center text-white mb-12">
-          Skills & Certifications
-        </h2>
+        {/* Section Title with Robot */}
+        <div className="relative flex items-center justify-center mb-12">
+          {/* Robot Animation */}
+          <div
+            className="animate-robot-walk-sm md:animate-robot-walk-md lg:animate-robot-walk-lg"
+            style={{
+              width: '100px',
+              height: '100px',
+              position: 'absolute',
+              left: '-50px', // Start just outside the container
+            }}
+          >
+            <img
+              src={robotGif}
+              alt="Robot"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-center text-gray-800 dark:text-gray-100 mt-6 mb-4 tracking-tight">
+            Skills
+          </h2>
+        </div>
 
         {/* Main Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-10 gap-8">
+        <div className="relative py-3 grid grid-cols-1 md:grid-cols-10 gap-8">
           {/* Skills Section (70%) */}
           <div className="md:col-span-7 space-y-6">
             {Object.entries(skillsData).map(([category, skills]) => (
               <div key={category} className="space-y-3">
                 {/* Category Header */}
-                <h3 className="text-lg font-bold text-white uppercase">
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-200 tracking-wide uppercase relative group">
                   {category.replace(/([A-Z])/g, ' $1')}
+                  <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
                 </h3>
 
                 {/* Skills Grid */}
-                <div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-y-4 sm:gap-y-6 md:gap-y-2 gap-x-2">
+                <div className="grid grid-cols-4 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-8 gap-y-4 sm:gap-y-6 md:gap-y-2 gap-x-2">
                   {skills.map((skill) => (
                     <div
                       key={skill.name}
@@ -180,8 +200,9 @@ const Skills = () => {
 
           {/* Certifications Section (30%) */}
           <div className="md:col-span-3 space-y-6">
-            <h3 className="text-lg font-bold text-white uppercase">
+            <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-300 uppercase tracking-wide relative group">
               Certifications
+              <span className="absolute left-0 bottom-[-2px] h-[2px] w-0 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
             </h3>
             <div className="space-y-4">
               {certifications.map((cert) => (
