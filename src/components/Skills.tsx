@@ -1,41 +1,135 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faPython,
-  faJs,
-  faReact,
-  faNode,
-  faHtml5,
-  faCss3Alt,
-  faJava,
-} from '@fortawesome/free-brands-svg-icons';
-import {
-  faDatabase,
-  faCloud,
-  faDiagramProject,
-  faUsers,
-} from '@fortawesome/free-solid-svg-icons';
+  SiC,
+  SiCplusplus,
+  SiTypescript,
+  SiJavascript,
+  SiPytorch,
+  SiTensorflow,
+  SiScikitlearn,
+  SiKeras,
+  SiExpress,
+  SiReact,
+  SiAmazon,
+  SiDocker,
+  SiLinux,
+} from 'react-icons/si';
+import { FaGithub, FaPython } from 'react-icons/fa';
+import { SiLangchain } from 'react-icons/si';
+import { VscAzure } from 'react-icons/vsc';
+import { HiUserGroup } from 'react-icons/hi2';
+import { FaPeopleGroup } from 'react-icons/fa6';
+import { FaProjectDiagram } from 'react-icons/fa';
+import { VscAzureDevops } from 'react-icons/vsc';
+
+const certifications = [
+  { name: 'Azure AI Engineer', image: 'src/assets/azure_ai_engineer.png' },
+  {
+    name: 'Azure Data Scientist',
+    image: 'src/assets/azure_data_scientist.png',
+  },
+];
 
 const skillsData = {
   languages: [
-    { name: 'Python', icon: faPython },
-    { name: 'JavaScript', icon: faJs },
-    { name: 'HTML', icon: faHtml5 },
-    { name: 'CSS', icon: faCss3Alt },
-    { name: 'Java', icon: faJava },
+    {
+      name: 'Python',
+      icon: <FaPython className="animate-vertical-flip text-[#3776AB]" />,
+    },
+    {
+      name: 'C',
+      icon: <SiC className="animate-vertical-flip text-[#A8B9CC]" />,
+    },
+    {
+      name: 'C++',
+      icon: <SiCplusplus className="animate-vertical-flip text-[#00599C]" />,
+    },
+    {
+      name: 'Typescript',
+      icon: <SiTypescript className="animate-vertical-flip text-[#3178C6]" />,
+    },
+    {
+      name: 'JavaScript',
+      icon: <SiJavascript className="animate-vertical-flip text-[#F7DF1E]" />,
+    },
   ],
-  frameworksTools: [
-    { name: 'React', icon: faReact },
-    { name: 'Node.js', icon: faNode },
-    { name: 'SQL', icon: faDatabase },
-    { name: 'Cloud Services', icon: faCloud },
+  frameworksAndTools: [
+    {
+      name: 'Pytorch',
+      icon: <SiPytorch className="animate-vertical-flip text-[#EE4C2C]" />,
+    },
+    {
+      name: 'Tensorflow',
+      icon: <SiTensorflow className="animate-vertical-flip text-[#FF6F00]" />,
+    },
+    {
+      name: 'Scikit-learn',
+      icon: <SiScikitlearn className="animate-vertical-flip text-[#F7931E]" />,
+    },
+    {
+      name: 'Keras',
+      icon: <SiKeras className="animate-vertical-flip text-[#D00000]" />,
+    },
+    {
+      name: 'Langchain',
+      icon: <SiLangchain className="animate-vertical-flip text-[#61DAFB]" />,
+    },
+    {
+      name: 'Express',
+      icon: <SiExpress className="animate-vertical-flip text-white" />,
+    },
+    {
+      name: 'ReactJS',
+      icon: <SiReact className="animate-vertical-flip text-[#61DAFB]" />,
+    },
+  ],
+  cloudAndDevops: [
+    {
+      name: 'Azure',
+      icon: <VscAzure className="animate-vertical-flip text-[#0078D4]" />,
+    },
+    {
+      name: 'AWS',
+      icon: <SiAmazon className="animate-vertical-flip text-[#FF9900]" />,
+    },
+    {
+      name: 'Docker',
+      icon: <SiDocker className="animate-vertical-flip text-[#2496ED]" />,
+    },
+    {
+      name: 'Linux',
+      icon: <SiLinux className="animate-vertical-flip text-[#FF4500]" />,
+    },
+    {
+      name: 'Azure Devops',
+      icon: <VscAzureDevops className="animate-vertical-flip text-[#00A4EF]" />,
+    },
+    {
+      name: 'GitHub',
+      icon: <FaGithub className="animate-vertical-flip text-[#181717]" />,
+    },
   ],
   softSkills: [
-    { name: 'Agile Methodology', icon: faDiagramProject },
-    { name: 'UML Diagrams', icon: faDiagramProject },
-    { name: 'ERD (Entity Relationship Diagram)', icon: faDiagramProject },
-    { name: 'Subsystem Design', icon: faDiagramProject },
-    { name: 'Leadership', icon: faUsers },
+    {
+      name: 'Leadership',
+      icon: <HiUserGroup className="animate-vertical-flip text-[#6A5ACD]" />,
+    },
+    {
+      name: 'Agile Methodology',
+      icon: <FaPeopleGroup className="animate-vertical-flip text-[#8A2BE2]" />,
+    },
+    {
+      name: 'Subsystem Design',
+      icon: (
+        <FaProjectDiagram className="animate-vertical-flip text-[#20B2AA]" />
+      ),
+    },
+    {
+      name: 'ERD',
+      icon: (
+        <FaProjectDiagram className="animate-vertical-flip text-[#9370DB]" />
+      ),
+    },
   ],
 };
 
@@ -43,39 +137,70 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="relative bg-gray-200 py-12 z-10" // Updated background color
+      className="relative py-16 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
     >
-      <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-8 text-red-600">
-          Skills & Expertise
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Section Title */}
+        <h2 className="text-4xl font-extrabold text-center text-white mb-12">
+          Skills & Certifications
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {Object.entries(skillsData).map(([category, skills]) => (
-            <div
-              key={category}
-              className="p-6 border rounded-lg shadow-lg bg-white"
-            >
-              <h3 className="text-2xl font-semibold text-gray-800 capitalize text-center mb-4">
-                {category.replace(/([A-Z])/g, ' $1')}
-              </h3>
-              <div className="grid grid-cols-2 gap-6 justify-center">
-                {skills.map((skill) => (
-                  <div
-                    key={skill.name}
-                    className="flex flex-col items-center text-center border px-4 py-3 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 bg-gray-50"
-                  >
-                    <FontAwesomeIcon
-                      icon={skill.icon}
-                      className="text-red-500 w-8 h-8 mb-2"
-                    />
-                    <span className="text-gray-700 font-medium">
-                      {skill.name}
-                    </span>
-                  </div>
-                ))}
+
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-10 gap-8">
+          {/* Skills Section (70%) */}
+          <div className="md:col-span-7 space-y-6">
+            {Object.entries(skillsData).map(([category, skills]) => (
+              <div key={category} className="space-y-3">
+                {/* Category Header */}
+                <h3 className="text-lg font-bold text-white uppercase">
+                  {category.replace(/([A-Z])/g, ' $1')}
+                </h3>
+
+                {/* Skills Grid */}
+                <div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-y-4 sm:gap-y-6 md:gap-y-2 gap-x-2">
+                  {skills.map((skill) => (
+                    <div
+                      key={skill.name}
+                      className="group flex flex-col items-center justify-center bg-gradient-to-r from-gray-800 to-gray-700 w-16 h-16 sm:w-20 sm:h-20 p-2 rounded-lg shadow-md transition-shadow"
+                    >
+                      {/* Skill Icon */}
+                      <div className="text-xl sm:text-2xl flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10">
+                        {skill.icon}
+                      </div>
+                      {/* Skill Name */}
+                      <span className="mt-1 text-center text-xs text-white font-medium break-words group-hover:text-yellow-400 transition-colors duration-300">
+                        {skill.name}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
+            ))}
+          </div>
+
+          {/* Certifications Section (30%) */}
+          <div className="md:col-span-3 space-y-6">
+            <h3 className="text-lg font-bold text-white uppercase">
+              Certifications
+            </h3>
+            <div className="space-y-4">
+              {certifications.map((cert) => (
+                <div
+                  key={cert.name}
+                  className="flex flex-col items-center bg-gradient-to-r from-gray-800 to-gray-700 rounded-lg p-4 shadow-md"
+                >
+                  <img
+                    src={cert.image}
+                    alt={cert.name}
+                    className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-md mb-4 object-cover"
+                  />
+                  <span className="text-center text-sm text-white font-medium">
+                    {cert.name}
+                  </span>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>
