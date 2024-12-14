@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 const About = () => {
   const experienceTimeline = [
@@ -8,13 +10,6 @@ const About = () => {
       duration: 'June 2024 - August 2024',
       description:
         'Developed an AI-powered wedding album image management system using Azure AI Vision, improving model accuracy by 15%. Implemented a deep learning image clustering system for a 5000-image dataset.',
-    },
-    {
-      role: 'Lead Software Engineer',
-      company: 'Mass General Brigham Hospital',
-      duration: 'March 2024 - May 2024',
-      description:
-        'Led a team of 11 in developing a hospital management system using Agile methodology. Delivered a Logistic Regression-based scheduling system with 90% accuracy.',
     },
     {
       role: 'Artificial Intelligence Intern',
@@ -32,32 +27,48 @@ const About = () => {
     },
   ];
 
-  const [visibleSections, setVisibleSections] = useState<string[]>([]);
+  const controls = useAnimation();
+  const { ref: containerRef, inView } = useInView({
+    threshold: 0.2,
+  });
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisibleSections((prev) => [
-              ...new Set([...prev, entry.target.id]),
-            ]);
-          } else {
-            setVisibleSections((prev) =>
-              prev.filter((id) => id !== entry.target.id)
-            );
-          }
-        });
+    if (inView) {
+      controls.start('visible');
+    } else {
+      controls.start('hidden');
+    }
+  }, [inView, controls]);
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.6, // Wait for each animation to complete before starting the next
       },
-      { threshold: 0.2 }
-    );
+    },
+  };
 
-    document.querySelectorAll('.timeline-item').forEach((item) => {
-      observer.observe(item);
-    });
-
-    return () => observer.disconnect();
-  }, []);
+  const itemVariants = {
+    hidden: { opacity: 0, x: -100 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 1.25, // Slow and smooth animation
+        ease: 'easeInOut',
+      },
+    },
+    hover: {
+      scale: 1.05,
+      backgroundColor: '#fef2f2', // Matches hover effect color
+      color: '#dc2626', // Text color on hover
+      boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.2)',
+      transition: {
+        duration: 0.3,
+      },
+    },
+  };
 
   return (
     <div className="relative" id="about">
@@ -91,22 +102,25 @@ const About = () => {
                   clustering, and cancer detection systems.
                 </p>
               </div>
-              <div className="border border-red-200 rounded-lg md:p-7 py-7 shadow-lg shadow-red-300 overflow-y-auto max-h-[400px] hide-scrollbar scroll-smooth">
+              <div>
                 <h3 className="text-2xl font-semibold text-red-600">
                   Experience Timeline
                 </h3>
-                <div className="mt-6 space-y-8">
+                <motion.div
+                  ref={containerRef}
+                  initial="hidden"
+                  animate={controls}
+                  variants={containerVariants}
+                  className="mt-6 space-y-8"
+                >
                   {experienceTimeline.map((exp, index) => (
-                    <div
+                    <motion.div
                       key={index}
-                      id={`timeline-${index}`}
-                      className={`timeline-item relative pl-4 border-l border-gray-300 opacity-0 transition-opacity duration-700 ${
-                        visibleSections.includes(`timeline-${index}`)
-                          ? 'opacity-100'
-                          : ''
-                      }`}
+                      variants={itemVariants}
+                      whileHover="hover"
+                      className="timeline-item relative pl-4 border-l border-gray-300 px-3 py-2 rounded-md bg-white"
                     >
-                      <div className="absolute -left-2.5 w-5 h-5 bg-red-500 rounded-full"></div>
+                      <div className="absolute -left-2.5 w-5 h-5 rounded-full bg-red-500"></div>
                       <h4 className="text-lg font-bold text-gray-800">
                         {exp.role}
                       </h4>
@@ -114,9 +128,9 @@ const About = () => {
                         {exp.company} | {exp.duration}
                       </p>
                       <p className="text-gray-700 mt-2">{exp.description}</p>
-                    </div>
+                    </motion.div>
                   ))}
-                </div>
+                </motion.div>
               </div>
             </div>
           </div>
