@@ -3,8 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Ensure proper scaling on mobile -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>Vite + React + TS</title>
+    <!-- Add global styles for overflow and body reset -->
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+      }
+
+      #root {
+        width: 100%; /* Ensure root container fits the viewport */
+        height: 100%;
+      }
+
+      * {
+        box-sizing: border-box; /* Include padding and border in width/height */
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>

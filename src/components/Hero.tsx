@@ -6,21 +6,22 @@ import linkedin from '../assets/linkedin.png';
 
 const Hero = () => {
   return (
-    <section className="relative">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row items-center lg:h-[90vh] justify-between">
-          <div className="md:w-1/2 mb-8 md:mb-0 flex flex-col space-y-4 px-6 lg:px-0 lg:mt-0 mt-10">
-            <h1 className="lg:text-7xl text-4xl font-bold lg:leading-snug">
+    <section className="relative w-full overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex flex-col md:flex-row items-center justify-between lg:h-[90vh]">
+          {/* Text Section */}
+          <div className="md:w-1/2 mb-8 md:mb-0 flex flex-col space-y-4 px-4 md:px-0 mt-10">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight lg:leading-snug">
               Hi There, <br />
               I'm <span className="text-red-500">Phong Cao</span>
             </h1>
-            <p className="md:text-2xl text-xl mb-4">AI&ML Developer</p>
+            <p className="text-xl sm:text-2xl mb-4">AI&ML Developer</p>
             <p className="mb-4">
               I'm a passionate web developer with expertise in React, Next.js,
               and modern web technologies. I love creating beautiful and
               functional websites that solve real-world problems.
             </p>
-            <button className="bg-black text-white px-3 py-2 w-max rounded-md hover:bg-red-500">
+            <button className="bg-black text-white px-4 py-2 w-max rounded-md hover:bg-red-500">
               <a
                 href="https://drive.google.com/file/d/1LBMHWpTgTGkvCTcHYiU8JQRCHb5-SRl8/view?usp=sharing"
                 download
@@ -31,35 +32,43 @@ const Hero = () => {
               </a>
             </button>
           </div>
-          <div className="md:w-1/2 relative flex justify-center items-end">
-            <img src={hero} alt="Hero Image" className="lg:h-[90vh] h-96" />
+
+          {/* Hero Image Section */}
+          <div className="md:w-1/2 flex justify-center items-end">
+            <img
+              src={hero}
+              alt="Hero Image"
+              className="w-full max-w-full h-auto object-contain"
+            />
           </div>
         </div>
       </div>
-      <div className="absolute top-40 right-10 hidden bg-gray-200 p-4 md:flex flex-col gap-6 rounded-full">
+
+      {/* Social Media Links */}
+      <div className="absolute top-20 md:top-40 right-2 md:right-10 bg-gray-200 p-4 hidden md:flex flex-col gap-6 rounded-full">
         <a
           href="https://www.facebook.com/PhongCao1105/"
-          target="https://www.facebook.com/PhongCao1105/"
-          rel="Facebook Link"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          <img src={facebook} alt="Facebook Icon" className="w-[4rem]" />
+          <img src={facebook} alt="Facebook Icon" className="w-10 h-10" />
         </a>
         <a
           href="https://www.instagram.com/phongcao1105/"
-          target="https://www.instagram.com/phongcao1105/"
-          rel="Instagram Link"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          <img src={instagram} alt="Instagram Icon" className="w-[4rem]" />
+          <img src={instagram} alt="Instagram Icon" className="w-10 h-10" />
         </a>
         <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-          <img src={twitter} alt="Twitter Icon" className="w-[4rem]" />
+          <img src={twitter} alt="Twitter Icon" className="w-10 h-10" />
         </a>
         <a
           href="https://www.linkedin.com/in/phong-cao/"
-          target="https://www.linkedin.com/in/phong-cao/"
-          rel="Linkedin Link"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          <img src={linkedin} alt="LinkedIn Icon" className="w-[4rem]" />
+          <img src={linkedin} alt="LinkedIn Icon" className="w-10 h-10" />
         </a>
       </div>
     </section>

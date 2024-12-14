@@ -2,7 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden; /* Prevent scrolling horizontally */
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* Prevent padding and borders from exceeding element dimensions */
+}
+
+.container {
+  max-width: 100%; /* Ensure no container exceeds 100% width */
+}
+
+img,
+video,
+canvas {
+  max-width: 100%; /* Prevent media elements from exceeding viewport width */
+  height: auto;
 }
