@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Cards from './Cards';
 import Portfolio from '../assets/Portfolio.png';
 import SpicyBites from '../assets/SpicyBites.png';
@@ -6,9 +6,23 @@ import Youtube from '../assets/Youtube.png';
 import Webelite from '../assets/Webelite.png';
 import Supercar from '../assets/Supercar.png';
 
-const categories = [
+// Define the type for categories and projects
+interface Project {
+  title: string;
+  desc: string;
+  image: string;
+  live: string;
+  github: string;
+}
+
+interface Category {
+  name: string;
+  projects: Project[];
+}
+
+const categories: Category[] = [
   {
-    name: 'Machine Learning & ',
+    name: 'Machine Learning',
     projects: [
       {
         title: 'AI Project 1',
@@ -87,7 +101,7 @@ const categories = [
   },
 ];
 
-const Projects = () => {
+const Projects: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState(0);
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
@@ -126,6 +140,14 @@ const Projects = () => {
     touchEndX.current = null;
   };
 
+  useEffect(() => {
+    const autoSlide = setInterval(() => {
+      goToNext();
+    }, 5000);
+
+    return () => clearInterval(autoSlide);
+  }, [activeCategory]);
+
   return (
     <section
       id="projects"
@@ -135,6 +157,23 @@ const Projects = () => {
         <h2 className="text-3xl font-bold mb-8 text-white border-b border-red-500 w-max pb-4 mx-auto">
           My Projects
         </h2>
+
+        <div className="flex justify-center space-x-4 mb-6">
+          {categories.map((category, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveCategory(index)}
+              className={`px-4 py-2 rounded-full transition-all ${
+                activeCategory === index
+                  ? 'bg-red-500 text-white'
+                  : 'bg-gray-300 text-gray-800'
+              }`}
+            >
+              {category.name}
+            </button>
+          ))}
+        </div>
+
         <div
           className="relative overflow-hidden w-full"
           onTouchStart={handleTouchStart}
@@ -157,10 +196,7 @@ const Projects = () => {
                   overflow: 'hidden',
                 }}
               >
-                <h2 className="text-2xl font-semibold text-center mb-8 text-white">
-                  {category.name}
-                </h2>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 lg:gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
                   {category.projects.map((item, idx) => (
                     <Cards key={idx} item={item} />
                   ))}
@@ -174,28 +210,14 @@ const Projects = () => {
           <button
             onClick={goToPrevious}
             aria-label="Previous Category"
-            className="w-8 h-8 text-white border border-green-700 rounded hover:bg-green-600 shadow-md transition-all"
+            className="w-10 h-10 border border-red-500 text-white flex justify-center items-center rounded-full hover:bg-red-500 focus:ring-2 focus:ring-red-500 shadow-md transition-all"
           >
             &lt;
           </button>
-          <div className="flex space-x-2">
-            {categories.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveCategory(index)}
-                aria-label={`Go to ${categories[index].name} category`}
-                className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full transition-transform ${
-                  index === activeCategory
-                    ? 'bg-blue-500 scale-125'
-                    : 'bg-gray-300 scale-100'
-                }`}
-              ></button>
-            ))}
-          </div>
           <button
             onClick={goToNext}
             aria-label="Next Category"
-            className="w-8 h-8 text-white border border-red-400 rounded hover:bg-red-600 shadow-md transition-all"
+            className="w-10 h-10 border border-red-500 text-white flex justify-center items-center rounded-full hover:bg-red-500 focus:ring-2 focus:ring-red-500 shadow-md transition-all"
           >
             &gt;
           </button>
