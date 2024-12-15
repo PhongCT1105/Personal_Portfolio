@@ -174,7 +174,7 @@ const Projects = () => {
           <button
             onClick={goToPrevious}
             aria-label="Previous Category"
-            className="p-3 sm:p-4 bg-red-100 text-red-600 border border-red-400 rounded-full hover:bg-red-200 shadow-md transition-all"
+            className="w-8 h-8 text-white border border-green-700 rounded hover:bg-green-600 shadow-md transition-all"
           >
             &lt;
           </button>
@@ -195,7 +195,7 @@ const Projects = () => {
           <button
             onClick={goToNext}
             aria-label="Next Category"
-            className="p-3 sm:p-4 bg-red-100 text-red-600 border border-red-400 rounded-full hover:bg-red-200 shadow-md transition-all"
+            className="w-8 h-8 text-white border border-red-400 rounded hover:bg-red-600 shadow-md transition-all"
           >
             &gt;
           </button>
