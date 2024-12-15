@@ -6,7 +6,7 @@ export default function Particle() {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
-    console.log('init');
+    console.log('Initializing particles engine...');
     initParticlesEngine(async (engine) => {
       await loadFull(engine);
     }).then(() => {
@@ -14,9 +14,7 @@ export default function Particle() {
     });
   }, []);
 
-  const particlesLoaded = async () => {
-    return Promise.resolve(); // Ensure it returns a Promise<void>
-  };
+  const particlesLoaded = async () => Promise.resolve();
 
   return (
     <>
@@ -25,17 +23,18 @@ export default function Particle() {
           id="tsparticles"
           particlesLoaded={particlesLoaded}
           style={{
-            position: 'absolute',
+            position: 'fixed', // Sticks to the viewport
             top: 0,
             left: 0,
-            width: '100%',
-            height: '100%',
-            zIndex: -1,
+            width: '100vw', // Full width
+            height: '100vh', // Full height
+            zIndex: -1, // Stays in the background
+            pointerEvents: 'none', // Does not block interactions
           }}
           options={{
             background: {
               color: {
-                value: '#fff',
+                value: '#fff', // Match your design
               },
             },
             fpsLimit: 120,
@@ -84,6 +83,7 @@ export default function Particle() {
               number: {
                 density: {
                   enable: true,
+                  area: 800,
                 },
                 value: 160,
               },
