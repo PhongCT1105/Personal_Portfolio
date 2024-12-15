@@ -1,7 +1,5 @@
 import React, { useState, useRef } from 'react';
 import Cards from './Cards';
-
-// Import your images
 import Portfolio from '../assets/Portfolio.png';
 import SpicyBites from '../assets/SpicyBites.png';
 import Youtube from '../assets/Youtube.png';
@@ -137,15 +135,12 @@ const Projects = () => {
         <h2 className="text-3xl font-bold mb-8 text-white border-b border-red-500 w-max pb-4 mx-auto">
           My Projects
         </h2>
-
-        {/* Swipe Container */}
         <div
           className="relative overflow-hidden w-full"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          {/* Slides Container */}
           <div
             className="flex w-full transition-transform duration-500"
             style={{
@@ -165,7 +160,7 @@ const Projects = () => {
                 <h2 className="text-2xl font-semibold text-center mb-8 text-white">
                   {category.name}
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 lg:gap-6">
                   {category.projects.map((item, idx) => (
                     <Cards key={idx} item={item} />
                   ))}
@@ -175,9 +170,7 @@ const Projects = () => {
           </div>
         </div>
 
-        {/* Navigation and Pagination */}
         <div className="flex justify-center items-center mt-6 space-x-4 z-10 relative">
-          {/* Previous Button */}
           <button
             onClick={goToPrevious}
             aria-label="Previous Category"
@@ -185,8 +178,6 @@ const Projects = () => {
           >
             &lt;
           </button>
-
-          {/* Pagination Dots */}
           <div className="flex space-x-2">
             {categories.map((_, index) => (
               <button
@@ -201,8 +192,6 @@ const Projects = () => {
               ></button>
             ))}
           </div>
-
-          {/* Next Button */}
           <button
             onClick={goToNext}
             aria-label="Next Category"

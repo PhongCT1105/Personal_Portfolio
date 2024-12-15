@@ -1,26 +1,34 @@
-import React from 'react';
-import Github from '../assets/Github.png';
-import { card_data } from '../data/card_data';
-
-const Cards: React.FC<{ item: card_data }> = ({ item }) => {
+// Cards.js
+const Cards = ({ item }) => {
   return (
-    <div className="border border-red-500 rounded-lg w-[350px] lg:w-[400px] bg-red-50">
-      <img src={item.image} alt="" className="rounded-lg" />
-      <div className="p-4">
-        <h1 className="font-semibold text-xl mb-2">{item.title}</h1>
-        <p>{item.desc}</p>
-        <div className="flex gap-3 mt-4">
-          <button className="bg-red-500 text-white px-3 py-2 rounded-md">
-            <a href={item.live} target="_blank">
-              Live Preview
-            </a>
-          </button>
-          <button className="bg-black text-white px-3 py-2 rounded-md">
-            <a href={item.github} target="_blank" className="flex gap-1">
-              <img src={Github} alt="" className="w-6" />
-              Github Link
-            </a>
-          </button>
+    <div className="bg-white rounded-lg shadow-md p-4 transition-transform hover:scale-105 hover:shadow-lg">
+      <img
+        src={item.image}
+        alt={item.title}
+        className="w-full h-32 object-cover rounded-t-md"
+      />
+      <div className="mt-3">
+        <h3 className="text-lg font-semibold text-gray-800 truncate">
+          {item.title}
+        </h3>
+        <p className="text-sm text-gray-600 line-clamp-2">{item.desc}</p>
+        <div className="mt-3 flex justify-between items-center">
+          <a
+            href={item.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 text-sm hover:underline"
+          >
+            Live
+          </a>
+          <a
+            href={item.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-600 text-sm hover:text-gray-900"
+          >
+            GitHub
+          </a>
         </div>
       </div>
     </div>
