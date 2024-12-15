@@ -136,21 +136,18 @@ const skillsData = {
 
 const Skills = () => {
   return (
-    <section
-      id="skills"
-      className="relative py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
-    >
+    <div className="relative py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Title with Robot */}
-        <div className="relative flex items-center justify-center mb-12">
+        <div className="relative flex items-center justify-center mb-8">
           {/* Robot Animation */}
-          <div  
+          <div
             className="animate-robot-walk-sm md:animate-robot-walk-md lg:animate-robot-walk-lg"
             style={{
               width: '100px',
               height: '100px',
               position: 'absolute',
-              left: '-50px', // Start just outside the container
+              left: '-50px',
             }}
           >
             <img
@@ -159,25 +156,25 @@ const Skills = () => {
               className="w-full h-full object-contain"
             />
           </div>
-          <h2 className="text-3xl font-bold mb-8 text-white border-b border-red-500 w-max pb-4 mx-auto">
+          <h2 className="text-3xl font-bold text-white border-b border-red-500 w-max pb-4 mx-auto">
             Skills
           </h2>
         </div>
 
         {/* Main Grid */}
-        <div className="relative py-3 grid grid-cols-1 md:grid-cols-10 gap-8">
+        <div className="relative py-3 grid grid-cols-1 md:grid-cols-10 gap-6">
           {/* Skills Section (70%) */}
-          <div className="md:col-span-7 space-y-6">
+          <div className="md:col-span-7 space-y-4">
             {Object.entries(skillsData).map(([category, skills]) => (
               <div key={category} className="space-y-3">
                 {/* Category Header */}
-                <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-200 tracking-wide uppercase relative group">
+                <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-200 capitalize tracking-wide relative group">
                   {category.replace(/([A-Z])/g, ' $1')}
-                  <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+                  <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-red-400 transition-all duration-300 group-hover:w-full"></span>
                 </h3>
 
                 {/* Skills Grid */}
-                <div className="grid grid-cols-4 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-8 gap-y-4 sm:gap-y-6 md:gap-y-2 gap-x-2">
+                <div className="grid grid-cols-7 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-8 gap-y-3 sm:gap-y-4 gap-x-2">
                   {skills.map((skill) => (
                     <div
                       key={skill.name}
@@ -198,22 +195,22 @@ const Skills = () => {
             ))}
           </div>
 
-          {/* Certifications Section (30%) */}
-          <div className="md:col-span-3 space-y-6">
-            <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-300 uppercase tracking-wide relative group">
+          <div className="md:col-span-3 space-y-4">
+            <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-300 capitalize tracking-wide relative group">
               Certifications
-              <span className="absolute left-0 bottom-[-2px] h-[2px] w-0 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-red-400 transition-all duration-300 group-hover:w-full"></span>
             </h3>
-            <div className="space-y-4">
+
+            <div className="space-y-3">
               {certifications.map((cert) => (
                 <div
                   key={cert.name}
-                  className="flex flex-col items-center bg-gradient-to-r from-gray-800 to-gray-700 rounded-lg p-4 shadow-md"
+                  className="flex flex-col items-center bg-gradient-to-r from-gray-800 to-gray-700 rounded-lg p-4 shadow-md transition-transform transform hover:scale-105 hover:shadow-lg hover:shadow-red-400"
                 >
                   <img
                     src={cert.image}
                     alt={cert.name}
-                    className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-md mb-4 object-cover"
+                    className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-md mb-3 object-cover transition-transform transform"
                   />
                   <span className="text-center text-sm text-white font-medium">
                     {cert.name}
@@ -224,7 +221,7 @@ const Skills = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

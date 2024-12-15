@@ -32,7 +32,7 @@ const Navbar = () => {
     { name: 'Contact', href: 'contact', icon: <Mail className="h-5 w-5" /> },
   ];
 
-  const handleScrollToSection = (id) => {
+  const handleScrollToSection = (id: string) => {
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth', block: 'start' });
