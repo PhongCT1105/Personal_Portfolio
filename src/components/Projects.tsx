@@ -8,7 +8,7 @@ import Supercar from '../assets/Supercar.png';
 
 const categories = [
   {
-    name: 'AI',
+    name: 'Machine Learning & ',
     projects: [
       {
         title: 'AI Project 1',
