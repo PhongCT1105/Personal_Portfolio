@@ -1,38 +1,37 @@
 import React, { useState, useRef } from 'react';
+import Cards from './Cards';
 
-type Project = {
-  id: number;
-  title: string;
-  description: string;
-  link: string;
-};
+// Import your images
+import Portfolio from '../assets/Portfolio.png';
+import SpicyBites from '../assets/SpicyBites.png';
+import Youtube from '../assets/Youtube.png';
+import Webelite from '../assets/Webelite.png';
+import Supercar from '../assets/Supercar.png';
 
-type Category = {
-  name: string;
-  projects: Project[];
-};
-
-const categories: Category[] = [
+const categories = [
   {
     name: 'AI',
     projects: [
       {
-        id: 1,
         title: 'AI Project 1',
-        description: 'Description for AI Project 1',
-        link: '#',
+        desc: 'An advanced AI project that leverages deep learning models.',
+        image: Portfolio,
+        live: '#',
+        github: '#',
       },
       {
-        id: 2,
         title: 'AI Project 2',
-        description: 'Description for AI Project 2',
-        link: '#',
+        desc: 'A machine learning model that predicts user behavior.',
+        image: SpicyBites,
+        live: '#',
+        github: '#',
       },
       {
-        id: 3,
         title: 'AI Project 3',
-        description: 'Description for AI Project 3',
-        link: '#',
+        desc: 'An NLP-driven chatbot for customer service automation.',
+        image: Youtube,
+        live: '#',
+        github: '#',
       },
     ],
   },
@@ -40,22 +39,25 @@ const categories: Category[] = [
     name: 'Web Development',
     projects: [
       {
-        id: 4,
-        title: 'Web Project 1',
-        description: 'Description for Web Project 1',
-        link: '#',
+        title: 'Portfolio Website',
+        desc: 'A personal portfolio website showcasing web dev skills.',
+        image: Portfolio,
+        live: 'https://rohitsingh93300-portfolio.vercel.app/',
+        github: 'https://github.com/rohitsingh93300/portfolio',
       },
       {
-        id: 5,
-        title: 'Web Project 2',
-        description: 'Description for Web Project 2',
-        link: '#',
+        title: 'Spicy Bites',
+        desc: 'A responsive restaurant website with integrated ordering system.',
+        image: SpicyBites,
+        live: 'https://spicybites.netlify.app/',
+        github: 'https://github.com/rohitsingh93300/YtSpicyBites',
       },
       {
-        id: 6,
-        title: 'Web Project 3',
-        description: 'Description for Web Project 3',
-        link: '#',
+        title: 'YouTube Clone',
+        desc: 'A YouTube UI clone built with React and Tailwind.',
+        image: Youtube,
+        live: 'https://youtube-clone-93300.netlify.app/',
+        github: 'https://github.com/rohitsingh93300/YouTube-clone',
       },
     ],
   },
@@ -63,53 +65,45 @@ const categories: Category[] = [
     name: 'Data Science',
     projects: [
       {
-        id: 7,
         title: 'Data Science Project 1',
-        description: 'Description for DS Project 1',
-        link: '#',
+        desc: 'Data visualization dashboards built with D3.js.',
+        image: Webelite,
+        live: 'https://www.webelitebuilders.com/',
+        github: '#',
       },
       {
-        id: 8,
         title: 'Data Science Project 2',
-        description: 'Description for DS Project 2',
-        link: '#',
+        desc: 'Predictive modeling for sales forecasting.',
+        image: Supercar,
+        live: 'https://supercar123.netlify.app/',
+        github: 'https://github.com/rohitsingh93300/supercars',
       },
       {
-        id: 9,
         title: 'Data Science Project 3',
-        description: 'Description for DS Project 3',
-        link: '#',
+        desc: 'Clustering algorithms for customer segmentation.',
+        image: Portfolio,
+        live: '#',
+        github: '#',
       },
     ],
   },
 ];
 
-const Projects: React.FC = () => {
+const Projects = () => {
   const [activeCategory, setActiveCategory] = useState(0);
-  const [transition, setTransition] = useState(true); // Controls smooth animation
-
-  // Refs to track touch positions
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
 
   const goToNext = () => {
-    if (activeCategory === categories.length - 1) {
-      // Move to the first slide
-      setTransition(true);
-      setActiveCategory(0);
-    } else {
-      setActiveCategory((prev) => prev + 1);
-    }
+    setActiveCategory((prev) =>
+      prev === categories.length - 1 ? 0 : prev + 1
+    );
   };
 
   const goToPrevious = () => {
-    if (activeCategory === 0) {
-      // Move to the last slide
-      setTransition(true);
-      setActiveCategory(categories.length - 1);
-    } else {
-      setActiveCategory((prev) => prev - 1);
-    }
+    setActiveCategory((prev) =>
+      prev === 0 ? categories.length - 1 : prev - 1
+    );
   };
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -135,74 +129,90 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto py-10 px-4">
-      <h1 className="text-3xl font-bold text-center mb-6">Projects</h1>
-      <div
-        className="relative overflow-hidden"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
-        <button
-          onClick={goToPrevious}
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 p-2 bg-gray-200 rounded-full hover:bg-gray-300 z-10"
-        >
-          &lt;
-        </button>
-        <div
-          className={`flex transition-transform ${transition ? 'duration-500' : ''}`}
-          style={{
-            transform: `translateX(-${activeCategory * 100}%)`,
-          }}
-        >
-          {categories.map((category, index) => (
-            <div key={index} className="min-w-full flex-shrink-0">
-              <h2 className="text-2xl font-semibold text-center mb-4">
-                {category.name}
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {category.projects.map((project) => (
-                  <div
-                    key={project.id}
-                    className="p-4 bg-white shadow-lg rounded-lg border border-gray-200"
-                  >
-                    <h3 className="text-lg font-bold">{project.title}</h3>
-                    <p className="text-gray-600">{project.description}</p>
-                    <a
-                      href={project.link}
-                      className="text-blue-500 hover:underline mt-2 block"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      View Project
-                    </a>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-        <button
-          onClick={goToNext}
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 p-2 bg-gray-200 rounded-full hover:bg-gray-300 z-10"
-        >
-          &gt;
-        </button>
-      </div>
+    <section
+      id="projects"
+      className="relative bg-gray-700 py-10 px-4 overflow-hidden"
+    >
+      <div className="mb-16 max-w-7xl mx-auto">
+        <h2 className="text-3xl font-bold mb-8 text-white border-b border-red-500 w-max pb-4 mx-auto">
+          My Projects
+        </h2>
 
-      {/* Pagination */}
-      <div className="flex justify-center mt-6 space-x-2">
-        {categories.map((_, index) => (
+        {/* Swipe Container */}
+        <div
+          className="relative overflow-hidden w-full"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          {/* Slides Container */}
+          <div
+            className="flex w-full transition-transform duration-500"
+            style={{
+              transform: `translateX(-${activeCategory * 100}%)`,
+            }}
+          >
+            {categories.map((category, index) => (
+              <div
+                key={index}
+                className="w-full flex-shrink-0"
+                style={{
+                  flex: '0 0 100%',
+                  maxWidth: '100vw',
+                  overflow: 'hidden',
+                }}
+              >
+                <h2 className="text-2xl font-semibold text-center mb-8 text-white">
+                  {category.name}
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {category.projects.map((item, idx) => (
+                    <Cards key={idx} item={item} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Navigation and Pagination */}
+        <div className="flex justify-center items-center mt-6 space-x-4 z-10 relative">
+          {/* Previous Button */}
           <button
-            key={index}
-            onClick={() => setActiveCategory(index)}
-            className={`w-3 h-3 rounded-full ${
-              index === activeCategory ? 'bg-blue-500' : 'bg-gray-300'
-            }`}
-          ></button>
-        ))}
+            onClick={goToPrevious}
+            aria-label="Previous Category"
+            className="p-3 sm:p-4 bg-red-100 text-red-600 border border-red-400 rounded-full hover:bg-red-200 shadow-md transition-all"
+          >
+            &lt;
+          </button>
+
+          {/* Pagination Dots */}
+          <div className="flex space-x-2">
+            {categories.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveCategory(index)}
+                aria-label={`Go to ${categories[index].name} category`}
+                className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full transition-transform ${
+                  index === activeCategory
+                    ? 'bg-blue-500 scale-125'
+                    : 'bg-gray-300 scale-100'
+                }`}
+              ></button>
+            ))}
+          </div>
+
+          {/* Next Button */}
+          <button
+            onClick={goToNext}
+            aria-label="Next Category"
+            className="p-3 sm:p-4 bg-red-100 text-red-600 border border-red-400 rounded-full hover:bg-red-200 shadow-md transition-all"
+          >
+            &gt;
+          </button>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
