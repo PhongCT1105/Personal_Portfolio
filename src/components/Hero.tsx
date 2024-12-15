@@ -6,7 +6,7 @@ import linkedin from '../assets/linkedin.png';
 
 const Hero = () => {
   return (
-    <section className="relative w-full overflow-hidden">
+    <section className="relative w-full overflow-hidden " id="home">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between lg:h-[90vh]">
           {/* Text Section */}

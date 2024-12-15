@@ -138,13 +138,13 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="relative py-8 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
+      className="relative py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
     >
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Title with Robot */}
         <div className="relative flex items-center justify-center mb-12">
           {/* Robot Animation */}
-          <div
+          <div  
             className="animate-robot-walk-sm md:animate-robot-walk-md lg:animate-robot-walk-lg"
             style={{
               width: '100px',
@@ -159,7 +159,7 @@ const Skills = () => {
               className="w-full h-full object-contain"
             />
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-center text-gray-800 dark:text-gray-100 mt-6 mb-4 tracking-tight">
+          <h2 className="text-3xl font-bold mb-8 text-white border-b border-red-500 w-max pb-4 mx-auto">
             Skills
           </h2>
         </div>

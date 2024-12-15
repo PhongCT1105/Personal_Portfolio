@@ -9,7 +9,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="relative bg-gradient-to-b from-gray-100 via-gray-200 to-gray-300 py-16 px-6"
+      className="relative bg-gradient-to-b from-gray-100 via-gray-200 to-gray-300 py-20 px-6"
     >
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
