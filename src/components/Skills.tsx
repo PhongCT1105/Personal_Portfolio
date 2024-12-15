@@ -138,7 +138,7 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="relative py-16 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
+      className="relative py-8 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
     >
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Title with Robot */}

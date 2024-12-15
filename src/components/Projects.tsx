@@ -129,7 +129,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="relative bg-gray-700 py-10 px-4 overflow-hidden"
+      className="relative bg-gray-700 py-16 px-4 overflow-hidden"
     >
       <div className="mb-16 max-w-7xl mx-auto">
         <h2 className="text-3xl font-bold mb-8 text-white border-b border-red-500 w-max pb-4 mx-auto">

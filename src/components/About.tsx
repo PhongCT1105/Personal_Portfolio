@@ -50,7 +50,7 @@ const About = () => {
 
   // Count experiences
   return (
-    <div className="relative bg-gray-100 py-12" id="about">
+    <div className="relative bg-gray-100 py-16" id="about">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-base text-red-600 font-semibold tracking-wide uppercase">
