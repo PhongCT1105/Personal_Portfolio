@@ -9,48 +9,52 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="z-50 bg-gray-800 relative py-10 px-5 md:px-0"
+      className="relative bg-gradient-to-b from-gray-100 via-gray-200 to-gray-300 py-16 px-6"
     >
-      <div className="mb-16 max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="md:w-1/2 mb-8 ml-2 md:mb-0">
-            <h2 className="text-3xl font-bold mb-3 text-red-500">
-              Get in Touch
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
+          {/* Left Section */}
+          <div className="md:w-1/2 space-y-6">
+            <h2 className="text-4xl font-bold text-gray-800">
+              Let's Work Together
             </h2>
-            <p className="mb-4 text-white/85">
-              I'm always open to new opportunities and collaboration. Feel free
-              to reach out!
+            <p className="text-lg text-gray-600 leading-relaxed">
+              Have a project in mind or just want to say hello? Drop me a
+              message, and I'll get back to you!
             </p>
-            <div className="flex space-x-4">
+            <div className="flex space-x-6">
               <a
                 href="#"
-                className="text-foreground/60 hover:text-foreground/80"
+                className="transition-transform transform hover:scale-110"
+                aria-label="Facebook"
               >
-                <img src={facebook} alt="" className="h-6 w-6" />
+                <img src={facebook} alt="Facebook" className="h-8 w-8" />
               </a>
               <a
                 href="#"
-                className="text-foreground/60 hover:text-foreground/80"
+                className="transition-transform transform hover:scale-110"
+                aria-label="Instagram"
               >
-                <img src={instagram} alt="" className="h-6 w-6" />
+                <img src={instagram} alt="Instagram" className="h-8 w-8" />
               </a>
               <a
                 href="#"
-                className="text-foreground/60 hover:text-foreground/80"
+                className="transition-transform transform hover:scale-110"
+                aria-label="LinkedIn"
               >
-                <img src={linkedin} alt="" className="h-6 w-6" />
+                <img src={linkedin} alt="LinkedIn" className="h-8 w-8" />
               </a>
             </div>
             <Lottie
               animationData={contact}
-              className="w-[350px] mx-auto lg:w-[500px]"
+              className="w-[300px] md:w-[400px] lg:w-[450px]"
             />
           </div>
-          <form className="w-full md:w-1/2 bg-gray-100 rounded-lg border border-red-300 shadow-lg shadow-red-500 p-10">
-            <h1 className="text-gray-900 text-4xl font-bold mb-7">
-              Contact Me
-            </h1>
-            <div className="mb-4">
+
+          {/* Form Section */}
+          <form className="w-full md:w-1/2 bg-white rounded-lg shadow-lg p-8 space-y-6">
+            <h3 className="text-2xl font-bold text-gray-800">Contact Me</h3>
+            <div>
               <label
                 htmlFor="name"
                 className="block text-sm font-medium text-gray-700"
@@ -60,11 +64,11 @@ const Contact = () => {
               <input
                 type="text"
                 id="name"
-                placeholder="Full Name"
-                className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                placeholder="Your Full Name"
+                className="mt-1 p-3 w-full rounded-md border border-gray-300 focus:border-red-500 focus:ring focus:ring-red-200 shadow-sm"
               />
             </div>
-            <div className="mb-4">
+            <div>
               <label
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700"
@@ -74,11 +78,11 @@ const Contact = () => {
               <input
                 type="email"
                 id="email"
-                placeholder="Email"
-                className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                placeholder="Your Email Address"
+                className="mt-1 p-3 w-full rounded-md border border-gray-300 focus:border-red-500 focus:ring focus:ring-red-200 shadow-sm"
               />
             </div>
-            <div className="mb-4">
+            <div>
               <label
                 htmlFor="message"
                 className="block text-sm font-medium text-gray-700"
@@ -87,11 +91,15 @@ const Contact = () => {
               </label>
               <textarea
                 id="message"
-                placeholder="Enter Your Message"
-                className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                placeholder="Write your message here..."
+                rows="4"
+                className="mt-1 p-3 w-full rounded-md border border-gray-300 focus:border-red-500 focus:ring focus:ring-red-200 shadow-sm"
               />
             </div>
-            <button className="bg-red-500 text-white px-3 py-2 rounded-lg">
+            <button
+              type="submit"
+              className="w-full bg-red-500 text-white py-3 rounded-md shadow-md hover:bg-red-600 transition"
+            >
               Send Message
             </button>
           </form>
