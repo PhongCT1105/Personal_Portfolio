@@ -3,8 +3,6 @@ import Cards from './Cards';
 import Portfolio from '../assets/Portfolio.png';
 import SpicyBites from '../assets/SpicyBites.png';
 import Youtube from '../assets/Youtube.png';
-import Webelite from '../assets/Webelite.png';
-import Supercar from '../assets/Supercar.png';
 
 // Define the type for categories and projects
 interface Project {
@@ -25,23 +23,54 @@ const categories: Category[] = [
     name: 'Machine Learning',
     projects: [
       {
-        title: 'AI Project 1',
+        title: 'AI-powered research synthesis tool',
         desc: 'An advanced AI project that leverages deep learning models.',
         image: Portfolio,
         live: '#',
         github: '#',
       },
       {
-        title: 'AI Project 2',
+        title: 'Cancer detection with Gene Expression',
         desc: 'A machine learning model that predicts user behavior.',
         image: SpicyBites,
         live: '#',
         github: '#',
       },
       {
-        title: 'AI Project 3',
+        title: 'S&P 500 stock prediction',
         desc: 'An NLP-driven chatbot for customer service automation.',
         image: Youtube,
+        live: '#',
+        github: '#',
+      },
+    ],
+  },
+  {
+    name: 'Large Language Model',
+    projects: [
+      {
+        title: 'AI-powered research synthesis tool',
+        desc: 'An advanced AI project that leverages deep learning models.',
+        image: Portfolio,
+        live: '#',
+        github: '#',
+      },
+    ],
+  },
+  {
+    name: 'Computer Vision',
+    projects: [
+      {
+        title: 'Urban Traffic Monitoring System',
+        desc: 'An advanced AI project that leverages deep learning models.',
+        image: Portfolio,
+        live: '#',
+        github: '#',
+      },
+      {
+        title: 'Clinical decision support system using CNN',
+        desc: 'A machine learning model that predicts user behavior.',
+        image: SpicyBites,
         live: '#',
         github: '#',
       },
@@ -58,44 +87,18 @@ const categories: Category[] = [
         github: 'https://github.com/rohitsingh93300/portfolio',
       },
       {
-        title: 'Spicy Bites',
+        title: 'Web application for Mass General Brigham Hospital',
         desc: 'A responsive restaurant website with integrated ordering system.',
         image: SpicyBites,
         live: 'https://spicybites.netlify.app/',
         github: 'https://github.com/rohitsingh93300/YtSpicyBites',
       },
       {
-        title: 'YouTube Clone',
-        desc: 'A YouTube UI clone built with React and Tailwind.',
-        image: Youtube,
-        live: 'https://youtube-clone-93300.netlify.app/',
-        github: 'https://github.com/rohitsingh93300/YouTube-clone',
-      },
-    ],
-  },
-  {
-    name: 'Data Science',
-    projects: [
-      {
-        title: 'Data Science Project 1',
-        desc: 'Data visualization dashboards built with D3.js.',
-        image: Webelite,
-        live: 'https://www.webelitebuilders.com/',
-        github: '#',
-      },
-      {
-        title: 'Data Science Project 2',
-        desc: 'Predictive modeling for sales forecasting.',
-        image: Supercar,
-        live: 'https://supercar123.netlify.app/',
-        github: 'https://github.com/rohitsingh93300/supercars',
-      },
-      {
-        title: 'Data Science Project 3',
-        desc: 'Clustering algorithms for customer segmentation.',
-        image: Portfolio,
-        live: '#',
-        github: '#',
+        title: 'TPC-H Bechmark analyzed research',
+        desc: 'A responsive restaurant website with integrated ordering system.',
+        image: SpicyBites,
+        live: 'https://spicybites.netlify.app/',
+        github: 'https://github.com/rohitsingh93300/YtSpicyBites',
       },
     ],
   },
@@ -154,7 +157,7 @@ const Projects: React.FC = () => {
       className="relative bg-gray-700 py-20 px-4 overflow-hidden"
     >
       <div className="mb-16 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold mb-8 text-white border-b border-red-500 w-max pb-4 mx-auto">
+        <h2 className="text-3xl font-bold mb-8 text-white border-b border-red-600 w-max pb-4 mx-auto">
           My Projects
         </h2>
 
@@ -165,7 +168,7 @@ const Projects: React.FC = () => {
               onClick={() => setActiveCategory(index)}
               className={`px-4 py-2 rounded-full transition-all ${
                 activeCategory === index
-                  ? 'bg-red-500 text-white'
+                  ? 'bg-red-600 text-white'
                   : 'bg-gray-300 text-gray-800'
               }`}
             >
@@ -210,14 +213,14 @@ const Projects: React.FC = () => {
           <button
             onClick={goToPrevious}
             aria-label="Previous Category"
-            className="w-10 h-10 border border-red-500 text-white flex justify-center items-center rounded-full hover:bg-red-500 focus:ring-2 focus:ring-red-500 shadow-md transition-all"
+            className="w-10 h-10 border border-red-600 text-white flex justify-center items-center rounded-full hover:bg-red-500 focus:ring-2 focus:ring-red-500 shadow-md transition-all"
           >
             &lt;
           </button>
           <button
             onClick={goToNext}
             aria-label="Next Category"
-            className="w-10 h-10 border border-red-500 text-white flex justify-center items-center rounded-full hover:bg-red-500 focus:ring-2 focus:ring-red-500 shadow-md transition-all"
+            className="w-10 h-10 border border-red-600 text-white flex justify-center items-center rounded-full hover:bg-red-500 focus:ring-2 focus:ring-red-500 shadow-md transition-all"
           >
             &gt;
           </button>

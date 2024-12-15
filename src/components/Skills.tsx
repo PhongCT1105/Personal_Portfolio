@@ -159,7 +159,7 @@ const Skills = () => {
               className="w-full h-full object-contain"
             />
           </div>
-          <h2 className="text-3xl font-bold text-white border-b border-red-500 w-max pb-4 mx-auto">
+          <h2 className="text-3xl font-bold text-white border-b border-red-600 w-max pb-4 mx-auto">
             Skills
           </h2>
         </div>
@@ -173,7 +173,7 @@ const Skills = () => {
                 {/* Category Header */}
                 <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-200 capitalize tracking-wide relative group">
                   {category.replace(/([A-Z])/g, ' $1')}
-                  <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-red-400 transition-all duration-300 group-hover:w-full"></span>
+                  <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-red-600 transition-all duration-300 group-hover:w-full"></span>
                 </h3>
 
                 {/* Skills Grid */}
@@ -201,14 +201,14 @@ const Skills = () => {
           <div className="md:col-span-3 space-y-4">
             <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-300 capitalize tracking-wide relative group">
               Certifications
-              <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-red-400 transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-red-600 transition-all duration-300 group-hover:w-full"></span>
             </h3>
 
             <div className="space-y-3">
               {certifications.map((cert) => (
                 <div
                   key={cert.name}
-                  className="flex flex-col items-center bg-gradient-to-r from-gray-800 to-gray-700 rounded-lg p-4 shadow-md transition-transform transform hover:scale-105 hover:shadow-lg hover:shadow-red-400"
+                  className="flex flex-col items-center bg-gradient-to-r from-gray-800 to-gray-700 rounded-lg p-4 shadow-md transition-transform transform hover:scale-105 hover:shadow-lg hover:shadow-red-600"
                 >
                   <img
                     src={cert.image}
