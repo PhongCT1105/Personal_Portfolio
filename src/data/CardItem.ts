@@ -1,5 +1,5 @@
-export interface card_data {
-  image: string;
+export interface CardItem {
+  images: string[];
   title: string;
   desc: string;
   live: string;
