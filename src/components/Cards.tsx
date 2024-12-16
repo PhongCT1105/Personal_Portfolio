@@ -25,9 +25,29 @@ const Cards: React.FC<{ item: CardItem; onClick?: () => void }> = ({
           alt={item.title}
           className="w-full h-full object-cover"
         />
-        {/* Hover overlay */}
-        <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 flex justify-center items-center transition-opacity duration-300">
-          <p className="text-white text-sm font-semibold">Click to Expand</p>
+        {/* Hover label for desktops */}
+        <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 flex justify-center items-center transition-opacity duration-300 hidden sm:flex">
+          <span className="text-white text-sm font-semibold">
+            Click to Expand
+          </span>
+        </div>
+        {/* Permanent label for phones */}
+        <div className="absolute bottom-2 left-2 flex items-center space-x-1 bg-black/70 text-white text-[10px] px-2 py-1 rounded-full sm:hidden shadow-md">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-3 w-3"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 10l4.94 4.94m0 0a7.5 7.5 0 11-10.606-10.606 7.5 7.5 0 0110.606 10.606z"
+            />
+          </svg>
+          <span>Tap to Expand</span>
         </div>
       </div>
       <div className="p-2 sm:p-4">
