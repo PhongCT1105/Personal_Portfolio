@@ -3,6 +3,7 @@ import Cards from './Cards';
 import Portfolio from '../assets/Portfolio.png';
 import SpicyBites from '../assets/SpicyBites.png';
 import Youtube from '../assets/Youtube.png';
+import SyntheSearch from '../assets/synthesearch.png';
 
 // Define the type for categories and projects
 interface Project {
@@ -25,7 +26,7 @@ const categories: Category[] = [
       {
         title: 'AI-powered research synthesis tool',
         desc: 'An advanced AI project that leverages deep learning models.',
-        image: Portfolio,
+        image: SyntheSearch,
         live: '#',
         github: '#',
       },
@@ -46,12 +47,12 @@ const categories: Category[] = [
     ],
   },
   {
-    name: 'Large Language Model',
+    name: 'LLM',
     projects: [
       {
         title: 'AI-powered research synthesis tool',
         desc: 'An advanced AI project that leverages deep learning models.',
-        image: Portfolio,
+        image: SyntheSearch,
         live: '#',
         github: '#',
       },
@@ -199,7 +200,7 @@ const Projects: React.FC = () => {
                   overflow: 'hidden',
                 }}
               >
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
                   {category.projects.map((item, idx) => (
                     <Cards key={idx} item={item} />
                   ))}
