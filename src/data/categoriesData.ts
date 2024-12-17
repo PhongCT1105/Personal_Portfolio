@@ -5,13 +5,19 @@ import SyntheSearch from '../assets/synthesearch.png';
 import CancerBanner from '../assets/Projects/Cancer_Detection/CancerBanner.png';
 
 export interface Project {
-  banner: string;
-  images: string[];
-  title: string;
-  desc: string;
-  method: string;
-  live: string;
-  github: string;
+  banner: string; // Banner image
+  images: string[]; // Gallery images
+  title: string; // Project title
+  desc: string; // Short description for the card
+  modalDesc: string; // Detailed description for the modal
+  keyFeatures: string[]; // Key features of the project
+  technologies: string[]; // Technologies used
+  duration: string; // Project timeline/duration
+  role: string; // Role or contribution
+  demoVideo: string; // Demo video link
+  method: string; // Methodology or approach
+  live: string; // Live project link
+  github: string; // GitHub repository link
 }
 
 export interface Category {
@@ -26,27 +32,36 @@ export const categories: Category[] = [
       {
         banner: CancerBanner,
         title: 'Cancer Detection with Gene Expression',
-        desc: 'A machine learning system leveraging gene sequence data and microarray analysis for cancer prediction, type and subtype classification, and important gene identification.',
+        desc: 'Using gene expression data for cancer prediction.',
+        modalDesc:
+          'This project involves building a machine learning system that uses gene sequence and microarray analysis to predict cancer types, subtypes, and identify critical genes.',
         images: [SpicyBites, Youtube],
+        keyFeatures: [
+          'Gene expression classification',
+          'Subtype prediction accuracy of 90%',
+          'Feature selection using clustering algorithms',
+        ],
+        technologies: ['Python', 'Scikit-Learn', 'Pandas', 'Matplotlib'],
+        duration: 'Jan 2023 - Mar 2023',
+        role: 'ML Developer: Built and optimized the model pipeline.',
+        demoVideo: '',
         method: 'Supervised Classification, Feature Selection, Clustering',
         live: 'https://genes2cancer.streamlit.app/',
         github: 'https://github.com/PhongCT1105/Cancer_Detector.git',
       },
       {
         banner: SpicyBites,
-        title: 'Cancer detection with Gene Expression',
-        desc: 'A machine learning model that predicts user behavior.',
+        title: 'Gene Expression Clustering Analysis',
+        desc: 'Analyzing gene data to identify key patterns.',
+        modalDesc:
+          'Developed a clustering algorithm to analyze large-scale gene datasets. Identified gene clusters relevant to specific cancer types.',
         images: [SyntheSearch, Portfolio],
-        method: 'Machine Learning',
-        live: '#',
-        github: '#',
-      },
-      {
-        banner: SyntheSearch,
-        title: 'S&P 500 stock prediction',
-        desc: 'An NLP-driven chatbot for customer service automation.',
-        images: [Youtube, SpicyBites],
-        method: 'Machine Learning',
+        keyFeatures: ['K-Means clustering', 'Data visualization'],
+        technologies: ['Python', 'Seaborn', 'NumPy', 'Pandas'],
+        duration: 'Apr 2023 - Jun 2023',
+        role: 'Data Analyst: Implemented clustering algorithms.',
+        demoVideo: 'https://www.youtube.com/embed/example2',
+        method: 'Unsupervised Learning, Clustering',
         live: '#',
         github: '#',
       },
@@ -57,11 +72,21 @@ export const categories: Category[] = [
     projects: [
       {
         banner: SyntheSearch,
-
-        title: 'AI-powered research synthesis tool',
-        desc: 'An advanced AI project that leverages deep learning models.',
+        title: 'AI-powered Research Synthesis Tool',
+        desc: 'AI-driven synthesis of research documents.',
+        modalDesc:
+          'Built a research synthesis tool using LLMs to analyze, summarize, and synthesize relevant research papers. Optimized search queries to identify related documents.',
         images: [Portfolio, SpicyBites],
-        method: 'Machine Learning',
+        keyFeatures: [
+          'AI-assisted literature synthesis',
+          'Supports large-scale datasets',
+          'Customizable search parameters',
+        ],
+        technologies: ['Python', 'GPT-4 API', 'LangChain', 'Streamlit'],
+        duration: 'May 2023 - July 2023',
+        role: 'Lead Engineer: Integrated GPT-4 APIs.',
+        demoVideo: 'https://www.youtube.com/embed/synthesearch-demo',
+        method: 'NLP Techniques, Semantic Analysis',
         live: '#',
         github: '#',
       },
@@ -71,22 +96,22 @@ export const categories: Category[] = [
     name: 'Computer Vision',
     projects: [
       {
-        banner: SyntheSearch,
-
+        banner: CancerBanner,
         title: 'Urban Traffic Monitoring System',
-        desc: 'An advanced AI project that leverages deep learning models.',
+        desc: 'Real-time traffic analysis using computer vision.',
+        modalDesc:
+          'Designed a computer vision-based system for monitoring urban traffic. Implemented object detection models to identify vehicles, track traffic density, and suggest optimization measures.',
         images: [Portfolio, SpicyBites],
-        method: 'Machine Learning',
-        live: '#',
-        github: '#',
-      },
-      {
-        banner: SyntheSearch,
-
-        title: 'Clinical decision support system using CNN',
-        desc: 'A machine learning model that predicts user behavior.',
-        images: [SpicyBites, Youtube],
-        method: 'Machine Learning',
+        keyFeatures: [
+          'Real-time vehicle detection',
+          'Traffic density analysis',
+          'Scalable to large intersections',
+        ],
+        technologies: ['Python', 'OpenCV', 'YOLOv5', 'TensorFlow'],
+        duration: 'Aug 2023 - Oct 2023',
+        role: 'Vision Engineer: Trained and deployed YOLO models.',
+        demoVideo: 'https://www.youtube.com/embed/traffic-demo',
+        method: 'Object Detection, Deep Learning',
         live: '#',
         github: '#',
       },
@@ -96,34 +121,24 @@ export const categories: Category[] = [
     name: 'Web Development',
     projects: [
       {
-        banner: SyntheSearch,
-
+        banner: Portfolio,
         title: 'Portfolio Website',
-        desc: 'A personal portfolio website showcasing web dev skills.',
+        desc: 'A personal portfolio showcasing my projects.',
+        modalDesc:
+          'Developed a responsive and modern portfolio website to showcase skills, projects, and achievements. Built with React, ensuring optimized performance and accessibility.',
         images: [Portfolio, SpicyBites],
-        method: 'Machine Learning',
+        keyFeatures: [
+          'Responsive design',
+          'Dynamic content rendering',
+          'Deployed on Vercel',
+        ],
+        technologies: ['React', 'TypeScript', 'Tailwind CSS'],
+        duration: 'Nov 2023 - Dec 2023',
+        role: 'Frontend Developer: Designed and implemented the UI.',
+        demoVideo: '',
+        method: 'Component-Based Development',
         live: 'https://rohitsingh93300-portfolio.vercel.app/',
         github: 'https://github.com/rohitsingh93300/portfolio',
-      },
-      {
-        banner: SyntheSearch,
-
-        title: 'Web application for Mass General Brigham Hospital',
-        desc: 'A responsive restaurant website with integrated ordering system.',
-        images: [SpicyBites, Youtube],
-        method: 'Machine Learning',
-        live: 'https://spicybites.netlify.app/',
-        github: 'https://github.com/rohitsingh93300/YtSpicyBites',
-      },
-      {
-        banner: SyntheSearch,
-
-        title: 'TPC-H Benchmark analyzed research',
-        desc: 'A responsive restaurant website with integrated ordering system.',
-        images: [SpicyBites, Portfolio],
-        method: 'Machine Learning',
-        live: 'https://spicybites.netlify.app/',
-        github: 'https://github.com/rohitsingh93300/YtSpicyBites',
       },
     ],
   },

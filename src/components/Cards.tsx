@@ -1,14 +1,15 @@
 import React from 'react';
 
 interface CardItem {
-  banner: string; // New field for the banner image
-  images: string[]; // Existing gallery images
-  title: string;
-  desc: string;
-  method: string;
-  live: string;
-  github: string;
-  onClick?: () => void;
+  banner: string; // Banner image for the card
+  images: string[]; // Gallery images for the modal
+  title: string; // Project title
+  desc: string; // Short description for the card
+  modalDesc: string; // Detailed description for the modal
+  method: string; // Method or approach used
+  live: string; // Live project link
+  github: string; // GitHub repository link
+  onClick?: () => void; // Optional click handler
 }
 
 const Cards: React.FC<{ item: CardItem; onClick?: () => void }> = ({

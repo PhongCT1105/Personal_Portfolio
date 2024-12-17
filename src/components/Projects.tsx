@@ -145,7 +145,13 @@ const Projects: React.FC = () => {
         <Modal
           images={selectedProject.images}
           title={selectedProject.title}
-          method={selectedProject.method} // Pass method
+          description={selectedProject.modalDesc} // Pass detailed description
+          method={selectedProject.method}
+          keyFeatures={selectedProject.keyFeatures}
+          technologies={selectedProject.technologies}
+          duration={selectedProject.duration}
+          role={selectedProject.role}
+          demoVideo={selectedProject.demoVideo}
           onClose={() => setSelectedProject(null)}
         />
       )}
