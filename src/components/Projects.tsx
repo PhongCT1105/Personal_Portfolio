@@ -1,108 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Cards from './Cards';
 import Modal from './Modal';
-import Portfolio from '../assets/Portfolio.png';
-import SpicyBites from '../assets/SpicyBites.png';
-import Youtube from '../assets/Youtube.png';
-
-interface Project {
-  images: string[];
-  title: string;
-  desc: string;
-  live: string;
-  github: string;
-}
-
-interface Category {
-  name: string;
-  projects: Project[];
-}
-
-const categories: Category[] = [
-  {
-    name: 'Machine Learning',
-    projects: [
-      {
-        title: 'AI-powered research synthesis tool',
-        desc: 'An advanced AI project that leverages deep learning models.',
-        images: [Portfolio, SpicyBites, Youtube],
-        live: '#',
-        github: '#',
-      },
-      {
-        title: 'Cancer detection with Gene Expression',
-        desc: 'A machine learning model that predicts user behavior.',
-        images: [SpicyBites, Portfolio],
-        live: '#',
-        github: '#',
-      },
-      {
-        title: 'S&P 500 stock prediction',
-        desc: 'An NLP-driven chatbot for customer service automation.',
-        images: [Youtube, SpicyBites],
-        live: '#',
-        github: '#',
-      },
-    ],
-  },
-  {
-    name: 'Large Language Model',
-    projects: [
-      {
-        title: 'AI-powered research synthesis tool',
-        desc: 'An advanced AI project that leverages deep learning models.',
-        images: [Portfolio, SpicyBites],
-        live: '#',
-        github: '#',
-      },
-    ],
-  },
-  {
-    name: 'Computer Vision',
-    projects: [
-      {
-        title: 'Urban Traffic Monitoring System',
-        desc: 'An advanced AI project that leverages deep learning models.',
-        images: [Portfolio, SpicyBites],
-        live: '#',
-        github: '#',
-      },
-      {
-        title: 'Clinical decision support system using CNN',
-        desc: 'A machine learning model that predicts user behavior.',
-        images: [SpicyBites, Youtube],
-        live: '#',
-        github: '#',
-      },
-    ],
-  },
-  {
-    name: 'Web Development',
-    projects: [
-      {
-        title: 'Portfolio Website',
-        desc: 'A personal portfolio website showcasing web dev skills.',
-        images: [Portfolio, SpicyBites],
-        live: 'https://rohitsingh93300-portfolio.vercel.app/',
-        github: 'https://github.com/rohitsingh93300/portfolio',
-      },
-      {
-        title: 'Web application for Mass General Brigham Hospital',
-        desc: 'A responsive restaurant website with integrated ordering system.',
-        images: [SpicyBites, Youtube],
-        live: 'https://spicybites.netlify.app/',
-        github: 'https://github.com/rohitsingh93300/YtSpicyBites',
-      },
-      {
-        title: 'TPC-H Benchmark analyzed research',
-        desc: 'A responsive restaurant website with integrated ordering system.',
-        images: [SpicyBites, Portfolio],
-        live: 'https://spicybites.netlify.app/',
-        github: 'https://github.com/rohitsingh93300/YtSpicyBites',
-      },
-    ],
-  },
-];
+import { categories, Project } from '../data/categoriesData';
 
 const Projects: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState(0);
@@ -166,10 +65,9 @@ const Projects: React.FC = () => {
       onMouseLeave={handleInteraction}
     >
       <div className="mb-16 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold mb-8 text-white border-b border-red-600 w-max pb-4 mx-auto">
+        <h3 className="text-2xl font-bold mb-8 text-white border-b border-red-600 w-max pb-4 mx-auto">
           My Projects
-        </h2>
-
+        </h3>
         <div className="flex justify-center flex-wrap gap-4 mb-6">
           {categories.map((category, index) => (
             <button
@@ -178,7 +76,7 @@ const Projects: React.FC = () => {
                 setActiveCategory(index);
                 handleInteraction();
               }}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              className={`w-40 h-12 flex items-center justify-center px-4 py-2 rounded-full text-sm font-medium transition-all ${
                 activeCategory === index
                   ? 'bg-red-600 text-white shadow-md'
                   : 'bg-gray-300 text-gray-800 hover:bg-gray-400'
@@ -202,7 +100,7 @@ const Projects: React.FC = () => {
           >
             {categories.map((category, index) => (
               <div key={index} className="w-full flex-shrink-0">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {category.projects.map((project, idx) => (
                     <Cards
                       key={idx}
