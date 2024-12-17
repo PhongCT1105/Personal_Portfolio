@@ -100,7 +100,7 @@ const Navbar = () => {
               <button
                 key={link.name}
                 onClick={() => handleScrollToSection(link.href)}
-                className="block text-base font-medium text-gray-700 hover:bg-red-100 hover:text-red-600 px-3 py-2 rounded-md flex items-center gap-2 transition duration-300"
+                className=" text-base font-medium text-gray-700 hover:bg-red-100 hover:text-red-600 px-3 py-2 rounded-md flex items-center gap-2 transition duration-300"
               >
                 {link.icon}
                 {link.name}

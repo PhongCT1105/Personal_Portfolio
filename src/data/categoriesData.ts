@@ -3,6 +3,7 @@ import SpicyBites from '../assets/SpicyBites.png';
 import Youtube from '../assets/Youtube.png';
 import SyntheSearch from '../assets/synthesearch.png';
 import CancerBanner from '../assets/Projects/Cancer_Detection/CancerBanner.png';
+import CancerFlowChart from '../assets/Projects/Cancer_Detection/CancerFlowChart.png';
 
 export interface Project {
   banner: string; // Banner image
@@ -31,23 +32,51 @@ export const categories: Category[] = [
     projects: [
       {
         banner: CancerBanner,
-        title: 'Cancer Detection with Gene Expression',
-        desc: 'Using gene expression data for cancer prediction.',
+        title: 'Cancer Detection with Gene Sequence',
+        desc: 'A machine learning system for cancer detection, type classification, and key gene identification using DNA microarray data',
         modalDesc:
-          'This project involves building a machine learning system that uses gene sequence and microarray analysis to predict cancer types, subtypes, and identify critical genes.',
-        images: [SpicyBites, Youtube],
+          'Our project adopts a white-box approach to predict cancer types and identify key genes using genetic sequencing data. With a high-dimensional dataset containing over 50,000 features, we employed advanced feature selection techniques to reduce redundancy and improve model performance. The final integrated models achieved 90% accuracy while maintaining a recall score of 1.0 across all cancer types, ensuring no cancer cases were missed. This approach highlights the effectiveness of machine learning for handling complex, high-dimensional data in cancer diagnosis.',
+        images: [CancerFlowChart, Youtube, Youtube],
         keyFeatures: [
-          'Gene expression classification',
-          'Subtype prediction accuracy of 90%',
-          'Feature selection using clustering algorithms',
+          'White-box approach ensuring interpretability and reliable predictions',
+          'Achieved 90% accuracy and 1.0 recall across all cancer types, minimizing false negatives',
+          'Handled high-dimensional data with over 50,000 features using advanced feature selection methods (Variance Threshold, ANOVA, Mutual Information)',
+          'Revealed top predictive genes for each cancer type, highlighting potential biomarkers for early detection and treatment planning',
         ],
-        technologies: ['Python', 'Scikit-Learn', 'Pandas', 'Matplotlib'],
-        duration: 'Jan 2023 - Mar 2023',
-        role: 'ML Developer: Built and optimized the model pipeline.',
+        technologies: [
+          'Python',
+          'Scikit-Learn',
+          'Pandas',
+          'Matplotlib',
+          'Streamlit',
+        ],
+        duration: 'Sep 2024 - Dec 2024',
+        role: 'ML Developer & Team Lead: Designed, optimized, programmed, and evaluated the machine learning pipeline.',
         demoVideo: '',
-        method: 'Supervised Classification, Feature Selection, Clustering',
+        method:
+          'Supervised Learning, Esemble Method, Feature Selection, Clustering, Classification',
         live: 'https://genes2cancer.streamlit.app/',
         github: 'https://github.com/PhongCT1105/Cancer_Detector.git',
+      },
+      {
+        banner: CancerBanner,
+        title: 'Gene Expression Clustering Analysis',
+        desc: 'Identifying key gene patterns through clustering algorithms',
+        modalDesc:
+          'Implemented unsupervised learning techniques to cluster high-dimensional gene expression data. Leveraged K-Means with PCA for dimensionality reduction, visualized genetic similarities, and discovered key gene clusters relevant to specific cancer types. Clustering performance was evaluated using Adjusted Rand Index and Silhouette Score.',
+        images: [CancerFlowChart, CancerBanner],
+        keyFeatures: [
+          'K-Means clustering with PCA for dimensionality reduction',
+          'Visualization of gene clusters and cancer relationships',
+          'Evaluation using ARI and Silhouette Score metrics',
+        ],
+        technologies: ['Python', 'Seaborn', 'NumPy', 'Pandas', 'Matplotlib'],
+        duration: 'Apr 2023 - Jun 2023',
+        role: 'Data Analyst: Implemented clustering models and performed evaluation.',
+        demoVideo: '',
+        method: 'Unsupervised Learning, Dimensionality Reduction, Clustering',
+        live: '#',
+        github: '#',
       },
       {
         banner: SpicyBites,
