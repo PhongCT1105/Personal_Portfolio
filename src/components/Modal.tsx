@@ -3,6 +3,7 @@ import React from 'react';
 interface ModalProps {
   images: string[];
   title: string;
+  method: string; // Include method
   onClose: () => void;
 }
 

@@ -5,6 +5,7 @@ interface CardItem {
   images: string[]; // Existing gallery images
   title: string;
   desc: string;
+  method: string;
   live: string;
   github: string;
   onClick?: () => void;
@@ -28,7 +29,7 @@ const Cards: React.FC<{ item: CardItem; onClick?: () => void }> = ({
         />
 
         {/* Hover label for desktops */}
-        <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 flex justify-center items-center transition-opacity duration-300 hidden sm:flex">
+        <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 justify-center items-center transition-opacity duration-300 hidden sm:flex">
           <span className="text-white text-sm font-semibold">
             Click to Expand
           </span>
@@ -59,14 +60,16 @@ const Cards: React.FC<{ item: CardItem; onClick?: () => void }> = ({
         <p className="hidden sm:block text-sm lg:text-base line-clamp-2 mb-2 sm:mb-4">
           {item.desc}
         </p>
+        <p className="text-gray-400 text-xs sm:text-sm italic mb-2">
+          <strong>Method:</strong> {item.method}
+        </p>
         <div className="flex justify-between items-center">
-          {/* Links for Live and GitHub */}
           <a
             href={item.live}
             target="_blank"
             rel="noopener noreferrer"
             className="text-red-400 text-xs hover:underline sm:text-sm"
-            onClick={(e) => e.stopPropagation()} // Prevent modal from opening
+            onClick={(e) => e.stopPropagation()}
           >
             Live
           </a>
@@ -75,7 +78,7 @@ const Cards: React.FC<{ item: CardItem; onClick?: () => void }> = ({
             target="_blank"
             rel="noopener noreferrer"
             className="text-red-400 text-xs hover:underline sm:text-sm"
-            onClick={(e) => e.stopPropagation()} // Prevent modal from opening
+            onClick={(e) => e.stopPropagation()}
           >
             GitHub
           </a>
