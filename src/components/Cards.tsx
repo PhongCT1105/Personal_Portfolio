@@ -1,7 +1,8 @@
 import React from 'react';
 
 interface CardItem {
-  images: string[];
+  banner: string; // New field for the banner image
+  images: string[]; // Existing gallery images
   title: string;
   desc: string;
   live: string;
@@ -19,12 +20,13 @@ const Cards: React.FC<{ item: CardItem; onClick?: () => void }> = ({
       onClick={onClick} // Trigger the modal when the card is clicked
     >
       <div className="h-24 w-full sm:h-48 lg:h-56 overflow-hidden relative">
-        {/* Display the image */}
+        {/* Display the banner image */}
         <img
-          src={item.images[0]}
+          src={item.banner} // Use the banner image
           alt={item.title}
           className="w-full h-full object-cover"
         />
+
         {/* Hover label for desktops */}
         <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 flex justify-center items-center transition-opacity duration-300 hidden sm:flex">
           <span className="text-white text-sm font-semibold">
