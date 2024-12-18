@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 
@@ -27,10 +27,26 @@ const Modal: React.FC<ModalProps> = ({
   demoVideo,
   onClose,
 }) => {
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const handleNextImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+
+  const handlePrevImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50 p-4"
-      onClick={onClose}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClose();
+      }}
     >
       {/* Modal Container */}
       <div
@@ -39,7 +55,10 @@ const Modal: React.FC<ModalProps> = ({
       >
         {/* Close Button */}
         <button
-          onClick={onClose}
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose();
+          }}
           className="absolute top-4 right-4 text-gray-300 bg-red-500 hover:bg-red-600 rounded-full p-2 transition-transform duration-300 hover:scale-110"
         >
           <XMarkIcon className="w-6 h-6" />
@@ -48,7 +67,7 @@ const Modal: React.FC<ModalProps> = ({
         {/* Title */}
         <h2 className="flex items-center justify-center md:text-5x text-3xl font-bold text-white mb-6 text-center">
           <MagnifyingGlassIcon className="w-8 h-8 mr-3 text-blue-400" />
-          Cancer Detection with Gene Sequence
+          {title}
         </h2>
 
         {/* Conditional Demo Video */}
@@ -127,7 +146,6 @@ const Modal: React.FC<ModalProps> = ({
           </div>
 
           {/* Gallery */}
-          {/* Gallery */}
           <div>
             <h3 className="border-b border-red-600 text-lg font-semibold text-white-300 mb-2">
               Project Gallery
@@ -143,14 +161,59 @@ const Modal: React.FC<ModalProps> = ({
                     alt={`${title} - ${index + 1}`}
                     className="w-full h-48 md:h-64 object-cover transition-transform duration-300 group-hover:scale-110"
                   />
-                  {/* Optional overlay for a sleek hover effect */}
-                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-25 transition duration-300"></div>
                 </div>
               ))}
             </div>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsGalleryOpen(true);
+              }}
+              className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
+            >
+              View All Images
+            </button>
           </div>
         </div>
       </div>
+
+      {/* Fullscreen Gallery */}
+      {isGalleryOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-90 flex justify-center items-center z-50">
+          <button
+            onClick={() => setIsGalleryOpen(false)}
+            className="absolute top-4 right-4 text-gray-300 bg-red-500 hover:bg-red-600 rounded-full p-2"
+          >
+            <XMarkIcon className="w-6 h-6" />
+          </button>
+
+          <div className="flex items-center justify-center space-x-4">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handlePrevImage();
+              }}
+              className="text-gray-300 bg-gray-700 hover:bg-gray-600 rounded-full p-3"
+            >
+              &larr;
+            </button>
+            <img
+              src={images[currentImageIndex]}
+              alt={`Gallery Image ${currentImageIndex + 1}`}
+              className="max-w-full max-h-[80vh] object-contain"
+            />
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleNextImage();
+              }}
+              className="text-gray-300 bg-gray-700 hover:bg-gray-600 rounded-full p-3"
+            >
+              &rarr;
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
