@@ -55,7 +55,7 @@ const Modal: React.FC<ModalProps> = ({
     >
       {/* Main Modal Content */}
       <div
-        className={`bg-gray-800 text-gray-300 rounded-lg shadow-lg max-w-4xl w-full p-6 relative overflow-y-auto max-h-[90vh] animate-fade-in ${
+        className={`bg-gray-800 text-gray-300 rounded-lg shadow-lg max-w-4xl w-full p-6 relative overflow-y-auto max-h-[90vh] ${
           fullImageIndex !== null && 'hidden' // Hide modal content in gallery view
         }`}
         onClick={(e) => e.stopPropagation()} // Prevent bubbling to outer container
@@ -69,7 +69,7 @@ const Modal: React.FC<ModalProps> = ({
         </button>
 
         {/* Title */}
-        <h2 className="flex items-center justify-center md:text-5xl text-3xl font-bold text-white mb-6 text-center">
+        <h2 className="flex items-center justify-center md:text-3xl text-2xl font-bold text-white mb-6 text-center">
           {title}
         </h2>
 
@@ -175,7 +175,7 @@ const Modal: React.FC<ModalProps> = ({
             <div className="mt-4 flex justify-center">
               <button
                 onClick={() => setFullImageIndex(0)} // Open gallery from the first image
-                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md font-semibold transition-transform transform hover:scale-105"
+                className="bg-transparent hover:bg-red-600 text-white px-4 py-2 rounded-md transition-transform transform hover:scale-105"
               >
                 View Full Gallery
               </button>
@@ -209,7 +209,7 @@ const Modal: React.FC<ModalProps> = ({
               e.stopPropagation();
               goToPreviousImage();
             }}
-            className="fixed left-4 bg-transparent text-white hover:text-red-500 rounded-full p-3 transition-transform duration-300 hover:scale-110"
+            className="fixed left-4 bg-black bg-opacity-70 text-white rounded-full p-4 shadow-lg transition-transform duration-300 hover:scale-110 hover:bg-opacity-90"
           >
             &lt;
           </button>
@@ -218,7 +218,7 @@ const Modal: React.FC<ModalProps> = ({
               e.stopPropagation();
               goToNextImage();
             }}
-            className="fixed right-4 bg-transparent text-white hover:text-red-500 rounded-full p-3 transition-transform duration-300 hover:scale-110"
+            className="fixed right-4 bg-black bg-opacity-70 text-white rounded-full p-4 shadow-lg transition-transform duration-300 hover:scale-110 hover:bg-opacity-90"
           >
             &gt;
           </button>
