@@ -63,7 +63,7 @@ const Modal: React.FC<ModalProps> = ({
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-300 bg-red-500 hover:bg-red-600 rounded-full p-2 transition-transform duration-300 hover:scale-110"
+          className="absolute top-4 right-4 text-gray-300 bg-transparent hover:bg-red-600 rounded-full p-2 transition-transform duration-300 hover:scale-110"
         >
           <XMarkIcon className="w-6 h-6" />
         </button>
@@ -198,7 +198,7 @@ const Modal: React.FC<ModalProps> = ({
           {/* Close Full View */}
           <button
             onClick={() => setFullImageIndex(null)} // Close full view
-            className="absolute top-4 right-4 text-gray-300 bg-red-500 hover:bg-red-600 rounded-full p-2 transition-transform duration-300 hover:scale-110"
+            className="absolute top-4 right-4 text-gray-300 bg-transparent hover:bg-red-600 rounded-full p-2 transition-transform duration-300 hover:scale-110"
           >
             <XMarkIcon className="w-6 h-6" />
           </button>
@@ -209,7 +209,7 @@ const Modal: React.FC<ModalProps> = ({
               e.stopPropagation();
               goToPreviousImage();
             }}
-            className="absolute left-4 text-white bg-gray-700 hover:bg-red-500 rounded-full p-3 transition-transform duration-300 hover:scale-110"
+            className="fixed left-4 bg-transparent text-white hover:text-red-500 rounded-full p-3 transition-transform duration-300 hover:scale-110"
           >
             &lt;
           </button>
@@ -218,7 +218,7 @@ const Modal: React.FC<ModalProps> = ({
               e.stopPropagation();
               goToNextImage();
             }}
-            className="absolute right-4 text-white bg-gray-700 hover:bg-red-500 rounded-full p-3 transition-transform duration-300 hover:scale-110"
+            className="fixed right-4 bg-transparent text-white hover:text-red-500 rounded-full p-3 transition-transform duration-300 hover:scale-110"
           >
             &gt;
           </button>
