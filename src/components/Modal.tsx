@@ -31,14 +31,18 @@ const Modal: React.FC<ModalProps> = ({
   // Navigate to the next image
   const goToNextImage = () => {
     if (fullImageIndex !== null) {
-      setFullImageIndex((fullImageIndex + 1) % images.length);
+      setFullImageIndex((prev) =>
+        prev !== null ? (prev + 1) % images.length : null
+      );
     }
   };
 
   // Navigate to the previous image
   const goToPreviousImage = () => {
     if (fullImageIndex !== null) {
-      setFullImageIndex((fullImageIndex - 1 + images.length) % images.length);
+      setFullImageIndex((prev) =>
+        prev !== null ? (prev - 1 + images.length) % images.length : null
+      );
     }
   };
 
@@ -55,8 +59,10 @@ const Modal: React.FC<ModalProps> = ({
     >
       {/* Main Modal Content */}
       <div
-        className={`bg-gray-800 text-gray-300 rounded-lg shadow-lg max-w-4xl w-full p-6 relative overflow-y-auto max-h-[90vh] ${
-          fullImageIndex !== null && 'hidden' // Hide modal content in gallery view
+        className={`bg-gray-800 text-gray-300 rounded-lg shadow-lg max-w-4xl w-full p-6 relative overflow-y-auto max-h-[90vh] transition-opacity duration-300 ${
+          fullImageIndex !== null
+            ? 'opacity-0 pointer-events-none'
+            : 'opacity-100'
         }`}
         onClick={(e) => e.stopPropagation()} // Prevent bubbling to outer container
       >
@@ -162,7 +168,7 @@ const Modal: React.FC<ModalProps> = ({
                   <img
                     src={image}
                     alt={`${title} - ${index + 1}`}
-                    className="w-full h-48 md:h-64 object-cover transition-transform duration-300 group-hover:scale-110 cursor-pointer"
+                    className="w-full h-48 md:h-64 object-cover transition-transform duration-300 group-hover:scale-110"
                     onClick={(e) => {
                       e.stopPropagation();
                       setFullImageIndex(index);
@@ -198,7 +204,7 @@ const Modal: React.FC<ModalProps> = ({
           {/* Close Full View */}
           <button
             onClick={() => setFullImageIndex(null)} // Close full view
-            className="absolute top-4 right-4 text-gray-300 bg-transparent hover:bg-red-600 rounded-full p-2 transition-transform duration-300 hover:scale-110"
+            className="absolute top-4 right-4 text-gray-300 bg-black bg-opacity-70 hover:bg-red-600 rounded-full p-2 transition-transform duration-300 hover:scale-110"
           >
             <XMarkIcon className="w-6 h-6" />
           </button>
