@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 
 interface ModalProps {
@@ -26,13 +26,38 @@ const Modal: React.FC<ModalProps> = ({
   demoVideo,
   onClose,
 }) => {
+  const [fullImageIndex, setFullImageIndex] = useState<number | null>(null);
+
+  // Navigate to the next image
+  const goToNextImage = () => {
+    if (fullImageIndex !== null) {
+      setFullImageIndex((fullImageIndex + 1) % images.length);
+    }
+  };
+
+  // Navigate to the previous image
+  const goToPreviousImage = () => {
+    if (fullImageIndex !== null) {
+      setFullImageIndex((fullImageIndex - 1 + images.length) % images.length);
+    }
+  };
+
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50 p-4"
-      onClick={onClose} // Close modal when clicking outside
+      onClick={() => {
+        if (fullImageIndex === null) {
+          onClose(); // Close the entire modal when clicking outside in normal view
+        } else {
+          setFullImageIndex(null); // Exit gallery view back to modal content
+        }
+      }}
     >
+      {/* Main Modal Content */}
       <div
-        className="bg-gray-800 text-gray-300 rounded-lg shadow-lg max-w-4xl w-full p-6 relative overflow-y-auto max-h-[90vh] animate-fade-in"
+        className={`bg-gray-800 text-gray-300 rounded-lg shadow-lg max-w-4xl w-full p-6 relative overflow-y-auto max-h-[90vh] animate-fade-in ${
+          fullImageIndex !== null && 'hidden' // Hide modal content in gallery view
+        }`}
         onClick={(e) => e.stopPropagation()} // Prevent bubbling to outer container
       >
         {/* Close Button */}
@@ -44,7 +69,7 @@ const Modal: React.FC<ModalProps> = ({
         </button>
 
         {/* Title */}
-        <h2 className="flex items-center justify-center md:text-5x text-3xl font-bold text-white mb-6 text-center">
+        <h2 className="flex items-center justify-center md:text-5xl text-3xl font-bold text-white mb-6 text-center">
           {title}
         </h2>
 
@@ -138,6 +163,10 @@ const Modal: React.FC<ModalProps> = ({
                     src={image}
                     alt={`${title} - ${index + 1}`}
                     className="w-full h-48 md:h-64 object-cover transition-transform duration-300 group-hover:scale-110 cursor-pointer"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setFullImageIndex(index);
+                    }} // Open full image on click
                   />
                 </div>
               ))}
@@ -145,6 +174,47 @@ const Modal: React.FC<ModalProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Full Image View */}
+      {fullImageIndex !== null && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-90 flex justify-center items-center z-50 p-4"
+          onClick={() => setFullImageIndex(null)} // Return to modal view on outside click
+        >
+          <img
+            src={images[fullImageIndex]}
+            alt="Full View"
+            className="max-w-full max-h-full object-contain rounded-lg shadow-lg"
+          />
+          {/* Close Full View */}
+          <button
+            onClick={() => setFullImageIndex(null)} // Close full view
+            className="absolute top-4 right-4 text-gray-300 bg-red-500 hover:bg-red-600 rounded-full p-2 transition-transform duration-300 hover:scale-110"
+          >
+            <XMarkIcon className="w-6 h-6" />
+          </button>
+
+          {/* Navigation Buttons */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              goToPreviousImage();
+            }}
+            className="absolute left-4 text-white bg-gray-700 hover:bg-red-500 rounded-full p-3 transition-transform duration-300 hover:scale-110"
+          >
+            &lt;
+          </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              goToNextImage();
+            }}
+            className="absolute right-4 text-white bg-gray-700 hover:bg-red-500 rounded-full p-3 transition-transform duration-300 hover:scale-110"
+          >
+            &gt;
+          </button>
+        </div>
+      )}
     </div>
   );
 };
