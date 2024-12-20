@@ -181,7 +181,7 @@ const Modal: React.FC<ModalProps> = ({
             <div className="mt-4 flex justify-center">
               <button
                 onClick={() => setFullImageIndex(0)} // Open gallery from the first image
-                className="bg-transparent hover:bg-red-600 text-white px-4 py-2 rounded-md transition-transform transform hover:scale-105"
+                className="bg-transparent hover:bg-red-600 text-gray-50 px-4 py-2 rounded-md transition-transform transform hover:scale-105"
               >
                 View Full Gallery
               </button>

@@ -33,7 +33,7 @@ export const categories: Category[] = [
       {
         banner: CancerBanner,
         title: 'Cancer Detection with Gene Sequence',
-        desc: 'A machine learning system for cancer detection, type classification, and key gene identification using DNA microarray data',
+        desc: 'A machine learning system for cancer detection, type classification, and key gene identification',
         modalDesc:
           'Our project adopts a white-box approach to predict cancer types and identify key genes using genetic sequencing data. With a high-dimensional dataset containing over 50,000 features, we employed advanced feature selection techniques to reduce redundancy and improve model performance. The final integrated models achieved 90% accuracy while maintaining a recall score of 1.0 across all cancer types, ensuring no cancer cases were missed. This approach highlights the effectiveness of machine learning for handling complex, high-dimensional data in cancer diagnosis.',
         images: [CancerFlowChart, Youtube, Youtube],

@@ -9,6 +9,9 @@ const Projects: React.FC = () => {
   const [isPaused, setIsPaused] = useState(false);
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
+  const isDragging = useRef<boolean>(false);
+  const mouseStartX = useRef<number | null>(null);
+  const mouseEndX = useRef<number | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const goToNext = () => {
@@ -25,7 +28,6 @@ const Projects: React.FC = () => {
 
   const handleInteraction = () => {
     setIsPaused(true);
-
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => setIsPaused(false), 5000); // Resume after 5s
   };
@@ -48,6 +50,33 @@ const Projects: React.FC = () => {
     }
     touchStartX.current = null;
     touchEndX.current = null;
+  };
+
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    handleInteraction();
+    isDragging.current = true;
+    mouseStartX.current = e.clientX;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging.current) return;
+    mouseEndX.current = e.clientX;
+  };
+
+  const handleMouseUp = () => {
+    if (
+      isDragging.current &&
+      mouseStartX.current !== null &&
+      mouseEndX.current !== null
+    ) {
+      const swipeDistance = mouseStartX.current - mouseEndX.current;
+
+      if (swipeDistance > 50) goToNext();
+      if (swipeDistance < -50) goToPrevious();
+    }
+    isDragging.current = false;
+    mouseStartX.current = null;
+    mouseEndX.current = null;
   };
 
   useEffect(() => {
@@ -93,6 +122,9 @@ const Projects: React.FC = () => {
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
         >
           <div
             className="flex w-full transition-transform duration-500"
