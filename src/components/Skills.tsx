@@ -1,7 +1,24 @@
 import React, { useState } from 'react';
-import { SiAmazon, SiDocker, SiLinux } from 'react-icons/si';
-import { FaGithub, FaPython } from 'react-icons/fa';
-import { VscAzure } from 'react-icons/vsc';
+import {
+  SiPython,
+  SiC,
+  SiCplusplus,
+  SiTypescript,
+  SiJavascript,
+  // SiJava,
+  SiPytorch,
+  SiTensorflow,
+  SiReact,
+  SiNodedotjs,
+  SiFlask,
+  SiPostgresql,
+  // SiAmazonaws,
+  // SiMicrosoftazure,
+  SiGooglecloud,
+  SiDocker,
+  SiKubernetes,
+  SiLinux,
+} from 'react-icons/si';
 import { motion } from 'framer-motion';
 
 const Skills = () => {
@@ -14,21 +31,66 @@ const Skills = () => {
     { number: '100%', label: 'Dedication to Success' },
   ];
 
-  const platforms = [
-    { name: 'GitHub', icon: <FaGithub className="text-[#181717]" /> },
-    { name: 'Azure', icon: <VscAzure className="text-[#0078D4]" /> },
-    { name: 'AWS', icon: <SiAmazon className="text-[#FF9900]" /> },
-    { name: 'Docker', icon: <SiDocker className="text-[#2496ED]" /> },
-    { name: 'Linux', icon: <SiLinux className="text-[#FF4500]" /> },
-    { name: 'Python', icon: <FaPython className="text-[#3776AB]" /> },
-  ];
-
   const aiSkills = [
     { skill: 'Machine Learning', level: 90 },
     { skill: 'Deep Learning', level: 85 },
     { skill: 'Natural Language Processing', level: 80 },
     { skill: 'Computer Vision', level: 88 },
     { skill: 'Data Analysis', level: 87 },
+  ];
+
+  const techDomains = [
+    {
+      domain: 'Programming Languages',
+      skills: [
+        { name: 'Python', icon: <SiPython className="text-[#3776AB]" /> },
+        { name: 'C', icon: <SiC className="text-[#A8B9CC]" /> },
+        { name: 'C++', icon: <SiCplusplus className="text-[#00599C]" /> },
+        {
+          name: 'TypeScript',
+          icon: <SiTypescript className="text-[#3178C6]" />,
+        },
+        {
+          name: 'JavaScript',
+          icon: <SiJavascript className="text-[#F7DF1E]" />,
+        },
+        // { name: 'Java', icon: <SiJava className="text-[#007396]" /> },
+      ],
+    },
+    {
+      domain: 'Frameworks & Tools',
+      skills: [
+        { name: 'PyTorch', icon: <SiPytorch className="text-[#EE4C2C]" /> },
+        {
+          name: 'TensorFlow',
+          icon: <SiTensorflow className="text-[#FF6F00]" />,
+        },
+        { name: 'React', icon: <SiReact className="text-[#61DAFB]" /> },
+        { name: 'Node.js', icon: <SiNodedotjs className="text-[#339933]" /> },
+        { name: 'Flask', icon: <SiFlask className="text-[#000000]" /> },
+        {
+          name: 'PostgreSQL',
+          icon: <SiPostgresql className="text-[#336791]" />,
+        },
+      ],
+    },
+    {
+      domain: 'Cloud & DevOps',
+      skills: [
+        // { name: 'AWS', icon: <SiAmazonaws className="text-[#FF9900]" /> },
+        {
+          name: 'Azure',
+          // icon: <SiMicrosoftazure className="text-[#0078D4]" />,
+        },
+        { name: 'GCP', icon: <SiGooglecloud className="text-[#4285F4]" /> },
+        { name: 'Docker', icon: <SiDocker className="text-[#2496ED]" /> },
+        {
+          name: 'Kubernetes',
+          icon: <SiKubernetes className="text-[#326CE5]" />,
+        },
+        { name: 'Linux', icon: <SiLinux className="text-[#FCC624]" /> },
+      ],
+    },
   ];
 
   return (
@@ -68,13 +130,13 @@ const Skills = () => {
           <button
             className={`px-6 py-3 text-white text-sm font-medium ${
               activeTab === 'chart' ? 'bg-gray-700' : 'bg-gray-600'
-            } rounded-lg mx-2 transition-transform transform hover:scale-105`}
+            } rounded-lg mx-2 transition-transform transform hover:scale-105 hover:bg-red-600`}
             onClick={() => setActiveTab('chart')}
           >
             Overall Skills
           </button>
           <button
-            className={`px-6 py-3 text-white text-sm font-medium ${
+            className={`px-6 py-3 text-white text-sm font-medium hover:bg-red-600 ${
               activeTab === 'allSkills' ? 'bg-gray-700' : 'bg-gray-600'
             } rounded-lg mx-2 transition-transform transform hover:scale-105`}
             onClick={() => setActiveTab('allSkills')}
@@ -114,23 +176,51 @@ const Skills = () => {
 
         {activeTab === 'allSkills' && (
           <div className="text-center">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
-              {platforms.map((platform, index) => (
-                <motion.div
-                  key={index}
-                  className="flex flex-col items-center justify-center bg-gray-800 rounded-lg p-6 shadow-md hover:scale-105 hover:shadow-lg transition-transform transform"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                >
-                  <div className="text-5xl mb-2">{platform.icon}</div>
-                  <p className="text-sm text-gray-300 font-medium">
-                    {platform.name}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
+            <table className="table-auto w-full text-left border-collapse border border-gray-700">
+              <thead>
+                <tr>
+                  <th className="text-white border border-gray-700 px-4 py-2">
+                    Domain
+                  </th>
+                  <th className="text-white border border-gray-700 px-4 py-2">
+                    Skills
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {techDomains.map((domain, index) => (
+                  <tr key={index}>
+                    <td className="border border-gray-700 px-4 py-2 font-bold text-gray-300">
+                      {domain.domain}
+                    </td>
+                    <td className="border border-gray-700 px-4 py-2">
+                      <div className="flex flex-wrap gap-4">
+                        {domain.skills.map((skill, skillIndex) => (
+                          <motion.div
+                            key={skillIndex}
+                            className="flex items-center space-x-2 bg-gray-800 p-2 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:bg-gray-700"
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{
+                              duration: 0.3,
+                              delay: skillIndex * 0.1,
+                            }}
+                          >
+                            <div className="text-3xl hover:text-teal-400 transition-colors duration-300">
+                              {skill.icon}
+                            </div>
+                            <span className="text-gray-300 font-medium">
+                              {skill.name}
+                            </span>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         )}
       </div>
