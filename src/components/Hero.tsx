@@ -15,7 +15,7 @@ const Hero = () => {
               Hi There, <br />
               I'm <span className="text-red-500">Phong Cao</span>
             </h1>
-            <p className="text-xl sm:text-2xl mb-4">AI&ML Developer</p>
+            <p className="text-xl sm:text-2xl mb-4">AI & ML Developer</p>
             <p className="mb-4">
               I'm a passionate web developer with expertise in React, Next.js,
               and modern web technologies. I love creating beautiful and
@@ -23,12 +23,11 @@ const Hero = () => {
             </p>
             <button className="bg-black text-white px-4 py-2 w-max rounded-md hover:bg-red-500">
               <a
-                href="https://drive.google.com/file/d/1LBMHWpTgTGkvCTcHYiU8JQRCHb5-SRl8/view?usp=sharing"
-                download
-                target="_blank"
+                href="https://drive.google.com/uc?id=1yqd09KUH68008ZV6Qc44YpeIi5QGAiFr&export=download"
+                download="Phong_Cao_Resume.pdf"
                 rel="noopener noreferrer"
               >
-                Download CV
+                Download Resume
               </a>
             </button>
           </div>
