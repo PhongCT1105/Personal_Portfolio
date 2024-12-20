@@ -3,17 +3,27 @@ import facebook from '../assets/facebook.png';
 import twitter from '../assets/twitter.png';
 import instagram from '../assets/instagram.png';
 import linkedin from '../assets/linkedin.png';
+import { TypeAnimation } from 'react-type-animation';
 
 const Hero = () => {
   return (
-    <section className="relative w-full overflow-hidden " id="home">
+    <section className="relative w-full overflow-hidden" id="home">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between lg:h-[90vh]">
           {/* Text Section */}
           <div className="md:w-1/2 mb-8 md:mb-0 flex flex-col space-y-4 px-4 md:px-0 mt-10">
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight lg:leading-snug">
               Hi There, <br />
-              I'm <span className="text-red-500">Phong Cao</span>
+              I'm{' '}
+              <span className="text-red-500">
+                <TypeAnimation
+                  sequence={['Phong Cao', 1000, 'AI & ML Dev', 1000]}
+                  wrapper="span"
+                  speed={50}
+                  style={{ fontSize: '1em', display: 'inline-block' }}
+                  repeat={Infinity}
+                />
+              </span>
             </h1>
             <p className="text-xl sm:text-2xl mb-4">AI & ML Developer</p>
             <p className="mb-4">
