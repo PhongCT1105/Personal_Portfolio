@@ -107,7 +107,9 @@ const Skills = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-3xl font-bold text-gray-300 mb-4">Key Numbers</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-4">
+            Key Numbers
+          </h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             {importantNumber.map((keynum, index) => (
               <motion.div
@@ -153,7 +155,7 @@ const Skills = () => {
             <div className="space-y-6">
               {aiSkills.map((skill, index) => (
                 <div key={index} className="flex items-center">
-                  <p className="text-sm font-medium text-gray-400 w-1/5">
+                  <p className="text-sm sm:w-1/5 font-medium text-gray-400 w-1/5">
                     {skill.skill}
                   </p>
                   <div className="relative w-3/5">
@@ -179,10 +181,10 @@ const Skills = () => {
             <table className="table-auto w-full text-left border-collapse border border-gray-700">
               <thead>
                 <tr>
-                  <th className="text-white border border-gray-700 px-4 py-2">
+                  <th className="text-white border border-gray-700 px-2 sm:px-4 py-2 text-sm sm:text-base">
                     Domain
                   </th>
-                  <th className="text-white border border-gray-700 px-4 py-2">
+                  <th className="text-white border border-gray-700 px-2 sm:px-4 py-2 text-sm sm:text-base">
                     Skills
                   </th>
                 </tr>
@@ -190,15 +192,15 @@ const Skills = () => {
               <tbody>
                 {techDomains.map((domain, index) => (
                   <tr key={index}>
-                    <td className="border border-gray-700 px-4 py-2 font-bold text-gray-300">
+                    <td className="border border-gray-700 px-2 py-2 text-gray-300 font-bold text-sm sm:text-base">
                       {domain.domain}
                     </td>
-                    <td className="border border-gray-700 px-4 py-2">
-                      <div className="flex flex-wrap gap-4">
+                    <td className="border border-gray-700 px-2 py-2">
+                      <div className="flex flex-wrap gap-2 sm:gap-4">
                         {domain.skills.map((skill, skillIndex) => (
                           <motion.div
                             key={skillIndex}
-                            className="flex items-center space-x-2 bg-gray-800 p-2 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:bg-gray-700"
+                            className="flex items-center space-x-1 bg-gray-800 p-2 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:bg-gray-700"
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
@@ -207,10 +209,10 @@ const Skills = () => {
                               delay: skillIndex * 0.1,
                             }}
                           >
-                            <div className="text-3xl hover:text-teal-400 transition-colors duration-300">
+                            <div className="text-2xl sm:text-3xl hover:text-teal-400 transition-colors duration-300">
                               {skill.icon}
                             </div>
-                            <span className="text-gray-300 font-medium">
+                            <span className="text-gray-300 text-xs sm:text-sm font-medium">
                               {skill.name}
                             </span>
                           </motion.div>
