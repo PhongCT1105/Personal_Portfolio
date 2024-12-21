@@ -20,13 +20,13 @@ const Cards: React.FC<{ item: CardItem; onClick?: () => void }> = ({
 
   return (
     <div
-      className="relative bg-gray-800 text-gray-300 rounded-md overflow-hidden shadow-sm hover:shadow-md transition-transform transform hover:scale-102 cursor-pointer group"
+      className="relative bg-gray-800 text-gray-300 rounded-md overflow-hidden shadow-sm hover:shadow-md transition-transform transform hover:scale-103 cursor-pointer group"
       onClick={() => {
         onClick?.();
         setShowTooltip(false); // Hide tooltip after the first click
       }}
     >
-      <div className="h-20 w-full sm:h-36 lg:h-40 overflow-hidden relative">
+      <div className="h-32 w-full sm:h-48 lg:h-64 overflow-hidden relative">
         <img
           src={item.banner}
           alt={item.title}
@@ -41,13 +41,10 @@ const Cards: React.FC<{ item: CardItem; onClick?: () => void }> = ({
         )}
       </div>
       <div className="p-2 sm:p-3">
-        <h3 className="text-sm font-semibold truncate mb-1 sm:text-base lg:text-sm">
+        <h3 className="text-sm font-semibold truncate mb-1 sm:text-base lg:text-lg">
           {item.title}
         </h3>
-        <p className="hidden sm:block text-xs lg:text-sm line-clamp-2 mb-2">
-          {item.desc}
-        </p>
-        <p className="text-gray-400 text-xs sm:text-xs italic mb-1">
+        <p className="text-gray-400 text-xs sm:text-sm italic mb-1">
           <strong>Method:</strong> {item.method}
         </p>
         <div className="flex justify-between items-center">
@@ -55,7 +52,7 @@ const Cards: React.FC<{ item: CardItem; onClick?: () => void }> = ({
             href={item.live}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-red-400 text-xs hover:underline sm:text-xs"
+            className="text-red-400 text-xs hover:underline sm:text-sm"
             onClick={(e) => e.stopPropagation()}
           >
             Live
@@ -64,7 +61,7 @@ const Cards: React.FC<{ item: CardItem; onClick?: () => void }> = ({
             href={item.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-red-400 text-xs hover:underline sm:text-xs"
+            className="text-red-400 text-xs hover:underline sm:text-sm"
             onClick={(e) => e.stopPropagation()}
           >
             GitHub
