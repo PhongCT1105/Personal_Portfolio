@@ -104,12 +104,9 @@ const Skills = () => {
           className="text-center mb-12"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }} // Ensures animation reruns on every scroll
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-4">
-            Key Numbers
-          </h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             {importantNumber.map((keynum, index) => (
               <motion.div
@@ -117,7 +114,7 @@ const Skills = () => {
                 className="text-center bg-gray-800 p-4 rounded-lg shadow-lg transform transition-all hover:scale-105 hover:bg-red-600"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }} // Ensures animation reruns on every scroll
                 transition={{ duration: 0.5, delay: index * 0.2 }}
               >
                 <p className="text-4xl font-bold text-white">{keynum.number}</p>
@@ -163,7 +160,8 @@ const Skills = () => {
                     <motion.div
                       className="absolute top-0 left-0 h-2 rounded-full bg-teal-500"
                       initial={{ width: 0 }}
-                      animate={{ width: `${skill.level}%` }}
+                      whileInView={{ width: `${skill.level}%` }} // Trigger animation on view
+                      viewport={{ once: false }} // Ensures animation reruns on every scroll
                       transition={{ duration: 1 }}
                     ></motion.div>
                   </div>
