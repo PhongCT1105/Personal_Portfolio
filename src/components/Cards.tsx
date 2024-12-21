@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface CardItem {
   banner: string; // Banner image for the card
@@ -16,10 +16,15 @@ const Cards: React.FC<{ item: CardItem; onClick?: () => void }> = ({
   item,
   onClick,
 }) => {
+  const [showTooltip, setShowTooltip] = useState(true);
+
   return (
     <div
-      className="bg-gray-800 text-gray-300 rounded-md overflow-hidden shadow-sm hover:shadow-md transition-transform transform hover:scale-102 cursor-pointer relative group"
-      onClick={onClick}
+      className="relative bg-gray-800 text-gray-300 rounded-md overflow-hidden shadow-sm hover:shadow-md transition-transform transform hover:scale-102 cursor-pointer group"
+      onClick={() => {
+        onClick?.();
+        setShowTooltip(false); // Hide tooltip after the first click
+      }}
     >
       <div className="h-20 w-full sm:h-36 lg:h-40 overflow-hidden relative">
         <img
@@ -27,6 +32,13 @@ const Cards: React.FC<{ item: CardItem; onClick?: () => void }> = ({
           alt={item.title}
           className="w-full h-full object-cover"
         />
+        {showTooltip && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <p className="text-white text-sm sm:text-base lg:text-lg animate-bounce">
+              Click to View More!
+            </p>
+          </div>
+        )}
       </div>
       <div className="p-2 sm:p-3">
         <h3 className="text-sm font-semibold truncate mb-1 sm:text-base lg:text-sm">
