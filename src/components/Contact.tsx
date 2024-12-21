@@ -9,7 +9,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="relative bg-gradient-to-b from-gray-100 via-gray-200 to-gray-300 py-20 px-6"
+      className="relative bg-gradient-to-b from-gray-100 via-gray-200 to-gray-300 py-24 px-6"
     >
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
@@ -92,7 +92,7 @@ const Contact = () => {
               <textarea
                 id="message"
                 placeholder="Write your message here..."
-                rows="4"
+                rows={4}
                 className="mt-1 p-3 w-full rounded-md border border-gray-300 focus:border-red-500 focus:ring focus:ring-red-200 shadow-sm"
               />
             </div>
