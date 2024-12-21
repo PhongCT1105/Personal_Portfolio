@@ -19,13 +19,16 @@ const Hero = () => {
                 <TypeAnimation
                   sequence={['Phong Cao', 1000, 'AI & ML Dev', 1000]}
                   wrapper="span"
-                  speed={50}
+                  speed={30}
                   style={{ fontSize: '1em', display: 'inline-block' }}
                   repeat={Infinity}
                 />
               </span>
             </h1>
-            <p className="text-xl sm:text-2xl mb-4">AI & ML Developer</p>
+            <p className="text-xl sm:text-2xl mb-4">
+              Specialist in AI & ML Solutions
+            </p>
+
             <p className="mb-4">
               I'm a passionate web developer with expertise in React, Next.js,
               and modern web technologies. I love creating beautiful and

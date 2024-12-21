@@ -1,9 +1,12 @@
 import Portfolio from '../assets/Portfolio.png';
 import SpicyBites from '../assets/SpicyBites.png';
-import Youtube from '../assets/Youtube.png';
 import SyntheSearch from '../assets/synthesearch.png';
-import CancerBanner from '../assets/Projects/Cancer_Detection/CancerBanner.png';
-import CancerFlowChart from '../assets/Projects/Cancer_Detection/CancerFlowChart.png';
+import CancerBanner from '../assets/Projects/Cancer_Detection/Banner.png';
+import CancerFlowChart from '../assets/Projects/Cancer_Detection/Chart.png';
+import Cancer1 from '../assets/Projects/Cancer_Detection/1.png';
+import Cancer2 from '../assets/Projects/Cancer_Detection/2.png';
+import Cancer3 from '../assets/Projects/Cancer_Detection/3.png';
+import Cancer4 from '../assets/Projects/Cancer_Detection/4.png';
 
 export interface Project {
   banner: string; // Banner image
@@ -36,7 +39,7 @@ export const categories: Category[] = [
         desc: 'A machine learning system for cancer detection, type classification, and key gene identification',
         modalDesc:
           'Our project adopts a white-box approach to predict cancer types and identify key genes using genetic sequencing data. With a high-dimensional dataset containing over 50,000 features, we employed advanced feature selection techniques to reduce redundancy and improve model performance. The final integrated models achieved 90% accuracy while maintaining a recall score of 1.0 across all cancer types, ensuring no cancer cases were missed. This approach highlights the effectiveness of machine learning for handling complex, high-dimensional data in cancer diagnosis.',
-        images: [CancerFlowChart, Youtube, Youtube],
+        images: [CancerFlowChart, Cancer1, Cancer2, Cancer3, Cancer4],
         keyFeatures: [
           'White-box approach ensuring interpretability and reliable predictions',
           'Achieved 90% accuracy and 1.0 recall across all cancer types, minimizing false negatives',
@@ -64,7 +67,7 @@ export const categories: Category[] = [
         desc: 'Identifying key gene patterns through clustering algorithms',
         modalDesc:
           'Implemented unsupervised learning techniques to cluster high-dimensional gene expression data. Leveraged K-Means with PCA for dimensionality reduction, visualized genetic similarities, and discovered key gene clusters relevant to specific cancer types. Clustering performance was evaluated using Adjusted Rand Index and Silhouette Score.',
-        images: [CancerFlowChart, CancerBanner],
+        images: [CancerFlowChart],
         keyFeatures: [
           'K-Means clustering with PCA for dimensionality reduction',
           'Visualization of gene clusters and cancer relationships',

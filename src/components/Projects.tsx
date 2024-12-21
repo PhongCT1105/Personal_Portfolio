@@ -94,7 +94,7 @@ const Projects: React.FC = () => {
       onMouseLeave={handleInteraction}
     >
       <div className="mb-16 max-w-7xl mx-auto">
-        <h3 className="text-2xl font-bold mb-8 text-white border-b border-red-600 w-max pb-4 mx-auto">
+        <h3 className="text-2xl font-bold mb-8 text-white border-b border-red-600 w-max mx-auto">
           My Projects
         </h3>
         <div className="flex justify-center flex-wrap gap-4 mb-6">

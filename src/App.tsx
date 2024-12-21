@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Particle from './components/Particle';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';

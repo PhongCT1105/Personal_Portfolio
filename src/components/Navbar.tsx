@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Logo from '../assets/Logo.png';
 import { Menu, X, Home, User, Wrench, Briefcase, Mail } from 'lucide-react';
 

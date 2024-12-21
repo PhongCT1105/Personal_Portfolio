@@ -1,5 +1,3 @@
-import React from 'react';
-
 const LoadingScreen = () => {
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center bg-black text-white z-50 overflow-hidden">

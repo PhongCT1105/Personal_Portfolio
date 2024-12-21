@@ -83,7 +83,6 @@ export default function Particle() {
               number: {
                 density: {
                   enable: true,
-                  area: 800,
                 },
                 value: 160,
               },
