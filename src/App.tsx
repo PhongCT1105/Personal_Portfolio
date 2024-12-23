@@ -7,6 +7,7 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import LoadingScreen from './components/LoadingScreen';
+import ProjectShowcase from './components/ProjectShowcase';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -32,6 +33,8 @@ export default function App() {
       <About />
       <Skills />
       <Projects />
+      <ProjectShowcase />
+
       <Contact />
     </>
   );

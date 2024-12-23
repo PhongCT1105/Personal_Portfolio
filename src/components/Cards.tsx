@@ -1,75 +1,62 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Tilt from 'react-parallax-tilt';
 
 interface CardItem {
-  banner: string; // Banner image for the card
-  images: string[]; // Gallery images for the modal
-  title: string; // Project title
-  desc: string; // Short description for the card
-  modalDesc: string; // Detailed description for the modal
-  method: string; // Method or approach used
-  live: string; // Live project link
-  github: string; // GitHub repository link
-  onClick?: () => void; // Optional click handler
+  banner: string;
+  title: string;
+  desc: string;
+  live: string;
+  github: string;
+  onClick?: () => void;
 }
 
 const Cards: React.FC<{ item: CardItem; onClick?: () => void }> = ({
   item,
   onClick,
-}) => {
-  const [showTooltip, setShowTooltip] = useState(true);
+}) => (
+  <Tilt
+    tiltMaxAngleX={15}
+    tiltMaxAngleY={15}
+    scale={1.05}
+    transitionSpeed={450}
+    glareEnable
+    glareMaxOpacity={0.1}
+    className="relative bg-gray-800 text-gray-300 rounded-lg shadow-lg hover:shadow-xl transition-transform"
+    onClick={() => onClick?.()}
+  >
+    {/* Banner */}
+    <div className="relative w-full h-48 overflow-hidden rounded-t-lg">
+      <img
+        src={item.banner}
+        alt={item.title}
+        className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+      />
+    </div>
 
-  return (
-    <div
-      className="relative bg-gray-800 text-gray-300 rounded-md overflow-hidden shadow-sm hover:shadow-md transition-transform transform hover:scale-103 cursor-pointer group"
-      onClick={() => {
-        onClick?.();
-        setShowTooltip(false); // Hide tooltip after the first click
-      }}
-    >
-      <div className="h-32 w-full sm:h-48 lg:h-64 overflow-hidden relative">
-        <img
-          src={item.banner}
-          alt={item.title}
-          className="w-full h-full object-cover"
-        />
-        {showTooltip && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <p className="text-white text-sm sm:text-base lg:text-lg animate-bounce">
-              Click to View More!
-            </p>
-          </div>
-        )}
-      </div>
-      <div className="p-2 sm:p-3">
-        <h3 className="text-sm font-semibold truncate mb-1 sm:text-base lg:text-lg">
-          {item.title}
-        </h3>
-        <p className="text-gray-400 text-xs sm:text-sm italic mb-1">
-          <strong>Method:</strong> {item.method}
-        </p>
-        <div className="flex justify-between items-center">
-          <a
-            href={item.live}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-red-400 text-xs hover:underline sm:text-sm"
-            onClick={(e) => e.stopPropagation()}
-          >
-            Live
-          </a>
-          <a
-            href={item.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-red-400 text-xs hover:underline sm:text-sm"
-            onClick={(e) => e.stopPropagation()}
-          >
-            GitHub
-          </a>
-        </div>
+    {/* Content */}
+    <div className="p-4 flex flex-col">
+      <h3 className="text-lg font-semibold mb-2 truncate">{item.title}</h3>
+      <p className="text-sm text-gray-400 mb-4 truncate">{item.desc}</p>
+      <div className="flex justify-between">
+        <a
+          href={item.live}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm text-blue-400 hover:underline"
+        >
+          Live
+        </a>
+        <a
+          href={item.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm text-blue-400 hover:underline"
+        >
+          GitHub
+        </a>
       </div>
     </div>
-  );
-};
+  </Tilt>
+);
 
 export default Cards;

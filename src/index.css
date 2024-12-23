@@ -79,3 +79,21 @@ body {
   padding: 0;
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }
+
+@layer utilities {
+  @keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 15s linear infinite;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+}
