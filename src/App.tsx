@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Particle from './components/Particle';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';

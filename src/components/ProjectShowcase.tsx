@@ -171,7 +171,12 @@ const ProjectShowcase: React.FC = () => {
   // Debugging filtered projects
   useEffect(() => {
     console.log('Active Category:', activeCategory);
-    console.log('Filtered Projects:', filteredProjects);
+    console.log(
+      'Filtered Projects:',
+      projects.filter((project) =>
+        activeCategory === 'All' ? true : project.category === activeCategory
+      )
+    );
   }, [activeCategory]);
 
   return (

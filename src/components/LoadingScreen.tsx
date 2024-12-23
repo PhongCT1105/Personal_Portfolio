@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const LoadingScreen = ({
@@ -24,7 +24,7 @@ const LoadingScreen = ({
     }, 500);
 
     return () => clearInterval(messageInterval);
-  }, [onLoadingComplete]);
+  }, [messages.length, onLoadingComplete]); // Include messages.length explicitly
 
   return (
     <motion.div
