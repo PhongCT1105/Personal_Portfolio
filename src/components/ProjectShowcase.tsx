@@ -169,7 +169,7 @@ const ProjectShowcase: React.FC = () => {
     : filteredProjects.slice(0, maxProjects);
 
   return (
-    <div className="p-4 bg-gray-100 min-h-screen">
+    <div className="p-4 min-h-screen bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 py-20">
       <AnimatePresence mode="wait">
         {selectedProject ? (
           <ViewProject
@@ -179,17 +179,17 @@ const ProjectShowcase: React.FC = () => {
           />
         ) : (
           <>
-            <h1 className="text-2xl font-bold mb-4 text-center">
+            <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
               Project Showcase
             </h1>
-            <div className="overflow-x-auto mb-4">
+            <div className="mb-6">
               <CategoryFilter
                 categories={categories}
                 activeCategory={activeCategory}
                 onCategorySelect={setActiveCategory}
               />
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {displayedProjects.map((project, index) => (
                 <ProjectCard
                   key={project.id}
@@ -204,10 +204,10 @@ const ProjectShowcase: React.FC = () => {
               ))}
             </div>
             {filteredProjects.length > maxProjects && (
-              <div className="text-center mt-4">
+              <div className="text-center mt-6">
                 <button
                   onClick={() => setShowAllProjects(!showAllProjects)}
-                  className="px-3 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
+                  className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-400 transition"
                 >
                   {showAllProjects ? 'Show Less' : 'View More Projects'}
                 </button>

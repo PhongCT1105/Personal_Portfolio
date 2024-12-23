@@ -17,11 +17,11 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
       {categories.map((category) => (
         <button
           key={category}
-          className={`px-3 py-1 rounded-lg ${
+          className={`px-4 py-2 rounded-lg font-medium ${
             activeCategory === category
-              ? 'bg-blue-500 text-white'
+              ? 'bg-red-500 text-white'
               : 'bg-gray-200 text-gray-800'
-          } hover:bg-blue-400 hover:text-white transition`}
+          } hover:bg-red-400 hover:text-white transition`}
           onClick={() => onCategorySelect(category)}
         >
           {category}

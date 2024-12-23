@@ -20,7 +20,7 @@ const ViewProject: React.FC<ViewProjectProps> = ({ project, onBack }) => {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -100 }}
       transition={{ duration: 0.5 }}
-      className="p-6 bg-white shadow-lg rounded-lg"
+      className="p-16 bg-white shadow-lg rounded-lg"
     >
       <h2 className="text-3xl font-bold mb-4">{project.title}</h2>
       <p className="text-gray-600 mb-4">{project.description}</p>
@@ -44,7 +44,7 @@ const ViewProject: React.FC<ViewProjectProps> = ({ project, onBack }) => {
       </div>
       <button
         onClick={onBack}
-        className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
+        className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-400 transition"
       >
         Back to Projects
       </button>
