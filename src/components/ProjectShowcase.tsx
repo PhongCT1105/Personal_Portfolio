@@ -158,18 +158,27 @@ const ProjectShowcase: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const filteredProjects =
-    activeCategory === 'All'
-      ? projects
-      : projects.filter((project) => project.category === activeCategory);
+  // Filter projects based on active category
+  const filteredProjects = projects.filter((project) =>
+    activeCategory === 'All' ? true : project.category === activeCategory
+  );
 
-  const maxProjects = isMobileView ? 4 : 6; // Show 3 projects on mobile, 6 on larger screens
+  const maxProjects = isMobileView ? 4 : 6; // Show 4 projects on mobile, 6 on larger screens
   const displayedProjects = showAllProjects
     ? filteredProjects
     : filteredProjects.slice(0, maxProjects);
 
+  // Debugging filtered projects
+  useEffect(() => {
+    console.log('Active Category:', activeCategory);
+    console.log('Filtered Projects:', filteredProjects);
+  }, [activeCategory]);
+
   return (
-    <div className="p-4 min-h-screen bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 py-20">
+    <div
+      id="projects"
+      className="p-4 min-h-screen bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 py-20"
+    >
       <AnimatePresence mode="wait">
         {selectedProject ? (
           <ViewProject
