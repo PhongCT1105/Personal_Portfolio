@@ -8,7 +8,6 @@ const LoadingScreen = ({
 }) => {
   const [progress, setProgress] = useState(0);
   const [isDayMode, setIsDayMode] = useState(false);
-  const [isFrozen, setIsFrozen] = useState(false);
 
   useEffect(() => {
     // Simulate loading progress
@@ -26,11 +25,8 @@ const LoadingScreen = ({
   }, []);
 
   const handleToggleMode = () => {
-    setIsFrozen(true); // Freeze the screen
-    setTimeout(() => {
-      setIsDayMode(!isDayMode);
-      setTimeout(onLoadingComplete, 1500); // Simulate booting effect
-    }, 500); // Add a small delay before booting
+    setIsDayMode(!isDayMode);
+    setTimeout(onLoadingComplete, 500); // Trigger loading complete when toggled
   };
 
   return (
@@ -41,11 +37,9 @@ const LoadingScreen = ({
           ? 'linear-gradient(135deg, #87CEEB, #FFD700)'
           : 'linear-gradient(135deg, #1a1a2e, #16213e)',
         color: isDayMode ? 'black' : 'white',
-        filter: isFrozen ? 'blur(5px)' : 'none', // Apply blur effect
-        pointerEvents: isFrozen ? 'none' : 'auto', // Disable interactions when frozen
       }}
       initial={{ y: 0, opacity: 1 }}
-      animate={{ opacity: progress === 100 && isFrozen ? 0 : 1 }}
+      animate={{ opacity: progress === 100 && isDayMode ? 0 : 1 }}
       transition={{ duration: 1, ease: 'easeInOut' }}
     >
       {/* Progress Bar */}
