@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
@@ -11,7 +10,10 @@ export default {
         'robot-walk-sm': 'robot-walk-sm 8s ease-in-out infinite',
         'robot-walk-md': 'robot-walk-md 14s ease-in-out infinite',
         'robot-walk-lg': 'robot-walk-lg 20s ease-in-out infinite',
-        'gradient-flow': 'gradient-flow 3s ease infinite', // New gradient animation
+        'gradient-flow': 'gradient-flow 3s ease infinite',
+        twinkle: 'twinkle 2s infinite ease-in-out', // New twinkle animation
+        orbit: 'orbit 6s ease-in-out infinite',
+        glow: 'glow 1.5s alternate infinite',
       },
       keyframes: {
         'fade-in': {
@@ -33,7 +35,7 @@ export default {
         },
         'robot-walk-sm': {
           '0%': { transform: 'translateX(-100%) rotateY(0deg)' },
-          '50%': { transform: 'translateX(calc(15vw)) rotateY(0deg)' }, // Increased distance
+          '50%': { transform: 'translateX(calc(15vw)) rotateY(0deg)' },
           '51%': { transform: 'translateX(calc(15vw)) rotateY(180deg)' },
           '100%': { transform: 'translateX(-100%) rotateY(180deg)' },
         },
@@ -54,10 +56,24 @@ export default {
           '50%': { backgroundPosition: '100% 50%' },
           '100%': { backgroundPosition: '0% 50%' },
         },
+        twinkle: {
+          '0%, 100%': { opacity: 0.5 },
+          '50%': { opacity: 1 },
+        },
+        orbit: {
+          '0%': { transform: 'rotate(0deg) translateX(200px) rotate(0deg)' },
+          '100%': {
+            transform: 'rotate(360deg) translateX(200px) rotate(-360deg)',
+          },
+        },
+        glow: {
+          '0%': { boxShadow: '0 0 10px rgba(255, 255, 255, 0.8)' },
+          '100%': { boxShadow: '0 0 20px rgba(255, 255, 255, 1)' },
+        },
       },
       textShadow: {
         neon: '0 0 5px rgba(255, 255, 255, 0.7), 0 0 10px rgba(0, 200, 255, 0.6), 0 0 20px rgba(0, 200, 255, 0.5)',
-        'hover-md': '0px 4px 6px rgba(0, 0, 0, 0.4)', // New hover shadow
+        'hover-md': '0px 4px 6px rgba(0, 0, 0, 0.4)',
       },
     },
   },
