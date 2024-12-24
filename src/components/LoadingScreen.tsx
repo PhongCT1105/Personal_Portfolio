@@ -1,174 +1,210 @@
-import React, { useEffect, useState, useMemo } from 'react';
-import { motion } from 'framer-motion';
-import { Player } from '@lottiefiles/react-lottie-player';
-import planetAnimation from '../assets/LoadingScreen/planet.json';
-import rocketAnimation from '../assets/LoadingScreen/rocket.json';
-import astronautAnimation from '../assets/LoadingScreen/astronot.json';
-import ufoAnimation from '../assets/LoadingScreen/ufo.json';
-import globalAnimation from '../assets/LoadingScreen/global.json';
+  import React, { useEffect, useState, useMemo } from 'react';
+  import { motion } from 'framer-motion';
+  import { Player } from '@lottiefiles/react-lottie-player';
+  import planetAnimation from '../assets/LoadingScreen/planet.json';
+  import rocketAnimation from '../assets/LoadingScreen/rocket.json';
+  import astronautAnimation from '../assets/LoadingScreen/astronot.json';
+  import ufoAnimation from '../assets/LoadingScreen/ufo.json';
+  import globalAnimation from '../assets/LoadingScreen/global.json';
 
-interface LoadingScreenProps {
-  onLoadingComplete: () => void;
-}
+  interface LoadingScreenProps {
+    onLoadingComplete: () => void;
+  }
 
-const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
-  const [showStartButton, setShowStartButton] = useState(false);
-  const [isReady, setIsReady] = useState(false); // Track when loading is ready
+  const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
+    const [showStartButton, setShowStartButton] = useState(false);
+    const [isReady, setIsReady] = useState(false);
+    const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
 
-  // Memoize the stars to prevent re-rendering
-  const stars = useMemo(() => {
-    return Array.from({ length: 100 }, (_, i) => (
-      <div
-        key={i}
-        className="absolute bg-white rounded-full animate-twinkle"
-        style={{
-          width: `${Math.random() * 3 + 1}px`,
-          height: `${Math.random() * 3 + 1}px`,
-          top: `${Math.random() * 100}%`,
-          left: `${Math.random() * 100}%`,
-          opacity: Math.random() * 0.5 + 0.5,
-        }}
-      ></div>
-    ));
-  }, []); // Generate stars only once
+    const phrases = [
+      'Exploring the Universe...',
+      'Traveling Beyond the Stars...',
+      'Discovering New Worlds...',
+      'Journey to Infinity...',
+    ];
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowStartButton(true); // Show the start button after animations
-      setIsReady(true); // Change the loading text to "Ready"
-    }, 5000); // Simulate a 5-second loading time
+    const stars = useMemo(
+      () =>
+        Array.from({ length: 100 }, (_, i) => (
+          <motion.div
+            key={i}
+            className="absolute bg-white rounded-full animate-twinkle"
+            style={{
+              width: `${Math.random() * 3 + 1}px`,
+              height: `${Math.random() * 3 + 1}px`,
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              opacity: Math.random() * 0.5 + 0.5,
+            }}
+            animate={{
+              x: [0, Math.random() * 20 - 10],
+              y: [0, Math.random() * 20 - 10],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatType: 'reverse',
+            }}
+          ></motion.div>
+        )),
+      []
+    );
 
-    return () => clearTimeout(timer);
-  }, []);
+    useEffect(() => {
+      const loadingTimer = setTimeout(() => {
+        setShowStartButton(true);
+        setIsReady(true);
+      }, 5000);
 
-  const handleStart = () => {
-    onLoadingComplete(); // Trigger the callback to navigate to the website
-  };
+      const phraseTimer = setTimeout(() => {
+        setInterval(() => {
+          setCurrentPhraseIndex((prevIndex) => (prevIndex + 1) % phrases.length);
+        }, 2000);
+      }, 1500);
 
-  return (
-    <div className="relative h-screen w-screen bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden">
-      {/* Background Stars */}
-      <motion.div
-        className="absolute inset-0"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 2 }}
-      >
-        {stars}
-      </motion.div>
+      return () => {
+        clearTimeout(loadingTimer);
+        clearTimeout(phraseTimer);
+      };
+    }, []);
 
-      {/* Rocket Animation */}
-      <motion.div
-        className="absolute top-5 right-10"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.5 }}
-      >
-        <Player
-          autoplay
-          loop
-          src={rocketAnimation}
-          style={{ width: 150, height: 150 }}
-        />
-      </motion.div>
+    const handleStart = () => {
+      onLoadingComplete();
+    };
 
-      {/* UFO Animation */}
-      <motion.div
-        className="absolute top-20 left-40"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1, delay: 0.7 }}
-      >
-        <Player
-          autoplay
-          loop
-          src={ufoAnimation}
-          style={{ width: 100, height: 100 }}
-        />
-      </motion.div>
-
-      {/* Astronaut Animation */}
-      <motion.div
-        className="absolute bottom-20 right-40"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.9 }}
-      >
-        <Player
-          autoplay
-          loop
-          src={astronautAnimation}
-          style={{ width: 150, height: 150 }}
-        />
-      </motion.div>
-
-      {/* Globe Animation */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    return (
+      <div className="relative h-screen w-screen bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden">
+        {/* Static Background Stars */}
         <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.2, delay: 1 }}
-        >
-          <Player
-            autoplay
-            loop
-            src={globalAnimation}
-            style={{ width: 300, height: 300 }}
-          />
-        </motion.div>
-      </div>
-
-      {/* Loading Planet Animation */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 1.2 }}
-        >
-          <Player
-            autoplay
-            loop
-            src={planetAnimation}
-            style={{ width: 150, height: 150 }}
-          />
-        </motion.div>
-      </div>
-
-      {/* Centerpiece Text */}
-      <motion.div
-        className="absolute inset-0 flex flex-col items-center justify-center text-center"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.5, delay: 1.5 }}
-      >
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 bg-black bg-opacity-30 rounded-md">
-          <h1 className="text-4xl md:text-6xl font-bold text-white animate-pulse">
-            Exploring the Universe...
-          </h1>
-          <p className="text-lg md:text-xl text-gray-400 mt-4">
-            {isReady ? 'Ready' : 'Loading, please wait.'}
-          </p>
-        </div>
-      </motion.div>
-
-      {/* Isolated Start Button */}
-      {showStartButton && (
-        <motion.div
-          className="absolute bottom-20 left-1/2 transform -translate-x-1/2"
+          className="absolute inset-0"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 2 }}
         >
-          <button
-            onClick={handleStart}
-            className="px-6 py-3 text-lg font-semibold text-white bg-blue-600 rounded-md shadow-md hover:bg-blue-500 focus:ring-2 focus:ring-blue-300 focus:outline-none transition-all duration-300"
-          >
-            Start Journey
-          </button>
+          {stars}
         </motion.div>
-      )}
-    </div>
-  );
-};
 
-export default LoadingScreen;
+        {/* Rocket Animation */}
+        <motion.div
+          className="absolute top-5 right-5 sm:top-5 sm:right-10"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+        >
+          <Player
+            autoplay
+            loop
+            src={rocketAnimation}
+            style={{ width: '120px', height: '120px' }}
+            className="sm:w-[180px] sm:h-[180px]"
+          />
+        </motion.div>
+
+        {/* UFO Animation */}
+        <motion.div
+          className="absolute top-20 left-20 sm:top-20 sm:left-40"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.7 }}
+        >
+          <Player
+            autoplay
+            loop
+            src={ufoAnimation}
+            style={{ width: '100px', height: '100px' }}
+            className="sm:w-[130px] sm:h-[130px]"
+          />
+        </motion.div>
+
+        {/* Astronaut Animation */}
+        <motion.div
+          className="absolute bottom-10 right-20 sm:bottom-20 sm:right-40"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.9 }}
+        >
+          <Player
+            autoplay
+            loop
+            src={astronautAnimation}
+            style={{ width: '120px', height: '120px' }}
+            className="sm:w-[180px] sm:h-[180px]"
+          />
+        </motion.div>
+
+        {/* Globe Animation */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: [1, 1.05, 1], opacity: 1 }}
+            transition={{ duration: 2, repeat: Infinity, repeatType: 'reverse' }}
+          >
+            <Player
+              autoplay
+              loop
+              src={globalAnimation}
+              style={{ width: '240px', height: '240px' }}
+              className="sm:w-[350px] sm:h-[350px]"
+            />
+          </motion.div>
+        </div>
+
+        {/* Loading Planet Animation */}
+        <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 sm:bottom-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 1.2 }}
+          >
+            <Player
+              autoplay
+              loop
+              src={planetAnimation}
+              style={{ width: '130px', height: '130px' }}
+              className="sm:w-[180px] sm:h-[180px]"
+            />
+          </motion.div>
+        </div>
+
+        {/* Dynamic Rotating Phrases */}
+        <motion.div
+          className="absolute inset-0 flex flex-col items-center justify-center text-center px-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5, delay: 1.5 }}
+        >
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 bg-black bg-opacity-30 rounded-md">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white animate-pulse">
+              {phrases[currentPhraseIndex]}
+            </h1>
+            <p className="text-sm sm:text-lg md:text-xl text-gray-400 mt-4">
+              {isReady ? 'Ready' : 'Loading, please wait.'}
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Start Button */}
+        {showStartButton && (
+          <motion.div
+            className="absolute bottom-10 left-1/2 transform -translate-x-1/2 sm:bottom-20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          >
+            <motion.button
+              onClick={handleStart}
+              whileHover={{
+                scale: 1.1,
+                boxShadow: '0px 0px 10px rgba(255, 255, 255, 0.7)',
+              }}
+              className="px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-lg font-semibold text-white bg-blue-600 rounded-md shadow-md hover:bg-blue-500 focus:ring-2 focus:ring-blue-300 focus:outline-none transition-all duration-300"
+            >
+              Start Journey
+            </motion.button>
+          </motion.div>
+        )}
+      </div>
+    );
+  };
+
+  export default LoadingScreen;
