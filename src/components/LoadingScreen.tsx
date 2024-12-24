@@ -6,92 +6,138 @@ const LoadingScreen = ({
 }: {
   onLoadingComplete: () => void;
 }) => {
-  const messages = ['Welcome', 'to', 'my', 'Personal Portfolio', 'Enjoy!'];
-  const [currentMessage, setCurrentMessage] = useState(0);
-  const [isExiting, setIsExiting] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [isDayMode, setIsDayMode] = useState(false);
+  const [isFrozen, setIsFrozen] = useState(false);
 
   useEffect(() => {
-    const messageInterval = setInterval(() => {
-      setCurrentMessage((prev) => {
-        if (prev >= messages.length - 1) {
-          clearInterval(messageInterval);
-          setIsExiting(true);
-          setTimeout(onLoadingComplete, 1000); // Align with animation duration
+    // Simulate loading progress
+    const progressInterval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(progressInterval);
           return prev;
         }
-        return prev + 1;
+        return prev + 10;
       });
-    }, 500);
+    }, 300);
 
-    return () => clearInterval(messageInterval);
-  }, [messages.length, onLoadingComplete]);
+    return () => clearInterval(progressInterval);
+  }, []);
+
+  const handleToggleMode = () => {
+    setIsFrozen(true); // Freeze the screen
+    setTimeout(() => {
+      setIsDayMode(!isDayMode);
+      setTimeout(onLoadingComplete, 1500); // Simulate booting effect
+    }, 500); // Add a small delay before booting
+  };
 
   return (
     <motion.div
-      className="relative flex flex-col items-center justify-center h-screen px-4 overflow-hidden"
+      className="relative flex flex-col items-center justify-center h-screen w-full px-4 overflow-hidden"
       style={{
-        background: 'linear-gradient(135deg, #ff7eb3, #ff758c, #fd5e53)',
+        background: isDayMode
+          ? 'linear-gradient(135deg, #87CEEB, #FFD700)'
+          : 'linear-gradient(135deg, #1a1a2e, #16213e)',
+        color: isDayMode ? 'black' : 'white',
+        filter: isFrozen ? 'blur(5px)' : 'none', // Apply blur effect
+        pointerEvents: isFrozen ? 'none' : 'auto', // Disable interactions when frozen
       }}
-      initial={{ y: 0 }}
-      animate={isExiting ? { y: '-100%' } : { y: 0 }}
+      initial={{ y: 0, opacity: 1 }}
+      animate={{ opacity: progress === 100 && isFrozen ? 0 : 1 }}
       transition={{ duration: 1, ease: 'easeInOut' }}
     >
-      {/* Morphing Background */}
+      {/* Progress Bar */}
       <motion.div
-        className="absolute inset-0 w-full h-full z-[-1]"
-        initial={{ clipPath: 'circle(0% at 50% 50%)' }}
-        animate={{ clipPath: 'circle(150% at 50% 50%)' }}
-        transition={{
-          duration: 5,
-          ease: 'easeInOut',
-          repeat: Infinity,
-          repeatType: 'mirror',
-        }}
+        className="w-full max-w-md h-4 bg-gray-700 rounded-full overflow-hidden"
         style={{
-          background: 'linear-gradient(135deg, #ff7eb3, #ff758c, #fd5e53)',
+          boxShadow: '0 4px 15px rgba(0, 0, 0, 0.5)',
         }}
-      ></motion.div>
-
-      {/* Particle Animation */}
-      {[...Array(50)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-2 h-2 bg-white rounded-full"
-          style={{
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
-          }}
-          animate={{
-            opacity: [0.3, 0.7, 0.3],
-            y: [0, -20, 0],
-          }}
-          transition={{
-            duration: Math.random() * 3 + 2,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-      ))}
-
-      <motion.h1
-        className="text-white font-extrabold tracking-wide text-center"
-        style={{
-          fontFamily: 'Roboto, sans-serif',
-          fontSize: 'clamp(2rem, 5vw, 4rem)',
-          lineHeight: '1.2',
-        }}
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{
-          duration: 0.8,
-          ease: 'easeInOut',
-          repeat: Infinity,
-          repeatType: 'mirror',
-        }}
-        key={currentMessage}
       >
-        {messages[currentMessage]}
-      </motion.h1>
+        <motion.div
+          className="h-full bg-green-500"
+          style={{
+            boxShadow: '0 4px 15px rgba(34, 197, 94, 0.5)',
+          }}
+          initial={{ width: '0%' }}
+          animate={{ width: `${progress}%` }}
+          transition={{ duration: 0.3, ease: 'linear' }}
+        ></motion.div>
+      </motion.div>
+
+      <motion.div
+        className="text-center mt-6 font-semibold"
+        style={{
+          fontSize: 'clamp(1rem, 2.5vw, 2rem)',
+        }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: progress === 100 ? 1 : 0 }}
+        transition={{
+          duration: 0.5,
+          ease: 'easeInOut',
+        }}
+      >
+        {progress === 100 ? 'Ready!' : `${progress}% Loading...`}
+      </motion.div>
+
+      {/* Day/Night Toggle */}
+      {progress === 100 && (
+        <motion.div
+          className="flex items-center mt-8 cursor-pointer"
+          onClick={handleToggleMode}
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
+        >
+          <motion.div
+            className={`w-14 h-8 rounded-full flex items-center p-1 shadow-md ${
+              isDayMode ? 'bg-yellow-500' : 'bg-gray-700'
+            }`}
+            initial={{ backgroundColor: 'gray' }}
+            animate={{
+              backgroundColor: isDayMode ? '#FFD700' : '#374151',
+            }}
+            transition={{ duration: 0.3 }}
+          >
+            <motion.div
+              className="w-6 h-6 bg-white rounded-full shadow"
+              layout
+              transition={{
+                type: 'spring',
+                stiffness: 700,
+                damping: 30,
+              }}
+              style={{
+                transform: isDayMode ? 'translateX(24px)' : 'translateX(0)',
+              }}
+            >
+              {isDayMode ? (
+                <motion.div
+                  className="absolute inset-0 flex items-center justify-center"
+                  initial={{ scale: 0.5 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  🌞
+                </motion.div>
+              ) : (
+                <motion.div
+                  className="absolute inset-0 flex items-center justify-center"
+                  initial={{ scale: 0.5 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  🌙
+                </motion.div>
+              )}
+            </motion.div>
+          </motion.div>
+          <span className="ml-4 text-lg font-semibold">
+            {isDayMode ? 'Day Mode' : 'Night Mode'}
+          </span>
+        </motion.div>
+      )}
     </motion.div>
   );
 };

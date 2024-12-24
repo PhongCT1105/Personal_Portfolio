@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Particles, { initParticlesEngine } from '@tsparticles/react';
 import { loadFull } from 'tsparticles';
 
-export default function Particle() {
+const Particle = React.memo(() => {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
@@ -102,4 +102,6 @@ export default function Particle() {
       )}
     </>
   );
-}
+});
+
+export default Particle;
