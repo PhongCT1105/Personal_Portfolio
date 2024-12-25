@@ -1,9 +1,9 @@
-// import React from 'react';
 import facebook from '../assets/facebook.png';
 import instagram from '../assets/instagram.png';
 import linkedin from '../assets/linkedin.png';
 import Lottie from 'lottie-react';
 import contact from '../assets/Contact.json';
+import { InlineWidget } from 'react-calendly';
 
 const Contact = () => {
   return (
@@ -20,7 +20,7 @@ const Contact = () => {
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed">
               Have a project in mind or just want to say hello? Drop me a
-              message, and I'll get back to you!
+              message, or schedule a meeting using the Calendly widget below!
             </p>
             <div className="flex space-x-6">
               <a
@@ -103,6 +103,20 @@ const Contact = () => {
               Send Message
             </button>
           </form>
+        </div>
+
+        {/* Calendly Section */}
+        <div className="mt-12 text-center">
+          <h3 className="text-2xl font-semibold text-gray-800">
+            Schedule a Meeting
+          </h3>
+          <p className="text-lg text-gray-600 mt-4">
+            Use the Calendly widget below to pick a convenient time for a
+            meeting.
+          </p>
+          <div className="mt-6">
+            <InlineWidget url="https://calendly.com/caothanhphong1105/30min" />
+          </div>
         </div>
       </div>
     </section>
