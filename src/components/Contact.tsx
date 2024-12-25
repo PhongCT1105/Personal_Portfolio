@@ -1,11 +1,34 @@
+import { useEffect, useRef } from 'react';
 import facebook from '../assets/facebook.png';
 import instagram from '../assets/instagram.png';
 import linkedin from '../assets/linkedin.png';
 import Lottie from 'lottie-react';
 import contact from '../assets/Contact.json';
 import { PopupWidget } from 'react-calendly';
+import { trackPageView, trackButtonClick } from '../utils/firebaseUtils';
 
 const Contact = () => {
+  const hasTrackedPageView = useRef(false);
+
+  useEffect(() => {
+    // Track page view only once when the component is mounted
+    if (!hasTrackedPageView.current) {
+      trackPageView('Contact');
+      hasTrackedPageView.current = true;
+    }
+  }, []);
+
+  const handleButtonClick = (buttonName: string) => {
+    trackButtonClick('Contact', buttonName);
+  };
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    handleButtonClick('Send Message');
+    // Handle form submission logic here
+    console.log('Form submitted');
+  };
+
   return (
     <section
       id="contact"
@@ -27,6 +50,7 @@ const Contact = () => {
                 href="#"
                 className="transition-transform transform hover:scale-110"
                 aria-label="Facebook"
+                onClick={() => handleButtonClick('Facebook Link')}
               >
                 <img src={facebook} alt="Facebook" className="h-8 w-8" />
               </a>
@@ -34,6 +58,7 @@ const Contact = () => {
                 href="#"
                 className="transition-transform transform hover:scale-110"
                 aria-label="Instagram"
+                onClick={() => handleButtonClick('Instagram Link')}
               >
                 <img src={instagram} alt="Instagram" className="h-8 w-8" />
               </a>
@@ -41,6 +66,7 @@ const Contact = () => {
                 href="#"
                 className="transition-transform transform hover:scale-110"
                 aria-label="LinkedIn"
+                onClick={() => handleButtonClick('LinkedIn Link')}
               >
                 <img src={linkedin} alt="LinkedIn" className="h-8 w-8" />
               </a>
@@ -52,7 +78,10 @@ const Contact = () => {
           </div>
 
           {/* Form Section */}
-          <form className="w-full md:w-1/2 bg-white rounded-lg shadow-lg p-8 space-y-6">
+          <form
+            className="w-full md:w-1/2 bg-white rounded-lg shadow-lg p-8 space-y-6"
+            onSubmit={handleSubmit}
+          >
             <h3 className="text-2xl font-bold text-gray-800">Contact Me</h3>
             <div>
               <label

@@ -2,6 +2,11 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import experiencedata from '../data/experience_data';
 import TimelineItem from './TimelineItem';
+import {
+  trackPageView,
+  trackButtonClick,
+  trackDurationViewTime,
+} from '../utils/firebaseUtils';
 
 const About = () => {
   const timelineRef = useRef(null);
@@ -13,9 +18,32 @@ const About = () => {
   });
 
   const lineHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
-
   const [scrollDirection, setScrollDirection] = useState<'down' | 'up'>('down');
   const lastScrollYRef = useRef(0);
+
+  // Page view and duration tracking
+  const hasTrackedPageView = useRef(false);
+  const startTime = useRef<number>(0);
+
+  useEffect(() => {
+    if (!hasTrackedPageView.current) {
+      trackPageView('About');
+      hasTrackedPageView.current = true;
+    }
+
+    // Start tracking duration
+    startTime.current = Date.now();
+
+    // Track duration when the component unmounts
+    return () => {
+      const endTime = Date.now();
+      const duration = Math.floor((endTime - startTime.current) / 1000); // Convert to seconds
+      if (duration > 0) {
+        trackDurationViewTime('About', duration);
+        console.log(`Duration tracked for About: ${duration}s`);
+      }
+    };
+  }, []);
 
   // Detect scroll direction
   useEffect(() => {
@@ -48,7 +76,11 @@ const About = () => {
     exit: { opacity: 0 },
   };
 
-  // Count experiences
+  const handleButtonClick = (buttonName: string) => {
+    trackButtonClick('About', buttonName);
+  };
+
+  // Render component
   return (
     <div className="relative bg-gray-100 py-20" id="about">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -105,6 +137,15 @@ const About = () => {
               />
             ))}
           </div>
+        </div>
+
+        <div className="text-center mt-10">
+          <button
+            className="bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600"
+            onClick={() => handleButtonClick('View More About Me')}
+          >
+            View More About Me
+          </button>
         </div>
       </div>
     </div>

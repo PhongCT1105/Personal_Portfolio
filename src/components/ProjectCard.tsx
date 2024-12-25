@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Tilt from 'react-parallax-tilt';
-import { FaGithub } from 'react-icons/fa'; // Import GitHub icon
+import { FaGithub } from 'react-icons/fa';
+import { trackButtonClick } from '../utils/firebaseUtils';
 
 type ProjectProps = {
   id: number;
@@ -22,6 +23,10 @@ const ProjectCard: React.FC<ProjectProps> = ({
   index,
   onViewDetails,
 }) => {
+  const handleGitHubClick = () => {
+    trackButtonClick('ProjectShowcase', `GitHub: ${title}`);
+  };
+
   return (
     <Tilt
       key={id}
@@ -39,19 +44,16 @@ const ProjectCard: React.FC<ProjectProps> = ({
         viewport={{ once: false, amount: 0.3 }}
         transition={{ duration: 0.5, delay: index * 0.05 }}
       >
-        {/* Image */}
         <img
           src={imageUrl}
           alt={title}
           className="w-full h-32 sm:h-40 object-cover group-hover:scale-105 transition-transform duration-300"
         />
 
-        {/* Hover Overlay */}
         <div className="absolute inset-0 bg-black bg-opacity-70 opacity-0 group-hover:opacity-100 flex items-center justify-center text-center text-white px-2 transition-opacity duration-300 z-10 pointer-events-none">
           <p className="text-xs sm:text-sm">{description}</p>
         </div>
 
-        {/* Content Section */}
         <div className="relative z-20 p-2 sm:p-3 flex flex-col h-24 sm:h-28">
           <h3 className="text-sm sm:text-base font-medium mb-1 text-gray-800">
             {title}
@@ -62,6 +64,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
               target="_blank"
               rel="noopener noreferrer"
               className="px-3 py-1 flex items-center gap-2 text-xs sm:text-sm bg-gray-900 text-white rounded-md hover:bg-gray-700 transition-colors"
+              onClick={handleGitHubClick}
             >
               <FaGithub className="text-lg" />
               GitHub

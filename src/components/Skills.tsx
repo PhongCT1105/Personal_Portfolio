@@ -1,28 +1,57 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   SiPython,
   SiC,
   SiCplusplus,
   SiTypescript,
   SiJavascript,
-  // SiJava,
   SiPytorch,
   SiTensorflow,
   SiReact,
   SiNodedotjs,
   SiFlask,
   SiPostgresql,
-  // SiAmazonaws,
-  // SiMicrosoftazure,
   SiGooglecloud,
   SiDocker,
   SiKubernetes,
   SiLinux,
 } from 'react-icons/si';
 import { motion } from 'framer-motion';
+import {
+  trackPageView,
+  trackButtonClick,
+  trackDurationViewTime,
+} from '../utils/firebaseUtils';
 
 const Skills = () => {
   const [activeTab, setActiveTab] = useState('chart');
+  const hasTrackedPageView = useRef(false);
+  const startTime = useRef<number>(0);
+
+  // Page view and duration tracking
+  useEffect(() => {
+    if (!hasTrackedPageView.current) {
+      trackPageView('Skills');
+      hasTrackedPageView.current = true;
+    }
+
+    // Start tracking duration
+    startTime.current = Date.now();
+
+    // Track duration when the component unmounts
+    return () => {
+      const endTime = Date.now();
+      const duration = Math.floor((endTime - startTime.current) / 1000); // Convert to seconds
+      if (duration > 0) {
+        trackDurationViewTime('Skills', duration);
+        console.log(`Duration tracked for Skills: ${duration}s`);
+      }
+    };
+  }, []);
+
+  const handleButtonClick = (buttonName: string) => {
+    trackButtonClick('Skills', buttonName);
+  };
 
   const importantNumber = [
     { number: '2000+', label: 'Contributions on GitHub' },
@@ -54,7 +83,6 @@ const Skills = () => {
           name: 'JavaScript',
           icon: <SiJavascript className="text-[#F7DF1E]" />,
         },
-        // { name: 'Java', icon: <SiJava className="text-[#007396]" /> },
       ],
     },
     {
@@ -77,11 +105,6 @@ const Skills = () => {
     {
       domain: 'Cloud & DevOps',
       skills: [
-        // { name: 'AWS', icon: <SiAmazonaws className="text-[#FF9900]" /> },
-        {
-          name: 'Azure',
-          // icon: <SiMicrosoftazure className="text-[#0078D4]" />,
-        },
         { name: 'GCP', icon: <SiGooglecloud className="text-[#4285F4]" /> },
         { name: 'Docker', icon: <SiDocker className="text-[#2496ED]" /> },
         {
@@ -104,7 +127,7 @@ const Skills = () => {
           className="text-center mb-12"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: false }} // Ensures animation reruns on every scroll
+          viewport={{ once: false }}
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-4">
@@ -117,7 +140,7 @@ const Skills = () => {
                 className="text-center bg-gray-800 p-4 rounded-lg shadow-lg transform transition-all hover:scale-110 hover:bg-red-600"
                 initial={{ opacity: 0, scale: 0.8, y: 30 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: false }} // Ensures animation reruns on every scroll
+                viewport={{ once: false }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
               >
                 <motion.p
@@ -145,7 +168,10 @@ const Skills = () => {
             className={`px-6 py-3 text-white text-sm font-medium ${
               activeTab === 'chart' ? 'bg-gray-700' : 'bg-gray-600'
             } rounded-lg mx-2 transition-transform transform hover:scale-105 hover:bg-red-600`}
-            onClick={() => setActiveTab('chart')}
+            onClick={() => {
+              setActiveTab('chart');
+              handleButtonClick('Overall Skills Tab');
+            }}
           >
             Overall Skills
           </button>
@@ -153,7 +179,10 @@ const Skills = () => {
             className={`px-6 py-3 text-white text-sm font-medium hover:bg-red-600 ${
               activeTab === 'allSkills' ? 'bg-gray-700' : 'bg-gray-600'
             } rounded-lg mx-2 transition-transform transform hover:scale-105`}
-            onClick={() => setActiveTab('allSkills')}
+            onClick={() => {
+              setActiveTab('allSkills');
+              handleButtonClick('Tech Stack Tab');
+            }}
           >
             Tech Stack
           </button>
@@ -175,8 +204,8 @@ const Skills = () => {
                     <motion.div
                       className="absolute top-0 left-0 h-2 rounded-full bg-teal-500"
                       initial={{ width: 0 }}
-                      whileInView={{ width: `${skill.level}%` }} // Trigger animation on view
-                      viewport={{ once: false }} // Ensures animation reruns on every scroll
+                      whileInView={{ width: `${skill.level}%` }}
+                      viewport={{ once: false }}
                       transition={{ duration: 1 }}
                     ></motion.div>
                   </div>

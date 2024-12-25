@@ -1,12 +1,46 @@
+import { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import hero from '../assets/Hero.png';
 import facebook from '../assets/facebook.png';
 import twitter from '../assets/twitter.png';
 import instagram from '../assets/instagram.png';
 import linkedin from '../assets/linkedin.png';
 import { TypeAnimation } from 'react-type-animation';
-import { motion } from 'framer-motion';
+import {
+  trackPageView,
+  trackButtonClick,
+  trackDurationViewTime,
+} from '../utils/firebaseUtils';
 
 const Hero = () => {
+  const hasTrackedPageView = useRef(false);
+  const startTime = useRef<number>(0);
+
+  useEffect(() => {
+    // Track page view only once when the component is mounted
+    if (!hasTrackedPageView.current) {
+      trackPageView('Hero');
+      hasTrackedPageView.current = true;
+    }
+
+    // Start tracking duration
+    startTime.current = Date.now();
+
+    // Track duration when the component unmounts
+    return () => {
+      const endTime = Date.now();
+      const duration = Math.floor((endTime - startTime.current) / 1000); // Convert to seconds
+      if (duration > 0) {
+        trackDurationViewTime('Hero', duration);
+        console.log(`Duration tracked for Hero: ${duration}s`);
+      }
+    };
+  }, []);
+
+  const handleButtonClick = (buttonName: string) => {
+    trackButtonClick('Hero', buttonName);
+  };
+
   return (
     <motion.section
       className="relative w-full overflow-hidden"
@@ -50,13 +84,15 @@ const Hero = () => {
             <p className="text-xl sm:text-2xl mb-4">
               Specialist in AI & ML Solutions
             </p>
-
             <p className="mb-4">
               I'm a passionate web developer with expertise in React, Next.js,
               and modern web technologies. I love creating beautiful and
               functional websites that solve real-world problems.
             </p>
-            <button className="bg-black text-white px-4 py-2 w-max rounded-md hover:bg-red-500">
+            <button
+              className="bg-black text-white px-4 py-2 w-max rounded-md hover:bg-red-500"
+              onClick={() => handleButtonClick('Download Resume')}
+            >
               <a
                 href="https://drive.google.com/uc?id=1yqd09KUH68008ZV6Qc44YpeIi5QGAiFr&export=download"
                 download="Phong_Cao_Resume.pdf"
@@ -104,6 +140,7 @@ const Hero = () => {
           href="https://www.facebook.com/PhongCao1105/"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => handleButtonClick('Facebook Icon')}
         >
           <img src={facebook} alt="Facebook Icon" className="w-10 h-10" />
         </a>
@@ -111,16 +148,23 @@ const Hero = () => {
           href="https://www.instagram.com/phongcao1105/"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => handleButtonClick('Instagram Icon')}
         >
           <img src={instagram} alt="Instagram Icon" className="w-10 h-10" />
         </a>
-        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://twitter.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => handleButtonClick('Twitter Icon')}
+        >
           <img src={twitter} alt="Twitter Icon" className="w-10 h-10" />
         </a>
         <a
           href="https://www.linkedin.com/in/phong-cao/"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => handleButtonClick('LinkedIn Icon')}
         >
           <img src={linkedin} alt="LinkedIn Icon" className="w-10 h-10" />
         </a>
