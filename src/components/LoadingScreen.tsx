@@ -12,19 +12,27 @@ const LoadingScreen = () => {
   const [showIncrement, setShowIncrement] = useState(false); // Control the +1 animation
 
   useEffect(() => {
+    let isMounted = true;
+
     const fetchVisitorCount = async () => {
       try {
-        const newCount = await updateVisitorCount(); // Fetch and update count
-        setCurrentCount(newCount - 1); // Start at the current count - 1
-        setVisitorCount(newCount); // Set the final count
-        setLoading(false); // End loading
+        if (isMounted) {
+          const newCount = await updateVisitorCount(); // Fetch and update count
+          setCurrentCount(newCount - 1); // Start at the current count - 1
+          setVisitorCount(newCount); // Set the final count
+          setLoading(false);
+        }
       } catch (error) {
         console.error('Error updating visitor count:', error);
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     };
 
     fetchVisitorCount();
+
+    return () => {
+      isMounted = false; // Prevent updates if unmounted
+    };
   }, []);
 
   return (

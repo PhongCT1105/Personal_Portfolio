@@ -31,16 +31,25 @@ const ensureDocumentExists = async (
  */
 export const updateVisitorCount = async (): Promise<number> => {
   try {
-    const docRef = doc(db, 'stats', 'visitorCount'); // Reference to the document
+    // Check if the visitor count was already updated in this session
+    if (sessionStorage.getItem('visitorCountUpdated')) {
+      const docRef = doc(db, 'stats', 'visitorCount');
+      const docSnap = await getDoc(docRef);
+      return docSnap.data()?.count || 0; // Return current count without incrementing
+    }
+
+    const docRef = doc(db, 'stats', 'visitorCount');
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
       const currentCount = docSnap.data().count || 0; // Get the current count
       await updateDoc(docRef, { count: increment(1) }); // Increment the count
+      sessionStorage.setItem('visitorCountUpdated', 'true'); // Mark as updated for this session
       return currentCount + 1; // Return the updated count
     } else {
       // Initialize the count if the document doesn't exist
       await setDoc(docRef, { count: 1 });
+      sessionStorage.setItem('visitorCountUpdated', 'true'); // Mark as updated for this session
       return 1; // Return initial count
     }
   } catch (error) {

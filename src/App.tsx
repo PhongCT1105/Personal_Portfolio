@@ -8,38 +8,10 @@ import Contact from './components/Contact';
 import ProjectShowcase from './components/ProjectShowcase';
 import HeroInstruction from './components/InstructionOverlay';
 import LoadingScreen from './components/LoadingScreen';
-import { trackDurationViewTime } from './utils/firebaseUtils'; // Import duration tracking
 import Visualize from './components/Visualize';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
-  const [startTime, setStartTime] = useState<number>(0);
-
-  useEffect(() => {
-    // Record the start time when the app is mounted
-    const start = Date.now();
-    setStartTime(start);
-
-    // Track duration when the user navigates away or closes the tab
-    const handleUnload = () => {
-      const end = Date.now();
-      const duration = Math.floor((end - start) / 1000); // Convert milliseconds to seconds
-      if (duration > 0) {
-        trackDurationViewTime('TotalWebsite', duration);
-        console.log(`Total time spent on website: ${duration}s`);
-      }
-    };
-
-    // Attach unload event listeners
-    window.addEventListener('beforeunload', handleUnload);
-    window.addEventListener('unload', handleUnload);
-
-    return () => {
-      // Cleanup event listeners on component unmount
-      window.removeEventListener('beforeunload', handleUnload);
-      window.removeEventListener('unload', handleUnload);
-    };
-  }, []);
 
   useEffect(() => {
     // Simulate a delay for loading screen (or remove for actual implementation)
