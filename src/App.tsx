@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Particle from './components/Particle';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -11,19 +11,19 @@ import LoadingScreen from './components/LoadingScreen';
 import Visualize from './components/Visualize';
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
+  // Instead of "loading", we'll track if the user has completed the loading screen
+  const [showMainApp, setShowMainApp] = useState(false);
 
-  useEffect(() => {
-    // Simulate a delay for loading screen (or remove for actual implementation)
-    const timer = setTimeout(() => setLoading(false), 3000);
-    return () => clearTimeout(timer);
-  }, []);
+  // Handler for when the LoadingScreen finishes
+  const handleLoadingDone = () => {
+    setShowMainApp(true);
+  };
 
   return (
     <>
-      {loading ? (
-        <LoadingScreen /> // Display LoadingScreen while loading is true
-      ) : (
+      {!showMainApp && <LoadingScreen onDone={handleLoadingDone} />}
+
+      {showMainApp && (
         <>
           <Particle />
           <Navbar />
