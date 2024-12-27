@@ -18,23 +18,16 @@ import {
 } from 'react-icons/si';
 import { motion } from 'framer-motion';
 import {
-  trackPageView,
   trackButtonClick,
   trackDurationViewTime,
 } from '../utils/firebaseUtils';
 
 const Skills = () => {
   const [activeTab, setActiveTab] = useState('chart');
-  const hasTrackedPageView = useRef(false);
   const startTime = useRef<number>(0);
 
-  // Page view and duration tracking
+  // Page duration tracking
   useEffect(() => {
-    if (!hasTrackedPageView.current) {
-      trackPageView('Skills');
-      hasTrackedPageView.current = true;
-    }
-
     // Start tracking duration
     startTime.current = Date.now();
 
@@ -43,14 +36,14 @@ const Skills = () => {
       const endTime = Date.now();
       const duration = Math.floor((endTime - startTime.current) / 1000); // Convert to seconds
       if (duration > 0) {
-        trackDurationViewTime('Skills', duration);
+        trackDurationViewTime('Skills', duration); // Call the updated function
         console.log(`Duration tracked for Skills: ${duration}s`);
       }
     };
   }, []);
 
   const handleButtonClick = (buttonName: string) => {
-    trackButtonClick('Skills', buttonName);
+    trackButtonClick('Skills', buttonName); // Call the button click tracker
   };
 
   const importantNumber = [

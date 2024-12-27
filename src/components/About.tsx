@@ -3,7 +3,6 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import experiencedata from '../data/experience_data';
 import TimelineItem from './TimelineItem';
 import {
-  trackPageView,
   trackButtonClick,
   trackDurationViewTime,
 } from '../utils/firebaseUtils';
@@ -21,16 +20,10 @@ const About = () => {
   const [scrollDirection, setScrollDirection] = useState<'down' | 'up'>('down');
   const lastScrollYRef = useRef(0);
 
-  // Page view and duration tracking
-  const hasTrackedPageView = useRef(false);
+  // Page duration tracking
   const startTime = useRef<number>(0);
 
   useEffect(() => {
-    if (!hasTrackedPageView.current) {
-      trackPageView('About');
-      hasTrackedPageView.current = true;
-    }
-
     // Start tracking duration
     startTime.current = Date.now();
 
@@ -39,7 +32,7 @@ const About = () => {
       const endTime = Date.now();
       const duration = Math.floor((endTime - startTime.current) / 1000); // Convert to seconds
       if (duration > 0) {
-        trackDurationViewTime('About', duration);
+        trackDurationViewTime('About', duration); // Call the updated function
         console.log(`Duration tracked for About: ${duration}s`);
       }
     };
@@ -77,7 +70,7 @@ const About = () => {
   };
 
   const handleButtonClick = (buttonName: string) => {
-    trackButtonClick('About', buttonName);
+    trackButtonClick('About', buttonName); // Call the button click tracker
   };
 
   // Render component

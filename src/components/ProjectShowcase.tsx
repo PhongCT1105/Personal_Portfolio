@@ -5,9 +5,9 @@ import ProjectCard from './ProjectCard';
 import ViewProject from './ViewProject';
 import { projects, categories, Project } from '../data/projectData';
 import {
-  trackPageView,
-  trackButtonClick,
   trackDurationViewTime,
+  trackProjectInteraction,
+  trackCategoryInteraction,
 } from '../utils/firebaseUtils';
 
 const ProjectShowcase: React.FC = () => {
@@ -16,17 +16,10 @@ const ProjectShowcase: React.FC = () => {
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [isMobileView, setIsMobileView] = useState<boolean>(false);
 
-  const hasTrackedPageView = useRef(false);
   const startTime = useRef<number>(0);
 
-  // Track page view and duration
+  // Track duration
   useEffect(() => {
-    if (!hasTrackedPageView.current) {
-      trackPageView('ProjectShowcase');
-      hasTrackedPageView.current = true;
-    }
-
-    // Start tracking duration
     startTime.current = Date.now();
 
     return () => {
@@ -49,8 +42,15 @@ const ProjectShowcase: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const handleButtonClick = (buttonName: string) => {
-    trackButtonClick('ProjectShowcase', buttonName);
+  const handleCategoryChange = (category: string) => {
+    setActiveCategory(category);
+    trackCategoryInteraction(category); // Track category interactions
+    console.log(`Category interaction tracked: ${category}`);
+  };
+
+  const handleProjectInteraction = (projectName: string) => {
+    trackProjectInteraction(projectName);
+    console.log(`Interaction tracked for project: ${projectName}`);
   };
 
   // Filter projects based on active category
@@ -86,10 +86,7 @@ const ProjectShowcase: React.FC = () => {
               <CategoryFilter
                 categories={categories}
                 activeCategory={activeCategory}
-                onCategorySelect={(category) => {
-                  setActiveCategory(category);
-                  handleButtonClick(`Filter by ${category}`);
-                }}
+                onCategorySelect={handleCategoryChange} // Track category interactions
               />
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -104,7 +101,9 @@ const ProjectShowcase: React.FC = () => {
                   index={index}
                   onViewDetails={() => {
                     setSelectedProject(project);
-                    handleButtonClick(`View Details: ${project.title}`);
+                  }}
+                  onInteraction={(projectName) => {
+                    handleProjectInteraction(projectName);
                   }}
                 />
               ))}

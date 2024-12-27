@@ -61,7 +61,7 @@ export const projects: Project[] = [
     id: 4,
     title: 'GPT-4 Text Generator',
     description: 'Built a text generator application using GPT-4.',
-    category: 'LLM/GenAI',
+    category: 'LLM',
     imageUrl: 'https://via.placeholder.com/400',
     link: 'https://example.com/gpt4',
     role: 'AI Developer',
@@ -132,7 +132,7 @@ export const projects: Project[] = [
 export const categories = [
   'All',
   'Machine Learning',
-  'LLM/GenAI',
+  'LLM',
   'Computer Vision',
   'Web Development',
 ];

@@ -7,38 +7,29 @@ import instagram from '../assets/instagram.png';
 import linkedin from '../assets/linkedin.png';
 import { TypeAnimation } from 'react-type-animation';
 import {
-  trackPageView,
   trackButtonClick,
   trackDurationViewTime,
 } from '../utils/firebaseUtils';
 
 const Hero = () => {
-  const hasTrackedPageView = useRef(false);
   const startTime = useRef<number>(0);
 
   useEffect(() => {
-    // Track page view only once when the component is mounted
-    if (!hasTrackedPageView.current) {
-      trackPageView('Hero');
-      hasTrackedPageView.current = true;
-    }
-
     // Start tracking duration
     startTime.current = Date.now();
 
-    // Track duration when the component unmounts
     return () => {
       const endTime = Date.now();
       const duration = Math.floor((endTime - startTime.current) / 1000); // Convert to seconds
       if (duration > 0) {
-        trackDurationViewTime('Hero', duration);
+        trackDurationViewTime('Hero', duration); // Call the updated function
         console.log(`Duration tracked for Hero: ${duration}s`);
       }
     };
   }, []);
 
   const handleButtonClick = (buttonName: string) => {
-    trackButtonClick('Hero', buttonName);
+    trackButtonClick('Hero', buttonName); // Call the button click tracker
   };
 
   return (

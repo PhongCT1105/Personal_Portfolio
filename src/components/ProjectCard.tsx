@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Tilt from 'react-parallax-tilt';
 import { FaGithub } from 'react-icons/fa';
-import { trackButtonClick } from '../utils/firebaseUtils';
 
 type ProjectProps = {
   id: number;
@@ -12,6 +11,7 @@ type ProjectProps = {
   link: string;
   index: number;
   onViewDetails: () => void;
+  onInteraction: (projectName: string) => void; // Unified tracking prop
 };
 
 const ProjectCard: React.FC<ProjectProps> = ({
@@ -22,9 +22,15 @@ const ProjectCard: React.FC<ProjectProps> = ({
   link,
   index,
   onViewDetails,
+  onInteraction,
 }) => {
   const handleGitHubClick = () => {
-    trackButtonClick('ProjectShowcase', `GitHub: ${title}`);
+    onInteraction(title); // Track interaction for GitHub
+  };
+
+  const handleViewMoreClick = () => {
+    onInteraction(title); // Track interaction for View More
+    onViewDetails(); // Trigger the existing view details functionality
   };
 
   return (
@@ -70,7 +76,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
               GitHub
             </a>
             <button
-              onClick={onViewDetails}
+              onClick={handleViewMoreClick}
               className="px-3 py-1 text-xs sm:text-sm bg-red-500 text-white rounded-md hover:bg-red-400 transition-colors"
             >
               View More
