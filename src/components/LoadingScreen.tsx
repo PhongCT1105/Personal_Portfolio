@@ -36,12 +36,14 @@ const LoadingScreen = () => {
   }, []);
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-900 text-white">
+    <div className="flex justify-center items-center min-h-screen bg-white text-black">
       {loading ? (
-        <h1 className="text-4xl font-bold">Loading...</h1>
+        <h1 className="text-4xl font-bold text-red-500">Loading...</h1>
       ) : (
         <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4">Welcome to My Portfolio</h1>
+          <h1 className="text-4xl font-bold mb-4">
+            Welcome to <span className="text-red-500">My Portfolio</span>
+          </h1>
           <div className="relative text-5xl font-extrabold mt-4">
             {/* First animation: Count from 1 to current count - 1 */}
             {visitorCount !== null && (
@@ -52,7 +54,10 @@ const LoadingScreen = () => {
                 onEnd={() => {
                   // After first animation ends, show +1 animation
                   setShowIncrement(true);
-                  setTimeout(() => setCurrentCount(visitorCount), 800); // Update to final count
+                  setTimeout(() => {
+                    setCurrentCount(visitorCount); // Update to final count
+                    setShowIncrement(false); // Hide +1 animation
+                  }, 800); // 800ms delay for +1 animation
                 }}
               />
             )}
@@ -60,7 +65,7 @@ const LoadingScreen = () => {
             {/* Overlay +1 Animation */}
             {showIncrement && (
               <span
-                className="absolute top-0 right-0 text-green-500 text-3xl animate-bounce"
+                className="absolute top-0 right-0 text-red-500 text-3xl animate-bounce"
                 style={{ transform: 'translate(50%, -50%)' }}
               >
                 +1
