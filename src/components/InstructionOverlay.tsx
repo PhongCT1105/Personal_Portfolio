@@ -7,11 +7,14 @@ const HeroInstruction = () => {
   const [showInstruction, setShowInstruction] = useState(true);
 
   const instructions: Record<string, string> = {
-    home: 'Welcome to my portfolio! Scroll to explore.',
-    about: 'This is the About section. Learn more about me.',
-    skills: 'Here are my skills and expertise.',
-    projects: 'Check out some of my best work in the Projects section.',
-    contact: 'Feel free to drop me a message in the Contact section.',
+    home: '🏠 Welcome to my portfolio! Scroll to explore.',
+    about: '🧙‍♂️ Who am I? Just a tech wizard trying to make magic happen.',
+    skills:
+      '💻 Brace yourself! These skills might blow your mind (or your browser).',
+    projects: '✨ Here’s where the magic happens. My creations await your awe!',
+    visualize:
+      '📊 Behold my analytics! Should I sprinkle some machine learning on this?',
+    contact: '📬 Want to chat? Let’s make some tech happen together.',
   };
 
   useEffect(() => {
@@ -52,7 +55,7 @@ const HeroInstruction = () => {
   }, [currentSection, showInstruction]);
 
   return (
-    <motion.div 
+    <motion.div
       className="fixed bottom-20 right-10 flex items-center space-x-4 z-50"
       initial={{ x: '100%', opacity: 0 }}
       animate={

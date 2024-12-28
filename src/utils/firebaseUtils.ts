@@ -6,6 +6,9 @@ import {
   collection,
   addDoc,
   increment,
+  query,
+  getDocs,
+  orderBy,
 } from 'firebase/firestore';
 import { db } from '../firebase'; // Ensure this points to your Firebase config file
 
@@ -25,24 +28,34 @@ const ensureDocumentExists = async <T extends Record<string, unknown>>(
 };
 
 /**
- * Updates the visitor count in Firestore.
+ * Updates the visitor count in Firestore, and logs every visit in `visitorLogs`.
  * - Increments the visitor count in the `stats/visitorCount` document.
+ * - Adds a new document in `visitorLogs` with a timestamp (and optionally the updated count).
  * - Returns the updated visitor count.
  */
 export const updateVisitorCount = async (): Promise<number> => {
   try {
-    const docRef = doc(db, 'stats', 'visitorCount'); // Reference to the document
+    const docRef = doc(db, 'stats', 'visitorCount');
     const docSnap = await getDoc(docRef);
 
+    let newCount = 0;
     if (docSnap.exists()) {
-      const currentCount = docSnap.data().count || 0; // Get the current count
-      await updateDoc(docRef, { count: increment(1) }); // Increment the count
-      return currentCount + 1; // Return the updated count
+      const currentCount = docSnap.data().count || 0;
+      newCount = currentCount + 1;
+      await updateDoc(docRef, { count: increment(1) });
     } else {
-      // Initialize the count if the document doesn't exist
+      // If the document doesn't exist, create it
+      newCount = 1;
       await setDoc(docRef, { count: 1 });
-      return 1; // Return initial count
     }
+
+    // Log this visit in a separate collection for line-graph tracking
+    await addDoc(collection(db, 'visitorLogs'), {
+      timestamp: new Date().toISOString(), // or use serverTimestamp() if you prefer server time
+      count: newCount, // store the updated count for reference
+    });
+
+    return newCount;
   } catch (error) {
     console.error('Error updating visitor count:', error);
     throw error;
@@ -138,11 +151,21 @@ export const trackCategoryInteraction = async (
  */
 export const trackResumeDownload = async (): Promise<void> => {
   try {
-    const docRef = doc(db, 'resumeClicks');
-    await updateDoc(docRef, { count: increment(1) });
-    console.log('Resume download tracked');
+    const docRef = doc(db, 'resumeClicks', 'default'); // Add 'default' as a document ID
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      // If the document exists, increment the count
+      await updateDoc(docRef, { count: increment(1) });
+    } else {
+      // If the document doesn't exist, create it with initial count
+      await setDoc(docRef, { count: 1 });
+    }
+
+    console.log('Resume download tracked successfully');
   } catch (error) {
     console.error('Error tracking resume download:', error);
+    throw error;
   }
 };
 
@@ -166,5 +189,44 @@ export const trackButtonClick = async (
   } catch (error) {
     console.error('Error tracking button click:', error);
     throw error;
+  }
+};
+
+/**
+ * Fetches all visits from the `visitorLogs` collection, sorted by timestamp ascending.
+ */
+export const getAllVisits = async (): Promise<
+  { id: string; timestamp: string; count: number }[]
+> => {
+  try {
+    const q = query(collection(db, 'visitorLogs'), orderBy('timestamp', 'asc'));
+    const snapshot = await getDocs(q);
+
+    return snapshot.docs.map((doc) => ({
+      id: doc.id,
+      timestamp: doc.data().timestamp || new Date().toISOString(), // Provide default timestamp if missing
+      count: doc.data().count || 0, // Provide default count if missing
+    }));
+  } catch (err) {
+    console.error('Error fetching visits:', err);
+    return [];
+  }
+};
+
+/**
+ * Fetches all duration tracking stats from Firestore.
+ * Returns an array of objects containing section names and total time spent.
+ */
+export const getDurationTrackingStats = async () => {
+  try {
+    const q = query(collection(db, 'durationTrackingStats'));
+    const snapshot = await getDocs(q);
+    return snapshot.docs.map((doc) => ({
+      section: doc.id, // Document ID represents the section name
+      totalTime: doc.data().totalTime || 0, // Total time spent
+    }));
+  } catch (error) {
+    console.error('Error fetching duration tracking stats:', error);
+    return [];
   }
 };

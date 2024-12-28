@@ -39,10 +39,12 @@ export default function App() {
           <section id="projects">
             <ProjectShowcase />
           </section>
+          <section id="visualize">
+            <Visualize />
+          </section>
           <section id="contact">
             <Contact />
           </section>
-          <Visualize />
           <HeroInstruction />
         </>
       )}

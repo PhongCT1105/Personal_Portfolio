@@ -1,6 +1,15 @@
 import { useState, useEffect } from 'react';
 import Logo from '../assets/Logo.png';
-import { Menu, X, Home, User, Wrench, Briefcase, Mail } from 'lucide-react';
+import {
+  Menu,
+  X,
+  Home,
+  User,
+  Wrench,
+  Briefcase,
+  Mail,
+  BarChart,
+} from 'lucide-react'; // Added BarChart icon
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -8,8 +17,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Shrink navbar when scrolling down
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 50); // Shrink navbar on scroll
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -28,6 +36,12 @@ const Navbar = () => {
       name: 'Projects',
       href: 'projects',
       icon: <Briefcase className="h-5 w-5" />,
+    },
+    // Updated "Analytics" Section with BarChart icon
+    {
+      name: 'Analytics',
+      href: 'visualize',
+      icon: <BarChart className="h-5 w-5" />,
     },
     { name: 'Contact', href: 'contact', icon: <Mail className="h-5 w-5" /> },
   ];

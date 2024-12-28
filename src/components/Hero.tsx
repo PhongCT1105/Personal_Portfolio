@@ -7,9 +7,9 @@ import instagram from '../assets/instagram.png';
 import linkedin from '../assets/linkedin.png';
 import { TypeAnimation } from 'react-type-animation';
 import {
-  trackButtonClick,
   trackDurationViewTime,
-} from '../utils/firebaseUtils';
+  trackResumeDownload,
+} from '../utils/firebaseUtils'; // Importing tracking utilities
 
 const Hero = () => {
   const startTime = useRef<number>(0);
@@ -22,14 +22,20 @@ const Hero = () => {
       const endTime = Date.now();
       const duration = Math.floor((endTime - startTime.current) / 1000); // Convert to seconds
       if (duration > 0) {
-        trackDurationViewTime('Hero', duration); // Call the updated function
+        trackDurationViewTime('Hero', duration); // Track view time
         console.log(`Duration tracked for Hero: ${duration}s`);
       }
     };
   }, []);
 
-  const handleButtonClick = (buttonName: string) => {
-    trackButtonClick('Hero', buttonName); // Call the button click tracker
+  // Dedicated function to track the "Download Resume" button click
+  const handleResumeDownload = async () => {
+    try {
+      await trackResumeDownload(); // Track the resume download
+      console.log('Download Resume button clicked');
+    } catch (error) {
+      console.error('Error tracking resume download:', error);
+    }
   };
 
   return (
@@ -82,11 +88,11 @@ const Hero = () => {
             </p>
             <button
               className="bg-black text-white px-4 py-2 w-max rounded-md hover:bg-red-500"
-              onClick={() => handleButtonClick('Download Resume')}
+              onClick={handleResumeDownload} // Call the tracking function
             >
               <a
-                href="https://drive.google.com/uc?id=1yqd09KUH68008ZV6Qc44YpeIi5QGAiFr&export=download"
-                download="Phong_Cao_Resume.pdf"
+                href="/Phong_Cao_Resume.pdf" // Local path to the resume file
+                download="Phong_Cao_Resume.pdf" // Download attribute for local file
                 rel="noopener noreferrer"
               >
                 Download Resume
@@ -131,7 +137,6 @@ const Hero = () => {
           href="https://www.facebook.com/PhongCao1105/"
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => handleButtonClick('Facebook Icon')}
         >
           <img src={facebook} alt="Facebook Icon" className="w-10 h-10" />
         </a>
@@ -139,23 +144,16 @@ const Hero = () => {
           href="https://www.instagram.com/phongcao1105/"
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => handleButtonClick('Instagram Icon')}
         >
           <img src={instagram} alt="Instagram Icon" className="w-10 h-10" />
         </a>
-        <a
-          href="https://twitter.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => handleButtonClick('Twitter Icon')}
-        >
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
           <img src={twitter} alt="Twitter Icon" className="w-10 h-10" />
         </a>
         <a
           href="https://www.linkedin.com/in/phong-cao/"
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => handleButtonClick('LinkedIn Icon')}
         >
           <img src={linkedin} alt="LinkedIn Icon" className="w-10 h-10" />
         </a>

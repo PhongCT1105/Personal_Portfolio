@@ -66,7 +66,7 @@ const ProjectShowcase: React.FC = () => {
   return (
     <div
       id="projects"
-      className="p-4 min-h-screen bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 py-20"
+      className="py-20 min-h-screen bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300"
     >
       <AnimatePresence mode="wait">
         {selectedProject ? (
@@ -79,7 +79,7 @@ const ProjectShowcase: React.FC = () => {
           />
         ) : (
           <>
-            <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
+            <h1 className="text-2xl font-bold mb-6 text-center text-gray-800">
               Project Showcase
             </h1>
             <div className="mb-6">

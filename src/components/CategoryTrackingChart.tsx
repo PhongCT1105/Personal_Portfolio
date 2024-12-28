@@ -1,26 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Bar } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Tooltip,
-  Legend,
-  Title,
-} from 'chart.js';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from 'chart.js';
 
 // Register Chart.js components
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Tooltip,
-  Legend,
-  Title
-);
+ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
 const CategoryTrackingChart: React.FC = () => {
   const [categories, setCategories] = useState<string[]>([]);
@@ -56,8 +41,15 @@ const CategoryTrackingChart: React.FC = () => {
       {
         label: 'Interactions',
         data: interactions,
-        backgroundColor: 'rgba(75, 192, 192, 0.6)', // Bar color
-        borderColor: 'rgba(75, 192, 192, 1)',
+        backgroundColor: [
+          'rgba(75, 192, 192, 0.6)',
+          'rgba(255, 99, 132, 0.6)',
+          'rgba(54, 162, 235, 0.6)',
+          'rgba(255, 206, 86, 0.6)',
+          'rgba(153, 102, 255, 0.6)',
+          'rgba(255, 159, 64, 0.6)',
+        ], // Add more colors if needed
+        borderColor: 'rgba(255, 255, 255, 1)',
         borderWidth: 1,
       },
     ],
@@ -71,23 +63,8 @@ const CategoryTrackingChart: React.FC = () => {
         position: 'top' as const,
       },
       title: {
-        display: true,
+        display: false,
         text: 'Category Interactions',
-      },
-    },
-    scales: {
-      x: {
-        title: {
-          display: true,
-          text: 'Categories',
-        },
-      },
-      y: {
-        beginAtZero: true,
-        title: {
-          display: true,
-          text: 'Number of Interactions',
-        },
       },
     },
   };
@@ -97,7 +74,7 @@ const CategoryTrackingChart: React.FC = () => {
       <h2 className="text-2xl font-bold text-center mb-4">
         Category Interaction Tracking
       </h2>
-      <Bar data={data} options={options} />
+      <Doughnut data={data} options={options} />
     </div>
   );
 };
