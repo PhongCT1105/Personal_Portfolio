@@ -37,7 +37,6 @@ const VisitorLineChart: React.FC = () => {
   useEffect(() => {
     (async () => {
       const data = await getAllVisits();
-      console.log(data); // Debug fetched data
       setVisits(data);
     })();
   }, []);

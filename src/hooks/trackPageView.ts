@@ -21,8 +21,6 @@ export const trackPageView = async (section: string): Promise<void> => {
     await updateDoc(docRef, {
       [section]: increment(1),
     });
-
-    console.log(`Page view tracked for section: ${section}`);
   } catch (error) {
     console.error('Error tracking page view:', error);
     throw error;

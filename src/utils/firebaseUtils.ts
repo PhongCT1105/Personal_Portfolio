@@ -82,10 +82,6 @@ export const trackDurationViewTime = async (
     await updateDoc(docRef, {
       totalTime: increment(duration),
     });
-
-    console.log(
-      `Duration updated in durationTrackingStats for section: ${section}, incremented by: ${duration}s`
-    );
   } catch (error) {
     console.error('Error tracking duration view time:', error);
     throw error;
@@ -112,8 +108,6 @@ export const trackProjectInteraction = async (
     await updateDoc(docRef, {
       interactions: increment(1),
     });
-
-    console.log(`Interaction tracked for project: ${projectName}`);
   } catch (error) {
     console.error('Error tracking project interaction:', error);
   }
@@ -139,8 +133,6 @@ export const trackCategoryInteraction = async (
     await updateDoc(docRef, {
       interactions: increment(1),
     });
-
-    console.log(`Category interaction tracked: ${categoryName}`);
   } catch (error) {
     console.error('Error tracking category interaction:', error);
   }
@@ -161,33 +153,8 @@ export const trackResumeDownload = async (): Promise<void> => {
       // If the document doesn't exist, create it with initial count
       await setDoc(docRef, { count: 1 });
     }
-
-    console.log('Resume download tracked successfully');
   } catch (error) {
     console.error('Error tracking resume download:', error);
-    throw error;
-  }
-};
-
-/**
- * Tracks a button click for a specific section.
- * - Logs the button click event in the `analytics` collection.
- */
-export const trackButtonClick = async (
-  section: string,
-  buttonName: string
-): Promise<void> => {
-  try {
-    await addDoc(collection(db, 'analytics'), {
-      eventType: 'button_click',
-      section,
-      buttonName,
-      timestamp: new Date().toISOString(),
-    });
-
-    console.log(`Button click tracked: ${buttonName} in section: ${section}`);
-  } catch (error) {
-    console.error('Error tracking button click:', error);
     throw error;
   }
 };

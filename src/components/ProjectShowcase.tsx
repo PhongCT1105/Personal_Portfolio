@@ -27,7 +27,6 @@ const ProjectShowcase: React.FC = () => {
       const duration = Math.floor((endTime - startTime.current) / 1000); // Convert to seconds
       if (duration > 0) {
         trackDurationViewTime('ProjectShowcase', duration);
-        console.log(`Duration tracked for ProjectShowcase: ${duration}s`);
       }
     };
   }, []);
@@ -45,12 +44,10 @@ const ProjectShowcase: React.FC = () => {
   const handleCategoryChange = (category: string) => {
     setActiveCategory(category);
     trackCategoryInteraction(category); // Track category interactions
-    console.log(`Category interaction tracked: ${category}`);
   };
 
   const handleProjectInteraction = (projectName: string) => {
     trackProjectInteraction(projectName);
-    console.log(`Interaction tracked for project: ${projectName}`);
   };
 
   // Filter projects based on active category

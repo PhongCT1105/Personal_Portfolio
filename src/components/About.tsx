@@ -2,10 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import experiencedata from '../data/experience_data';
 import TimelineItem from './TimelineItem';
-import {
-  trackButtonClick,
-  trackDurationViewTime,
-} from '../utils/firebaseUtils';
+import { trackDurationViewTime } from '../utils/firebaseUtils';
 
 const About = () => {
   const timelineRef = useRef(null);
@@ -33,7 +30,6 @@ const About = () => {
       const duration = Math.floor((endTime - startTime.current) / 1000); // Convert to seconds
       if (duration > 0) {
         trackDurationViewTime('About', duration); // Call the updated function
-        console.log(`Duration tracked for About: ${duration}s`);
       }
     };
   }, []);
@@ -67,10 +63,6 @@ const About = () => {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
     exit: { opacity: 0 },
-  };
-
-  const handleButtonClick = (buttonName: string) => {
-    trackButtonClick('About', buttonName); // Call the button click tracker
   };
 
   // Render component
@@ -133,10 +125,7 @@ const About = () => {
         </div>
 
         <div className="text-center mt-10">
-          <button
-            className="bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600"
-            onClick={() => handleButtonClick('View More About Me')}
-          >
+          <button className="bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600">
             View More About Me
           </button>
         </div>

@@ -6,7 +6,6 @@ const Particle = React.memo(() => {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
-    console.log('Initializing particles engine...');
     initParticlesEngine(async (engine) => {
       await loadFull(engine);
     }).then(() => {

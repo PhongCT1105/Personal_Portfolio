@@ -17,10 +17,7 @@ import {
   SiLinux,
 } from 'react-icons/si';
 import { motion } from 'framer-motion';
-import {
-  trackButtonClick,
-  trackDurationViewTime,
-} from '../utils/firebaseUtils';
+import { trackDurationViewTime } from '../utils/firebaseUtils';
 
 const Skills = () => {
   const [activeTab, setActiveTab] = useState('chart');
@@ -37,14 +34,9 @@ const Skills = () => {
       const duration = Math.floor((endTime - startTime.current) / 1000); // Convert to seconds
       if (duration > 0) {
         trackDurationViewTime('Skills', duration); // Call the updated function
-        console.log(`Duration tracked for Skills: ${duration}s`);
       }
     };
   }, []);
-
-  const handleButtonClick = (buttonName: string) => {
-    trackButtonClick('Skills', buttonName); // Call the button click tracker
-  };
 
   const importantNumber = [
     { number: '2000+', label: 'Contributions on GitHub' },
@@ -161,10 +153,7 @@ const Skills = () => {
             className={`px-6 py-3 text-white text-sm font-medium ${
               activeTab === 'chart' ? 'bg-gray-700' : 'bg-gray-600'
             } rounded-lg mx-2 transition-transform transform hover:scale-105 hover:bg-red-600`}
-            onClick={() => {
-              setActiveTab('chart');
-              handleButtonClick('Overall Skills Tab');
-            }}
+            onClick={() => setActiveTab('chart')}
           >
             Overall Skills
           </button>
@@ -172,10 +161,7 @@ const Skills = () => {
             className={`px-6 py-3 text-white text-sm font-medium hover:bg-red-600 ${
               activeTab === 'allSkills' ? 'bg-gray-700' : 'bg-gray-600'
             } rounded-lg mx-2 transition-transform transform hover:scale-105`}
-            onClick={() => {
-              setActiveTab('allSkills');
-              handleButtonClick('Tech Stack Tab');
-            }}
+            onClick={() => setActiveTab('allSkills')}
           >
             Tech Stack
           </button>

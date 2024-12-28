@@ -5,10 +5,7 @@ import linkedin from '../assets/linkedin.png';
 import Lottie from 'lottie-react';
 import contact from '../assets/Contact.json';
 import { PopupWidget } from 'react-calendly';
-import {
-  trackButtonClick,
-  trackDurationViewTime,
-} from '../utils/firebaseUtils';
+import { trackDurationViewTime } from '../utils/firebaseUtils';
 
 const Contact = () => {
   const startTime = useRef<number>(0);
@@ -24,20 +21,13 @@ const Contact = () => {
       const duration = Math.floor((endTime - startTime.current) / 1000); // Convert to seconds
       if (duration > 0) {
         trackDurationViewTime('Contact', duration); // Call the updated function
-        console.log(`Duration tracked for Contact: ${duration}s`);
       }
     };
   }, []);
 
-  const handleButtonClick = (buttonName: string) => {
-    trackButtonClick('Contact', buttonName); // Call the button click tracker
-  };
-
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    handleButtonClick('Send Message');
     // Handle form submission logic here
-    console.log('Form submitted');
   };
 
   return (
@@ -61,7 +51,6 @@ const Contact = () => {
                 href="#"
                 className="transition-transform transform hover:scale-110"
                 aria-label="Facebook"
-                onClick={() => handleButtonClick('Facebook Link')}
               >
                 <img src={facebook} alt="Facebook" className="h-8 w-8" />
               </a>
@@ -69,7 +58,6 @@ const Contact = () => {
                 href="#"
                 className="transition-transform transform hover:scale-110"
                 aria-label="Instagram"
-                onClick={() => handleButtonClick('Instagram Link')}
               >
                 <img src={instagram} alt="Instagram" className="h-8 w-8" />
               </a>
@@ -77,7 +65,6 @@ const Contact = () => {
                 href="#"
                 className="transition-transform transform hover:scale-110"
                 aria-label="LinkedIn"
-                onClick={() => handleButtonClick('LinkedIn Link')}
               >
                 <img src={linkedin} alt="LinkedIn" className="h-8 w-8" />
               </a>

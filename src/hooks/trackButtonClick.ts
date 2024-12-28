@@ -13,8 +13,6 @@ export const trackButtonClick = async (
       buttonName,
       timestamp: new Date().toISOString(),
     });
-
-    console.log(`Button click tracked: ${buttonName} in section: ${section}`);
   } catch (error) {
     console.error('Error tracking button click:', error);
     throw error;

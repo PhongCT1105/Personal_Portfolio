@@ -23,7 +23,6 @@ const Hero = () => {
       const duration = Math.floor((endTime - startTime.current) / 1000); // Convert to seconds
       if (duration > 0) {
         trackDurationViewTime('Hero', duration); // Track view time
-        console.log(`Duration tracked for Hero: ${duration}s`);
       }
     };
   }, []);
@@ -32,7 +31,6 @@ const Hero = () => {
   const handleResumeDownload = async () => {
     try {
       await trackResumeDownload(); // Track the resume download
-      console.log('Download Resume button clicked');
     } catch (error) {
       console.error('Error tracking resume download:', error);
     }
