@@ -1,33 +1,54 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
 import facebook from '../assets/facebook.png';
 import instagram from '../assets/instagram.png';
 import linkedin from '../assets/linkedin.png';
 import Lottie from 'lottie-react';
 import contact from '../assets/Contact.json';
 import { PopupWidget } from 'react-calendly';
-import { trackDurationViewTime } from '../utils/firebaseUtils';
 
 const Contact = () => {
-  const startTime = useRef<number>(0);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
 
-  // Page duration tracking
-  useEffect(() => {
-    // Start tracking duration
-    startTime.current = Date.now();
+  const [formStatus, setFormStatus] = useState<
+    'idle' | 'submitting' | 'success' | 'error'
+  >('idle');
 
-    // Track duration when the component unmounts
-    return () => {
-      const endTime = Date.now();
-      const duration = Math.floor((endTime - startTime.current) / 1000); // Convert to seconds
-      if (duration > 0) {
-        trackDurationViewTime('Contact', duration); // Call the updated function
-      }
-    };
-  }, []);
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { id, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
+  };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    // Handle form submission logic here
+    setFormStatus('submitting');
+
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID!,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID!,
+        {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY!
+      );
+      setFormStatus('success');
+      setFormData({ name: '', email: '', message: '' }); // Reset form
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setFormStatus('error');
+    }
   };
 
   return (
@@ -91,6 +112,8 @@ const Contact = () => {
               <input
                 type="text"
                 id="name"
+                value={formData.name}
+                onChange={handleChange}
                 placeholder="Your Full Name"
                 className="mt-1 p-3 w-full rounded-md border border-gray-300 focus:border-red-500 focus:ring focus:ring-red-200 shadow-sm"
               />
@@ -105,6 +128,8 @@ const Contact = () => {
               <input
                 type="email"
                 id="email"
+                value={formData.email}
+                onChange={handleChange}
                 placeholder="Your Email Address"
                 className="mt-1 p-3 w-full rounded-md border border-gray-300 focus:border-red-500 focus:ring focus:ring-red-200 shadow-sm"
               />
@@ -118,6 +143,8 @@ const Contact = () => {
               </label>
               <textarea
                 id="message"
+                value={formData.message}
+                onChange={handleChange}
                 placeholder="Write your message here..."
                 rows={4}
                 className="mt-1 p-3 w-full rounded-md border border-gray-300 focus:border-red-500 focus:ring focus:ring-red-200 shadow-sm"
@@ -126,9 +153,18 @@ const Contact = () => {
             <button
               type="submit"
               className="w-full bg-red-500 text-white py-3 rounded-md shadow-md hover:bg-red-600 transition"
+              disabled={formStatus === 'submitting'}
             >
-              Send Message
+              {formStatus === 'submitting' ? 'Sending...' : 'Send Message'}
             </button>
+            {formStatus === 'success' && (
+              <p className="text-green-600 mt-2">Message sent successfully!</p>
+            )}
+            {formStatus === 'error' && (
+              <p className="text-red-600 mt-2">
+                Something went wrong. Please try again later.
+              </p>
+            )}
           </form>
         </div>
 
