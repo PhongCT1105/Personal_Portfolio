@@ -80,9 +80,10 @@ const Hero = () => {
               Specialist in AI & ML Solutions
             </p>
             <p className="mb-4">
-              I'm a passionate web developer with expertise in React, Next.js,
-              and modern web technologies. I love creating beautiful and
-              functional websites that solve real-world problems.
+              I’m passionate about AI and enjoy creating practical solutions
+              through machine learning. With experience from internships and
+              projects, I focus on building innovative systems with real-world
+              impact.{' '}
             </p>
             <button
               className="bg-black text-white px-4 py-2 w-max rounded-md hover:bg-red-500"

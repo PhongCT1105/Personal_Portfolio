@@ -77,21 +77,54 @@ const About = () => {
             Hi, I'm Phong Cao
           </p>
           <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-            A passionate Artificial Intelligence and Computer Science student...
+            A passionate dual-degree student pursuing a BS in Computer Science
+            and an MS in Artificial Intelligence @ WPI.
           </p>
         </div>
 
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <h3 className="text-2xl font-semibold text-gray-900">My Journey</h3>
-          <p className="mt-4 text-lg text-gray-600">
-            As a graduate student at Worcester Polytechnic Institute...
-          </p>
+        <div className="flex justify-center">
+          <div className="text-center max-w-3xl">
+            <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+              My Journey in AI
+            </h3>
+            <ul className="text-left text-lg text-gray-600 list-disc pl-5 space-y-2">
+              <li>
+                <span className="font-bold">Started 5 years ago</span> with a
+                computer vision project.
+              </li>
+              <li>
+                Pursuing{' '}
+                <span className="font-bold">Computer Science (BS)</span> and{' '}
+                <span className="font-bold">Artificial Intelligence (MS)</span>{' '}
+                at <span className="font-bold">WPI</span>.
+              </li>
+              <li>
+                Gained expertise in{' '}
+                <span className="font-bold">
+                  AI, Machine Learning (ML), LLMOps
+                </span>
+                , and <span className="font-bold">software engineering</span>.
+              </li>
+              <li>
+                Completed internships in{' '}
+                <span className="font-bold">AI, Data Science</span>, and{' '}
+                <span className="font-bold">MLOps</span>.
+              </li>
+              <li>
+                Built projects using the{' '}
+                <span className="font-bold">MERN stack, LLMs, Vector DB</span>
+                <span className="font-bold">
+                  , Scikit-learn, PyTorch, LangChain
+                </span>
+              </li>
+            </ul>
+          </div>
         </div>
 
         {/* Experience Timeline Section */}
         <div
           ref={timelineRef}
-          className="relative"
+          className="relative mt-12"
           style={{ minHeight: '80vh' }}
         >
           <h3 className="text-center text-2xl font-semibold text-red-600 mb-6">

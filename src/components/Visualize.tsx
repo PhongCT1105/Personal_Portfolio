@@ -67,9 +67,10 @@ const Visualize: React.FC = () => {
             variants={itemVariants}
             transition={{ duration: 0.4 }}
           >
-            <h2 className="text-xl font-bold text-center mb-4">
+            <h2 className="text-xl font-bold text-left mb-4 relative after:content-[''] after:block after:w-16 after:h-1 after:bg-red-500 after:mt-2">
               User Interaction Overview
             </h2>
+
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <motion.div
                 className="bg-white shadow-md rounded-lg p-4"
@@ -106,7 +107,7 @@ const Visualize: React.FC = () => {
             variants={itemVariants}
             transition={{ duration: 0.4 }}
           >
-            <h2 className="text-xl font-bold text-center mb-4">
+            <h2 className="text-xl font-bold text-left mb-4 relative after:content-[''] after:block after:w-16 after:h-1 after:bg-red-500 after:mt-2">
               Visitor Metrics
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">

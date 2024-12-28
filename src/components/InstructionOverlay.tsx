@@ -16,7 +16,7 @@ const HeroInstruction = () => {
     about: '🧙‍♂️ Who am I? Just a tech wizard trying to make magic happen.',
     skills:
       '💻 Brace yourself! These skills might blow your mind (or your browser).',
-    projects: '✨ Here’s where the magic happens. My creations await your awe!',
+    projects: '✨ Here’s where the magic happens. My creations await your WOW!',
     visualize:
       '📊 Behold my analytics! Should I sprinkle some machine learning on this?',
     contact: '📬 Want to chat? Let’s make some tech happen together.',
