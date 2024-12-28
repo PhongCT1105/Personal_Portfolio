@@ -11,6 +11,7 @@ import {
   Legend,
   Title,
 } from 'chart.js';
+import { motion } from 'framer-motion';
 
 // Register Chart.js components
 ChartJS.register(
@@ -110,8 +111,19 @@ const ProjectTrackingChart: React.FC<ProjectTrackingChartProps> = ({
     },
   };
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
   return (
-    <div className="w-full max-w-3xl mx-auto p-4">
+    <motion.div
+      className="w-full max-w-3xl mx-auto p-4"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
       <Bar data={data} options={options} />
       <div className="mt-6">
         <h3 className="text-lg font-bold mb-2">Top 5 Projects:</h3>
@@ -126,7 +138,7 @@ const ProjectTrackingChart: React.FC<ProjectTrackingChartProps> = ({
           ))}
         </ul>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

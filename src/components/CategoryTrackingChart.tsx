@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from 'chart.js';
+import { motion, useAnimation } from 'framer-motion';
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
@@ -10,6 +11,8 @@ ChartJS.register(ArcElement, Tooltip, Legend, Title);
 const CategoryTrackingChart: React.FC = () => {
   const [categories, setCategories] = useState<string[]>([]);
   const [interactions, setInteractions] = useState<number[]>([]);
+  const chartRef = useRef<HTMLDivElement | null>(null);
+  const controls = useAnimation();
 
   // Fetch data from Firestore
   useEffect(() => {
@@ -33,6 +36,28 @@ const CategoryTrackingChart: React.FC = () => {
 
     fetchCategoryData();
   }, []);
+
+  // Intersection Observer to trigger animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          controls.start('visible');
+        }
+      },
+      { threshold: 0.3 } // Trigger when 30% of the component is visible
+    );
+
+    if (chartRef.current) {
+      observer.observe(chartRef.current);
+    }
+
+    return () => {
+      if (chartRef.current) {
+        observer.unobserve(chartRef.current);
+      }
+    };
+  }, [controls]);
 
   // Prepare chart data
   const data = {
@@ -69,13 +94,33 @@ const CategoryTrackingChart: React.FC = () => {
     },
   };
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
   return (
-    <div className="w-full max-w-3xl mx-auto p-4">
-      <h2 className="text-2xl font-bold text-center mb-4">
+    <motion.div
+      ref={chartRef}
+      className="w-full max-w-3xl mx-auto p-4"
+      initial="hidden"
+      animate={controls}
+      variants={containerVariants}
+    >
+      <motion.h2
+        className="text-2xl font-bold text-center mb-4"
+        initial="hidden"
+        animate={controls}
+        variants={{
+          hidden: { opacity: 0, y: -20 },
+          visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+        }}
+      >
         Category Interaction Tracking
-      </h2>
+      </motion.h2>
       <Doughnut data={data} options={options} />
-    </div>
+    </motion.div>
   );
 };
 

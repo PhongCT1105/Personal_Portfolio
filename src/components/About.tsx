@@ -123,12 +123,6 @@ const About = () => {
             ))}
           </div>
         </div>
-
-        <div className="text-center mt-10">
-          <button className="bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600">
-            View More About Me
-          </button>
-        </div>
       </div>
     </div>
   );

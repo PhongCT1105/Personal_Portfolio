@@ -12,7 +12,7 @@ import {
   TimeScale,
   ChartOptions,
 } from 'chart.js';
-
+import { motion } from 'framer-motion';
 import 'chartjs-adapter-date-fns';
 import { getAllVisits } from '../utils/firebaseUtils'; // Adjust path if needed
 
@@ -89,10 +89,21 @@ const VisitorLineChart: React.FC = () => {
     },
   };
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
   return (
-    <div className="w-full h-64 sm:h-96">
+    <motion.div
+      className="w-full h-64 sm:h-96"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
       <Line data={chartData} options={options} />
-    </div>
+    </motion.div>
   );
 };
 

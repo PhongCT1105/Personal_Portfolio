@@ -11,6 +11,7 @@ import {
   ChartData,
   ChartOptions,
 } from 'chart.js';
+import { motion } from 'framer-motion';
 import { getDurationTrackingStats } from '../utils/firebaseUtils';
 
 // Register Chart.js components
@@ -75,14 +76,32 @@ const DurationTrackingDoughnutChart: React.FC = () => {
     },
   };
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.6 } },
+  };
+
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <motion.div
+      className="w-full max-w-4xl mx-auto"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
       {chartData ? (
         <Doughnut data={chartData} options={options} />
       ) : (
-        <p>Loading chart...</p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="text-center"
+        >
+          Loading chart...
+        </motion.p>
       )}
-    </div>
+    </motion.div>
   );
 };
 

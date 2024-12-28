@@ -2,7 +2,13 @@ import { useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase'; // Ensure this points to your Firebase config file
 import { Pie } from 'react-chartjs-2';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  ChartOptions,
+} from 'chart.js';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -52,6 +58,23 @@ const VisitorResumeRatio = () => {
     ],
   };
 
+  // Chart options with precise typing and animation
+  const chartOptions: ChartOptions<'pie'> = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      tooltip: {
+        enabled: true,
+      },
+    },
+    animation: {
+      duration: 1500, // Animation duration in milliseconds
+      easing: 'easeInOutQuart', // Smooth easing for animation
+    },
+  };
+
   // Render loading or chart
   return (
     <div className="max-w-md mx-auto p-4">
@@ -62,7 +85,7 @@ const VisitorResumeRatio = () => {
         <p className="text-center">Loading data...</p>
       ) : (
         <div>
-          <Pie data={chartData} />
+          <Pie data={chartData} options={chartOptions} />
           <p className="mt-4 text-center">
             Ratio of Resume Clicks to Total Visitors:{' '}
             <strong>{(ratio * 100).toFixed(2)}%</strong>
