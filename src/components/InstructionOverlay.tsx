@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import heroIcon from '../assets/Hero.png'; // Replace with your correct path
+import aboutIcon from '../assets/Hero.png'; // Replace with your correct path
+import skillIcon from '../assets/BlowInstruct.png';
+import homeIcon from '../assets/HiInstruct.png';
+import projectIcon from '../assets/ProjectInstruct.png';
+import contactIcon from '../assets/ContactInstruct.png';
+import analyticIcon from '../assets/AnalyticIcon.png';
 
 const HeroInstruction = () => {
   const [currentSection, setCurrentSection] = useState('');
@@ -46,13 +51,25 @@ const HeroInstruction = () => {
     };
   }, []);
 
-  // Hide the instruction after 5 seconds
+  // Hide the instruction after 3 seconds
   useEffect(() => {
     if (showInstruction) {
       const timer = setTimeout(() => setShowInstruction(false), 3000);
       return () => clearTimeout(timer);
     }
   }, [currentSection, showInstruction]);
+
+  // Determine the icon to use
+  const iconMapping: Record<string, string> = {
+    home: homeIcon,
+    about: aboutIcon,
+    skills: skillIcon,
+    projects: projectIcon,
+    visualize: analyticIcon,
+    contact: contactIcon,
+  };
+
+  const currentIcon = iconMapping[currentSection] || homeIcon;
 
   return (
     <motion.div
@@ -64,9 +81,9 @@ const HeroInstruction = () => {
       exit={{ x: '100%', opacity: 0 }}
       transition={{ type: 'spring', stiffness: 50, damping: 10 }}
     >
-      {/* Hero Icon */}
+      {/* Dynamic Icon */}
       <motion.img
-        src={heroIcon}
+        src={currentIcon}
         alt="Hero Icon"
         className="w-16 h-16"
         initial={{ rotate: 0 }}
