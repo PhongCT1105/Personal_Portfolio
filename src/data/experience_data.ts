@@ -32,7 +32,6 @@ const experiencedata = [
     duration: 'June 2022 - August 2022',
     description: [
       'Built a clinical decision support system for pneumonia and pulmonary edema detection using GoogLeNet CNNs.',
-      'Achieved an F1 score of 0.835 for pneumonia and 0.8329 for edema.',
       'Earned a Gold Medal at INOVA Croatia 2022 for outstanding performance.',
     ],
     image: VNUImage,

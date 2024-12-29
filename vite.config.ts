@@ -17,9 +17,13 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'], // Separate vendor libraries into their own chunk
+          lottie: ['lottie-web'], // Add Lottie-web to a separate chunk
         },
       },
     },
     chunkSizeWarningLimit: 1000, // Adjust chunk size warning limit (default is 500 kB)
+  },
+  optimizeDeps: {
+    include: ['lottie-web', 'lodash'], // Pre-bundle specific dependencies
   },
 });

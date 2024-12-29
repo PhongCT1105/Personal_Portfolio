@@ -87,13 +87,11 @@ const About = () => {
             My Journey in AI
           </h3>
           <p className="mt-4 text-lg text-gray-600">
-            My AI journey started five years ago with a computer vision project.
-            Now I'm pursuing dual degrees in Computer Science and Artificial
-            Intelligence at WPI. I’ve gained expertise in AI, machine learning,
-            and software engineering. Through internships and projects, I’ve
-            applied tools like MERN stack, Scikit-learn, PyTorch, and LangChain
-            to develop innovative solutions in areas like LLMOps, vector
-            databases, ML & MLOps.
+            I began my AI journey five years ago with a computer vision project
+            and am now pursuing dual degrees in CS and AI at WPI. I’ve applied
+            tools like MERN, Scikit-learn, PyTorch, and LangChain through
+            internships and projects, focusing on LLMOps, vector databases, and
+            MLOps.
           </p>
         </div>
 

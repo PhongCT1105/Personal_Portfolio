@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
-import facebook from '../assets/facebook.png';
-import instagram from '../assets/instagram.png';
-import linkedin from '../assets/linkedin.png';
 import Lottie from 'lottie-react';
 import contact from '../assets/Contact.json';
 import { PopupWidget } from 'react-calendly';
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaGithub,
+} from 'react-icons/fa'; // Import icons
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -69,25 +72,40 @@ const Contact = () => {
             </p>
             <div className="flex space-x-6">
               <a
-                href="#"
-                className="transition-transform transform hover:scale-110"
+                href="https://www.facebook.com/PhongCao1105/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-red-500 hover:text-blue-600 transition-transform transform hover:scale-110"
                 aria-label="Facebook"
               >
-                <img src={facebook} alt="Facebook" className="h-8 w-8" />
+                <FaFacebookF size={32} />
               </a>
               <a
-                href="#"
-                className="transition-transform transform hover:scale-110"
+                href="https://www.instagram.com/phongcao1105/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-red-500 hover:text-pink-500 transition-transform transform hover:scale-110"
                 aria-label="Instagram"
               >
-                <img src={instagram} alt="Instagram" className="h-8 w-8" />
+                <FaInstagram size={32} />
               </a>
               <a
-                href="#"
-                className="transition-transform transform hover:scale-110"
+                href="https://www.linkedin.com/in/phong-cao/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-red-500 hover:text-blue-700 transition-transform transform hover:scale-110"
                 aria-label="LinkedIn"
               >
-                <img src={linkedin} alt="LinkedIn" className="h-8 w-8" />
+                <FaLinkedinIn size={32} />
+              </a>
+              <a
+                href="https://github.com/PhongCT1105"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-red-500 hover:text-black transition-transform transform hover:scale-110"
+                aria-label="GitHub"
+              >
+                <FaGithub size={32} />
               </a>
             </div>
             <Lottie

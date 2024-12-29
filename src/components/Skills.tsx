@@ -26,10 +26,7 @@ import { RiTailwindCssFill } from 'react-icons/ri';
 import { SiPrisma } from 'react-icons/si';
 import { SiExpress } from 'react-icons/si';
 import { SiFirebase } from 'react-icons/si';
-import { FaGithub } from 'react-icons/fa';
 import { SiAmazonec2 } from 'react-icons/si';
-import { VscAzureDevops } from 'react-icons/vsc';
-import { SiJira } from 'react-icons/si';
 
 const Skills = () => {
   const [activeTab, setActiveTab] = useState('chart');
@@ -125,17 +122,6 @@ const Skills = () => {
         { name: 'AWS EC2', icon: <SiGooglecloud className="text-[#FF9900]" /> },
         { name: 'Docker', icon: <SiDocker className="text-[#2496ED]" /> },
         { name: 'Linux', icon: <SiLinux className="text-[#FCC624]" /> },
-      ],
-    },
-    {
-      domain: 'Productivity & Collaboration Tools',
-      skills: [
-        { name: 'GitHub', icon: <FaGithub className="text-[#181717]" /> }, // Official GitHub black
-        {
-          name: 'Azure DevOps',
-          icon: <VscAzureDevops className="text-[#007FFF]" />,
-        }, // Same as Azure
-        { name: 'Jira', icon: <SiJira className="text-[#0052CC]" /> },
       ],
     },
   ];

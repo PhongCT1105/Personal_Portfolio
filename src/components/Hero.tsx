@@ -80,10 +80,9 @@ const Hero = () => {
               Specialist in AI & ML Solutions
             </p>
             <p className="mb-4">
-              I’m passionate about AI and enjoy creating practical solutions
-              through machine learning. With experience from internships and
-              projects, I focus on building innovative systems with real-world
-              impact.{' '}
+              I’m passionate about AI and enjoy creating machine learning
+              solutions. With experience from internships and projects, I focus
+              on building innovative systems with real-world impact.{' '}
             </p>
             <button
               className="bg-black text-white px-4 py-2 w-max rounded-md hover:bg-red-500"
@@ -146,7 +145,11 @@ const Hero = () => {
         >
           <img src={instagram} alt="Instagram Icon" className="w-10 h-10" />
         </a>
-        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://x.com/PhongCT1105"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img src={twitter} alt="Twitter Icon" className="w-10 h-10" />
         </a>
         <a

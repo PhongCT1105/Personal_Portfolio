@@ -150,7 +150,7 @@ export const projects: Project[] = [
       'src/assets/Projects/Portfolio/Portfolio2.png',
       'src/assets/Projects/Portfolio/Portfolio3.png',
     ],
-    technologies: ['Firebase', 'React', 'TypeScript', 'TailwindCSS'], // Example tech stack
+    technologies: ['Firebase', 'Docker', 'React', 'TypeScript', 'TailwindCSS'], // Example tech stack
   },
   {
     id: 7,
