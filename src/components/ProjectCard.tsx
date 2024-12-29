@@ -9,6 +9,7 @@ type ProjectProps = {
   description: string;
   imageUrl: string;
   link: string;
+  liveDemo?: string; // Optional live demo link
   index: number;
   onViewDetails: () => void;
   onInteraction: (projectName: string) => void; // Unified tracking prop
@@ -20,6 +21,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
   description,
   imageUrl,
   link,
+  liveDemo,
   index,
   onViewDetails,
   onInteraction,
@@ -31,6 +33,12 @@ const ProjectCard: React.FC<ProjectProps> = ({
   const handleViewMoreClick = () => {
     onInteraction(title); // Track interaction for View More
     onViewDetails(); // Trigger the existing view details functionality
+  };
+
+  const handleLiveDemoClick = () => {
+    if (liveDemo) {
+      onInteraction(`${title} - Live Demo`); // Track interaction for Live Demo
+    }
   };
 
   return (
@@ -64,23 +72,36 @@ const ProjectCard: React.FC<ProjectProps> = ({
           <h3 className="text-sm sm:text-base font-medium mb-1 text-gray-800">
             {title}
           </h3>
-          <div className="flex justify-between mt-auto">
-            <a
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 py-1 flex items-center gap-2 text-xs sm:text-sm bg-gray-900 text-white rounded-md hover:bg-gray-700 transition-colors"
-              onClick={handleGitHubClick}
-            >
-              <FaGithub className="text-lg" />
-              GitHub
-            </a>
-            <button
-              onClick={handleViewMoreClick}
-              className="px-3 py-1 text-xs sm:text-sm bg-red-500 text-white rounded-md hover:bg-red-400 transition-colors"
-            >
-              View More
-            </button>
+          <div className="flex flex-col gap-2 mt-auto">
+            <div className="flex justify-between">
+              <a
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1 flex items-center gap-2 text-xs sm:text-sm bg-gray-900 text-white rounded-md hover:bg-gray-700 transition-colors"
+                onClick={handleGitHubClick}
+              >
+                <FaGithub className="text-lg" />
+                GitHub
+              </a>
+              <button
+                onClick={handleViewMoreClick}
+                className="px-3 py-1 text-xs sm:text-sm bg-red-500 text-white rounded-md hover:bg-red-400 transition-colors"
+              >
+                View More
+              </button>
+            </div>
+            {liveDemo && (
+              <a
+                href={liveDemo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1 text-xs sm:text-sm bg-blue-500 text-white rounded-md hover:bg-blue-400 transition-colors"
+                onClick={handleLiveDemoClick}
+              >
+                Live Demo
+              </a>
+            )}
           </div>
         </div>
       </motion.div>

@@ -58,7 +58,7 @@ const Visualize: React.FC = () => {
             variants={itemVariants}
             transition={{ duration: 0.3 }}
           >
-            Data Analytics Showcase
+            Visitors Data Analytics
           </motion.h3>
 
           {/* Section 1: User Interaction Overview */}
@@ -68,7 +68,7 @@ const Visualize: React.FC = () => {
             transition={{ duration: 0.4 }}
           >
             <h2 className="text-xl font-bold text-left mb-4 relative after:content-[''] after:block after:w-16 after:h-1 after:bg-red-500 after:mt-2">
-              User Interaction Overview
+              Visitors Interaction Overview
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">

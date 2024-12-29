@@ -82,43 +82,19 @@ const About = () => {
           </p>
         </div>
 
-        <div className="flex justify-center">
-          <div className="text-center max-w-3xl">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-              My Journey in AI
-            </h3>
-            <ul className="text-left text-lg text-gray-600 list-disc pl-5 space-y-2">
-              <li>
-                <span className="font-bold">Started 5 years ago</span> with a
-                computer vision project.
-              </li>
-              <li>
-                Pursuing{' '}
-                <span className="font-bold">Computer Science (BS)</span> and{' '}
-                <span className="font-bold">Artificial Intelligence (MS)</span>{' '}
-                at <span className="font-bold">WPI</span>.
-              </li>
-              <li>
-                Gained expertise in{' '}
-                <span className="font-bold">
-                  AI, Machine Learning (ML), LLMOps
-                </span>
-                , and <span className="font-bold">software engineering</span>.
-              </li>
-              <li>
-                Completed internships in{' '}
-                <span className="font-bold">AI, Data Science</span>, and{' '}
-                <span className="font-bold">MLOps</span>.
-              </li>
-              <li>
-                Built projects using the{' '}
-                <span className="font-bold">MERN stack, LLMs, Vector DB</span>
-                <span className="font-bold">
-                  , Scikit-learn, PyTorch, LangChain
-                </span>
-              </li>
-            </ul>
-          </div>
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <h3 className="text-2xl font-semibold text-gray-900">
+            My Journey in AI
+          </h3>
+          <p className="mt-4 text-lg text-gray-600">
+            My AI journey started five years ago with a computer vision project.
+            Now I'm pursuing dual degrees in Computer Science and Artificial
+            Intelligence at WPI. I’ve gained expertise in AI, machine learning,
+            and software engineering. Through internships and projects, I’ve
+            applied tools like MERN stack, Scikit-learn, PyTorch, and LangChain
+            to develop innovative solutions in areas like LLMOps, vector
+            databases, ML & MLOps.
+          </p>
         </div>
 
         {/* Experience Timeline Section */}

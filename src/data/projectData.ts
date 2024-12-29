@@ -7,125 +7,199 @@ export type Project = {
   category: string;
   imageUrl: string;
   link: string;
+  liveDemo?: string; // Optional live demo link
   role: string;
   duration: string;
   images: string[];
+  technologies: string[]; // New field for technologies used
 };
 
 export const projects: Project[] = [
   {
     id: 1,
-    title: 'Linear Regression Analysis',
+    title: 'SyntheSearch: AI-powered research assistance',
     description:
-      'Explored predictive modeling with linear regression techniques.',
-    category: 'Machine Learning',
-    imageUrl: 'https://via.placeholder.com/400',
-    link: 'https://example.com/linear-regression',
-    role: 'Data Analyst',
-    duration: 'Jan 2022 - Mar 2022',
+      'A web application that integrates GPT, LangChain, and LanceDB to retrieve, rank, and synthesize research papers.',
+    category: 'LLM',
+    imageUrl: 'src/assets/Projects/SyntheSearch/SyntheSearchBanner.png',
+    link: 'https://github.com/PhongCT1105/SyntheSearch',
+    liveDemo: 'https://youtu.be/YWhtdnfZRRo?si=ZMGWDVQTBExCD2Ea',
+    role: 'Team Lead / LLMOps Dev',
+    duration: 'Nov 2024 - Present',
     images: [
-      'https://via.placeholder.com/400',
-      'https://via.placeholder.com/400',
+      'src/assets/Projects/SyntheSearch/SyntheSearch1.png',
+      'src/assets/Projects/SyntheSearch/SyntheSearch2.png',
+      'src/assets/Projects/SyntheSearch/SyntheSearch3.png',
     ],
+    technologies: [
+      'LangChain',
+      'LanceDB',
+      'GPT-4',
+      'React',
+      'TypeScript',
+      'TailwindCSS',
+    ], // Example tech stack
   },
   {
     id: 2,
-    title: 'Decision Tree Classifier',
-    description: 'Developed a decision tree model to classify financial data.',
-    category: 'Machine Learning',
-    imageUrl: 'https://via.placeholder.com/400',
-    link: 'https://example.com/decision-tree',
-    role: 'Machine Learning Engineer',
-    duration: 'Apr 2022 - Jun 2022',
+    title: 'Web application for Mass General Brigham Hospital',
+    description:
+      'Comprehensive hospital kiosks enabling users to navigate, request services, and allowing admins to manage schedules and analyze service insights efficiently.',
+    category: 'Web Development',
+    imageUrl: 'src/assets/Projects/Brigham_Hospital/MassBanner.jpg',
+    link: 'https://github.com/PhongCT1105/Web-application-for-Mass-General-Brigham-Hospital.git',
+
+    role: 'Lead Software Engineer',
+    duration: 'Mar 2024 - May 2024',
     images: [
-      'https://via.placeholder.com/400',
-      'https://via.placeholder.com/400',
+      'src/assets/Projects/Brigham_Hospital/Mass1.png',
+      'src/assets/Projects/Brigham_Hospital/Mass2.png',
+      'src/assets/Projects/Brigham_Hospital/Mass3.png',
+      'src/assets/Projects/Brigham_Hospital/Mass4.png',
+      'src/assets/Projects/Brigham_Hospital/Mass5.png',
+      'src/assets/Projects/Brigham_Hospital/Mass6.png',
     ],
+    technologies: [
+      'AWS EC2 & RDS',
+      'React',
+      'TypeScript',
+      'Express',
+      'Docker',
+      'Postgres',
+      'Prisma ORM',
+      'Keras',
+      'TailwindCSS',
+      'Agile Methodology',
+    ], // Example tech stack
   },
   {
     id: 3,
-    title: 'Clustering for Market Segmentation',
+    title: 'Machine Learning System for Cancer Detection',
     description:
-      'Implemented clustering techniques to identify market segments.',
+      'Predicts cancer types, identifies key genes, and supports personalized treatment with advanced feature selection and machine learning models.',
     category: 'Machine Learning',
-    imageUrl: 'https://via.placeholder.com/400',
-    link: 'https://example.com/clustering',
-    role: 'Data Scientist',
-    duration: 'Jul 2022 - Sep 2022',
+    imageUrl: 'src/assets/Projects/Cancer_Detection/CancerBanner.jpg',
+    link: 'https://github.com/PhongCT1105/Cancer_Detector',
+    liveDemo: 'https://genes2cancer.streamlit.app/',
+    role: 'Machine Learning Research / Web Developer',
+    duration: 'Sep 2024 - Dec 2024',
     images: [
-      'https://via.placeholder.com/400',
-      'https://via.placeholder.com/400',
+      'src/assets/Projects/Cancer_Detection/Cancer1.png',
+      'src/assets/Projects/Cancer_Detection/Cancer2.png',
+      'src/assets/Projects/Cancer_Detection/Cancer3.png',
+      'src/assets/Projects/Cancer_Detection/Cancer4.png',
+      'src/assets/Projects/Cancer_Detection/Cancer5.png',
+      'src/assets/Projects/Cancer_Detection/Cancer6.png',
     ],
+    technologies: [
+      'Scikit-learn',
+      'Supervised',
+      'Unsupervised',
+      'Ensemble',
+      'Bagging',
+      'ANOVA',
+      'Mutual Information',
+      'Streamlit',
+    ], // Example tech stack
   },
   {
     id: 4,
-    title: 'GPT-4 Text Generator',
-    description: 'Built a text generator application using GPT-4.',
-    category: 'LLM',
-    imageUrl: 'https://via.placeholder.com/400',
-    link: 'https://example.com/gpt4',
-    role: 'AI Developer',
-    duration: 'Oct 2022 - Dec 2022',
+    title: 'AI traffic Management System',
+    description:
+      'Developed an AI-driven solution for real-time vehicle detection, classification, and speed calculation to enhance urban traffic management.',
+    category: 'Computer Vision',
+    imageUrl: 'src/assets/Projects/Traffic/TrafficBanner.png',
+    link: 'https://github.com/PhongCT1105/AI-traffic-management',
+    liveDemo: 'https://sparkly-rugelach-ff7f15.netlify.app/',
+    role: 'AI Developer / Web Developer',
+    duration: 'Jun 2022 - Aug 2022',
     images: [
-      'https://via.placeholder.com/400',
-      'https://via.placeholder.com/400',
+      'src/assets/Projects/Traffic/Traffic1.png',
+      'src/assets/Projects/Traffic/Traffic2.png',
     ],
+    technologies: ['Python', 'YOLOv5', 'OpenCV', 'HTML', 'CSS', 'JS'], // Example tech stack
   },
   {
     id: 5,
-    title: 'Object Detection System',
-    description: 'Implemented an object detection system using YOLO.',
-    category: 'Computer Vision',
-    imageUrl: 'https://via.placeholder.com/400',
-    link: 'https://example.com/object-detection',
-    role: 'Computer Vision Engineer',
-    duration: 'Jan 2023 - Mar 2023',
+    title: 'S&P 500 Stock Prediction',
+    description:
+      'Utilized ARIMA and LSTM models to predict S&P 500 stock closing prices with a focus on accuracy and trend analysis.',
+    category: 'Machine Learning',
+    imageUrl: 'src/assets/Projects/Stock_Pred/StockBanner.png',
+    link: 'https://github.com/PhongCT1105/S-P_500_Stock_Prediction.git',
+    liveDemo: 'https://stockpredictsp500.streamlit.app/',
+    role: 'Machine Learning / Web Developer',
+    duration: 'Sep 2024 - Dec 2024',
     images: [
-      'https://via.placeholder.com/400',
-      'https://via.placeholder.com/400',
+      'src/assets/Projects/Stock_Pred/Stock1.png',
+      'src/assets/Projects/Stock_Pred/Stock2.png',
+      'src/assets/Projects/Stock_Pred/Stock3.png',
     ],
+    technologies: ['LSTM', 'ARIMA', 'Scikit-learn', 'Streamlit'], // Example tech stack
   },
   {
     id: 6,
-    title: 'E-Commerce Website',
-    description: 'Designed a React-based e-commerce platform.',
+    title: 'Personal Portfolio',
+    description: 'It is this website 🔁',
     category: 'Web Development',
-    imageUrl: 'https://via.placeholder.com/400',
-    link: 'https://example.com/e-commerce',
-    role: 'Frontend Developer',
-    duration: 'Apr 2023 - Jun 2023',
+    imageUrl: 'src/assets/Projects/Portfolio/PortfolioBanner.png',
+    link: 'https://github.com/PhongCT1105/Personal_Portfolio.git',
+    role: 'FullStack Developer',
+    duration: 'Dec 2024',
     images: [
-      'https://via.placeholder.com/400',
-      'https://via.placeholder.com/400',
+      'src/assets/Projects/Portfolio/Portfolio2.png',
+      'src/assets/Projects/Portfolio/Portfolio3.png',
     ],
+    technologies: ['Firebase', 'React', 'TypeScript', 'TailwindCSS'], // Example tech stack
   },
   {
     id: 7,
-    title: 'Portfolio Website',
-    description: 'Created a personal portfolio site using Next.js.',
-    category: 'Web Development',
-    imageUrl: 'https://via.placeholder.com/400',
-    link: 'https://example.com/portfolio',
-    role: 'Full Stack Developer',
-    duration: 'Jul 2023 - Sep 2023',
+    title: 'MovieLens Data Analysis for Streaming Insights',
+    description:
+      'Analyzed the MovieLens 1M dataset to identify target demographics and genres for optimizing streaming platform success.',
+    category: 'Machine Learning',
+    imageUrl: 'src/assets/Projects/Analytic/AnalyticBanner.png',
+    link: 'https://github.com/PhongCT1105/MovieLen_Analytic.git',
+    role: 'Data Analyst',
+    duration: 'Mar 2023 - Apr 2023',
     images: [
-      'https://via.placeholder.com/400',
-      'https://via.placeholder.com/400',
+      'src/assets/Projects/Analytic/Analytic1.png',
+      'src/assets/Projects/Analytic/Analytic2.png',
+      'src/assets/Projects/Analytic/Analytic3.png',
     ],
+    technologies: ['Python', 'Matplotlib', 'Seaborn'], // Example tech stack
   },
   {
     id: 8,
-    title: 'Blog Platform',
-    description: 'Developed a blogging platform with user authentication.',
+    title: 'TPC-H Benchmark Analysis',
+    description:
+      'Analyzed and optimized TPC-H benchmark queries, focusing on performance evaluation, relational algebra.',
     category: 'Web Development',
-    imageUrl: 'https://via.placeholder.com/400',
-    link: 'https://example.com/blog',
+    imageUrl: 'src/assets/Projects/Database/DatabaseBanner.png',
+    link: 'https://github.com/PhongCT1105/TPC_H_BenchMark_Analysis.git',
     role: 'Backend Developer',
-    duration: 'Oct 2023 - Dec 2023',
+    duration: 'Mar 2024 - May 2024',
     images: [
-      'https://via.placeholder.com/400',
-      'https://via.placeholder.com/400',
+      'src/assets/Projects/Database/Database1.png',
+      'src/assets/Projects/Database/Database2.png',
     ],
+    technologies: ['SQLite'], // Example tech stack
+  },
+  {
+    id: 9,
+    title: 'Predictive Modeling for Vehicle Pricing Optimization',
+    description:
+      'Built models to predict vehicle prices using car features and market trends for profitability.',
+    category: 'Web Development',
+    imageUrl: 'src/assets/Projects/Vehicle/VehicleBanner.jpg',
+    link: 'https://github.com/PhongCT1105/Vehicle_Pricing_Estimate.git',
+    role: 'Machine Learning Developer',
+    duration: 'Apr 2024 - May 2024',
+    images: [
+      'src/assets/Projects/Vehicle/Vehicle1.png',
+      'src/assets/Projects/Vehicle/Vehicle2.png',
+    ],
+    technologies: ['Scikit-learn', 'Matplotlib', 'Seaborn'], // Example tech stack
   },
 ];
 

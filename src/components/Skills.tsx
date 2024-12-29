@@ -9,15 +9,27 @@ import {
   SiTensorflow,
   SiReact,
   SiNodedotjs,
-  SiFlask,
   SiPostgresql,
   SiGooglecloud,
   SiDocker,
-  SiKubernetes,
   SiLinux,
 } from 'react-icons/si';
 import { motion } from 'framer-motion';
 import { trackDurationViewTime } from '../utils/firebaseUtils';
+import { VscAzure } from 'react-icons/vsc';
+import { TbFileTypeSql } from 'react-icons/tb';
+import { SiScikitlearn } from 'react-icons/si';
+import { SiKeras } from 'react-icons/si';
+import { SiLangchain } from 'react-icons/si';
+import { SiHuggingface } from 'react-icons/si';
+import { RiTailwindCssFill } from 'react-icons/ri';
+import { SiPrisma } from 'react-icons/si';
+import { SiExpress } from 'react-icons/si';
+import { SiFirebase } from 'react-icons/si';
+import { FaGithub } from 'react-icons/fa';
+import { SiAmazonec2 } from 'react-icons/si';
+import { VscAzureDevops } from 'react-icons/vsc';
+import { SiJira } from 'react-icons/si';
 
 const Skills = () => {
   const [activeTab, setActiveTab] = useState('chart');
@@ -39,20 +51,19 @@ const Skills = () => {
   }, []);
 
   const importantNumber = [
-    { number: '2000+', label: 'Contributions on GitHub' },
+    { number: '1500+', label: 'Contributions on GitHub' },
     { number: '4+', label: 'Years of AI Experience' },
-    { number: '50+', label: 'Completed Projects' },
+    { number: '20+', label: 'Completed Projects' },
     { number: '100%', label: 'Dedication to Success' },
   ];
 
   const aiSkills = [
-    { skill: 'Machine Learning', level: 90 },
-    { skill: 'Deep Learning', level: 85 },
-    { skill: 'Natural Language Processing', level: 80 },
-    { skill: 'Computer Vision', level: 88 },
+    { skill: 'Machine Learning', level: 95 },
+    { skill: 'Web Development', level: 85 },
+    { skill: 'MLOps / LLMOps / DevOps', level: 90 },
+    { skill: 'Computer Vision', level: 85 },
     { skill: 'Data Analysis', level: 87 },
   ];
-
   const techDomains = [
     {
       domain: 'Programming Languages',
@@ -68,35 +79,63 @@ const Skills = () => {
           name: 'JavaScript',
           icon: <SiJavascript className="text-[#F7DF1E]" />,
         },
+        { name: 'SQL', icon: <TbFileTypeSql className="text-[#336791]" /> },
       ],
     },
     {
-      domain: 'Frameworks & Tools',
+      domain: 'AI & ML Frameworks',
       skills: [
         { name: 'PyTorch', icon: <SiPytorch className="text-[#EE4C2C]" /> },
         {
           name: 'TensorFlow',
           icon: <SiTensorflow className="text-[#FF6F00]" />,
         },
+        {
+          name: 'Scikit-learn',
+          icon: <SiScikitlearn className="text-[#F7931E]" />,
+        }, // Corrected placeholder
+        { name: 'Keras', icon: <SiKeras className="text-[#D00000]" /> },
+        { name: 'LangChain', icon: <SiLangchain className="text-[#00A3E0]" /> }, // Placeholder for LangChain
+        {
+          name: 'Huggingface',
+          icon: <SiHuggingface className="text-[#F89A3A]" />,
+        },
+      ],
+    },
+    {
+      domain: 'Web Development',
+      skills: [
         { name: 'React', icon: <SiReact className="text-[#61DAFB]" /> },
         { name: 'Node.js', icon: <SiNodedotjs className="text-[#339933]" /> },
-        { name: 'Flask', icon: <SiFlask className="text-[#000000]" /> },
         {
-          name: 'PostgreSQL',
-          icon: <SiPostgresql className="text-[#336791]" />,
+          name: 'Tailwind CSS',
+          icon: <RiTailwindCssFill className="text-[#38B2AC]" />,
         },
+        { name: 'Prisma ORM', icon: <SiPrisma className="text-[#0C344B]" /> }, // Prisma’s official blue
+        { name: 'Express', icon: <SiExpress className="text-white" /> }, // Express is often associated with black
+        { name: 'Postgres', icon: <SiPostgresql className="text-[#336791]" /> },
       ],
     },
     {
       domain: 'Cloud & DevOps',
       skills: [
-        { name: 'GCP', icon: <SiGooglecloud className="text-[#4285F4]" /> },
+        { name: 'Azure', icon: <VscAzure className="text-[#007FFF]" /> }, // Official Azure blue
+        { name: 'Firebase', icon: <SiFirebase className="text-[#FFCA28]" /> },
+        { name: 'AWS', icon: <SiAmazonec2 className="text-[#FF9900]" /> },
+        { name: 'AWS EC2', icon: <SiGooglecloud className="text-[#FF9900]" /> },
         { name: 'Docker', icon: <SiDocker className="text-[#2496ED]" /> },
-        {
-          name: 'Kubernetes',
-          icon: <SiKubernetes className="text-[#326CE5]" />,
-        },
         { name: 'Linux', icon: <SiLinux className="text-[#FCC624]" /> },
+      ],
+    },
+    {
+      domain: 'Productivity & Collaboration Tools',
+      skills: [
+        { name: 'GitHub', icon: <FaGithub className="text-[#181717]" /> }, // Official GitHub black
+        {
+          name: 'Azure DevOps',
+          icon: <VscAzureDevops className="text-[#007FFF]" />,
+        }, // Same as Azure
+        { name: 'Jira', icon: <SiJira className="text-[#0052CC]" /> },
       ],
     },
   ];
@@ -116,7 +155,7 @@ const Skills = () => {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-4">
-            Key Numbers
+            Highlights
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             {importantNumber.map((keynum, index) => (
