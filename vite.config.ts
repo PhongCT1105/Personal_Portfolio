@@ -1,12 +1,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { visualizer } from 'rollup-plugin-visualizer';
 
 export default defineConfig({
-  plugins: [
-    react(),
-    visualizer({ open: true }), // Optional: Visualize bundle size
-  ],
+  plugins: [react()],
   resolve: {
     alias: {
       browser: 'webextension-polyfill', // Alias 'browser' to a polyfill
@@ -17,13 +13,10 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'], // Separate vendor libraries into their own chunk
-          lottie: ['lottie-web'], // Add Lottie-web to a separate chunk
+          lottie: ['lottie-web'], // Separate lottie-web into its own chunk
         },
       },
     },
-    chunkSizeWarningLimit: 1000, // Adjust chunk size warning limit (default is 500 kB)
-  },
-  optimizeDeps: {
-    include: ['lottie-web', 'lodash'], // Pre-bundle specific dependencies
+    chunkSizeWarningLimit: 1200, // Adjust chunk size warning limit (default is 500 kB)
   },
 });
