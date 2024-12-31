@@ -201,7 +201,7 @@ export const projects: Project[] = [
     title: 'Predictive Modeling for Vehicle Pricing Optimization',
     description:
       'Built models to predict vehicle prices using car features and market trends for profitability.',
-    category: 'Web Development',
+    category: 'Machine Learning',
     imageUrl: VehicleBanner,
     link: 'https://github.com/PhongCT1105/Vehicle_Pricing_Estimate.git',
     role: 'Machine Learning Developer',

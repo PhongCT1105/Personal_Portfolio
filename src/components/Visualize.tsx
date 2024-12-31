@@ -4,7 +4,6 @@ import CategoryTrackingChart from './CategoryTrackingChart';
 import ProjectTrackingChart from './ProjectTrackingChart';
 import VisitorResumeRatio from './VisitorResumeRatio';
 import VisitorLineChart from './VisitorLineChart';
-import DurationTrackingBarChart from './DurationTrackingDoughnutChart';
 
 const Visualize: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -112,7 +111,7 @@ const Visualize: React.FC = () => {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <motion.div
-                className="col-span-1 sm:col-span-3 md:col-span-2 bg-white shadow-md rounded-lg p-4"
+                className="col-span-1 sm:col-span-3 bg-white shadow-md rounded-lg p-4"
                 variants={itemVariants}
                 transition={{ duration: 0.4 }}
               >
@@ -120,17 +119,6 @@ const Visualize: React.FC = () => {
                   Total Visitors Over Time
                 </h3>
                 <VisitorLineChart />
-              </motion.div>
-
-              <motion.div
-                className="col-span-1 sm:col-span-3 md:col-span-1 bg-white shadow-md rounded-lg p-4"
-                variants={itemVariants}
-                transition={{ duration: 0.4 }}
-              >
-                <h3 className="text-center text-sm font-semibold mb-2">
-                  Duration Tracking
-                </h3>
-                <DurationTrackingBarChart />
               </motion.div>
             </div>
           </motion.section>
