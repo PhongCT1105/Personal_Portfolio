@@ -56,7 +56,7 @@ const Skills = () => {
 
   const aiSkills = [
     { skill: 'Machine Learning', level: 95 },
-    { skill: 'Web Developer', level: 85 },
+    { skill: 'Web Dev', level: 85 },
     { skill: 'MLOps / LLMOps / DevOps', level: 90 },
     { skill: 'Computer Vision', level: 85 },
     { skill: 'Data Analysis', level: 87 },
