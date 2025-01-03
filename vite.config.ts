@@ -19,4 +19,8 @@ export default defineConfig({
     },
     chunkSizeWarningLimit: 1200, // Adjust chunk size warning limit (default is 500 kB)
   },
+  server: {
+    host: true, // Allow binding to all network interfaces (0.0.0.0)
+    port: 5173, // Specify the port (optional, defaults to 5173)
+  },
 });
