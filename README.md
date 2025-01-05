@@ -4,12 +4,12 @@ This repository contains the source code for my personal portfolio website, buil
 
 ## Features
 
-- **Home Section**: Introduction and navigation to other sections.
-- **About Section**: Detailed information about me.
-- **Skills Section**: Showcase of my technical and personal skills.
-- **Projects Section**: Highlight of my major projects with descriptions and links.
-- **Contact Section**: Form and information for reaching out to me.
-- **Data Visualization**: Integrated Firebase analytics for tracking website performance and visitor behavior.
+- 🎯 **Home Section**: Introduction and navigation to other sections.
+- 👤 **About Section**: Detailed information about me.
+- 🛠️ **Skills Section**: Showcase of my technical and personal skills.
+- 📂 **Projects Section**: Highlight of my major projects with descriptions and links.
+- 📞 **Contact Section**: Form and information for reaching out to me.
+- 📊 **Data Visualization**: Integrated Firebase analytics for tracking website performance and visitor behavior.
 
 ## Technologies Used
 
@@ -124,6 +124,6 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 
 Feel free to reach out if you have any questions or suggestions:
 
-- **Email**: your.email@example.com
-- **LinkedIn**: [Your LinkedIn Profile](https://linkedin.com/in/your-profile)
+- **Email**: ptcao@wpi.edu
+- **LinkedIn**: [Phong Cao](https://www.linkedin.com/in/phong-cao/)
 - **GitHub**: [PhongCT1105](https://github.com/PhongCT1105)
